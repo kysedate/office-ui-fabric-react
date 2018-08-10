@@ -20,10 +20,16 @@ import {
   IDetailsListProps,
   IDetailsListStyles,
   IDetailsListStyleProps,
-  IDetailsGroupRenderProps
+  IDetailsGroupRenderProps,
+  ColumnDragEndLocation
 } from '../DetailsList/DetailsList.types';
 import { DetailsHeader } from '../DetailsList/DetailsHeader';
-import { IDetailsHeader, SelectAllVisibility, IDetailsHeaderProps } from '../DetailsList/DetailsHeader.types';
+import {
+  IDetailsHeader,
+  SelectAllVisibility,
+  IDetailsHeaderProps,
+  IColumnReorderHeaderProps
+} from '../DetailsList/DetailsHeader.types';
 import { IDetailsFooterProps } from '../DetailsList/DetailsFooter.types';
 import { DetailsRowBase } from '../DetailsList/DetailsRow.base';
 import { DetailsRow } from '../DetailsList/DetailsRow';
@@ -43,6 +49,7 @@ import { IGroupedList, GroupedList, IGroupDividerProps, IGroupRenderProps } from
 import { IList, List, IListProps, ScrollToMode } from '../../List';
 import { withViewport } from '../../utilities/decorators/withViewport';
 import { GetGroupCount } from '../../utilities/groupedList/GroupedListUtility';
+import { DEFAULT_CELL_STYLE_PROPS } from './DetailsRow.styles';
 
 const getClassNames = classNamesFunction<IDetailsListStyleProps, IDetailsListStyles>();
 
@@ -60,8 +67,6 @@ export interface IDetailsListState {
 const MIN_COLUMN_WIDTH = 100; // this is the global min width
 const CHECKBOX_WIDTH = 40;
 const GROUP_EXPAND_WIDTH = 36;
-const DEFAULT_INNER_PADDING = 16;
-const ISPADDED_WIDTH = 24;
 
 const DEFAULT_RENDERED_WINDOWS_AHEAD = 2;
 const DEFAULT_RENDERED_WINDOWS_BEHIND = 2;
@@ -115,6 +120,7 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
     this._onContentKeyDown = this._onContentKeyDown.bind(this);
     this._onRenderCell = this._onRenderCell.bind(this);
     this._onGroupExpandStateChanged = this._onGroupExpandStateChanged.bind(this);
+    this._onColumnDragEnd = this._onColumnDragEnd.bind(this);
 
     this.state = {
       focusedItemIndex: -1,
@@ -306,7 +312,6 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
       onShouldVirtualize,
       enableShimmer,
       viewport,
-      columnReorderOptions,
       minimumPixelsForDrag,
       getGroupHeight,
       styles,
@@ -346,6 +351,7 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
     } = this.props;
 
     const detailsFooterProps = this._getDetailsFooterProps();
+    const columnReorderProps = this._getColumnReorderProps();
 
     const rowCount = (isHeaderVisible ? 1 : 0) + GetGroupCount(groups) + (items ? items.length : 0);
 
@@ -402,8 +408,9 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
                   selectAllVisibility: selectAllVisibility,
                   collapseAllVisibility: groupProps && groupProps.collapseAllVisibility,
                   viewport: viewport,
-                  columnReorderOptions: columnReorderOptions,
-                  minimumPixelsForDrag: minimumPixelsForDrag
+                  columnReorderProps: columnReorderProps,
+                  minimumPixelsForDrag: minimumPixelsForDrag,
+                  cellStyleProps: DEFAULT_CELL_STYLE_PROPS
                 },
                 this._onRenderDetailsHeader
               )}
@@ -515,7 +522,8 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
       checkButtonAriaLabel,
       checkboxCellClassName,
       groupProps,
-      useReducedRowRenderer
+      useReducedRowRenderer,
+      cellStyleProps = DEFAULT_CELL_STYLE_PROPS
     } = this.props;
     const collapseAllVisibility = groupProps && groupProps.collapseAllVisibility;
     const selection = this._selection;
@@ -543,7 +551,8 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
       getRowAriaDescribedBy: getRowAriaDescribedBy,
       checkButtonAriaLabel: checkButtonAriaLabel,
       checkboxCellClassName: checkboxCellClassName,
-      useReducedRowRenderer: useReducedRowRenderer
+      useReducedRowRenderer: useReducedRowRenderer,
+      cellStyleProps: cellStyleProps
     };
 
     if (!item) {
@@ -644,6 +653,27 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
     });
     if (this._groupedList.current) {
       this._groupedList.current.toggleCollapseAll(collapsed);
+    }
+  }
+
+  private _onColumnDragEnd(props: { dropLocation?: ColumnDragEndLocation }, event: MouseEvent): void {
+    const { columnReorderOptions } = this.props;
+    let finalDropLocation: ColumnDragEndLocation = ColumnDragEndLocation.outside;
+    if (columnReorderOptions && columnReorderOptions.onDragEnd) {
+      if (props.dropLocation && props.dropLocation !== ColumnDragEndLocation.header) {
+        finalDropLocation = props.dropLocation;
+      } else if (this._root.current) {
+        const clientRect = this._root.current.getBoundingClientRect();
+        if (
+          event.clientX > clientRect.left &&
+          event.clientX < clientRect.right &&
+          event.clientY > clientRect.top &&
+          event.clientY < clientRect.bottom
+        ) {
+          finalDropLocation = ColumnDragEndLocation.surface;
+        }
+      }
+      columnReorderOptions.onDragEnd(finalDropLocation);
     }
   }
 
@@ -750,7 +780,7 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
     const fixedColumns = newColumns.slice(0, resizingColumnIndex);
     fixedColumns.forEach(column => (column.calculatedWidth = this._getColumnOverride(column.key).currentWidth));
 
-    const fixedWidth = fixedColumns.reduce((total, column, i) => total + getPaddedWidth(column, i === 0), 0);
+    const fixedWidth = fixedColumns.reduce((total, column, i) => total + getPaddedWidth(column, i === 0, props), 0);
 
     const remainingColumns = newColumns.slice(resizingColumnIndex);
     const remainingWidth = viewportWidth - fixedWidth;
@@ -769,24 +799,20 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
     firstIndex: number
   ): IColumn[] {
     const { selectionMode, checkboxVisibility, groups } = props;
-    const outerPadding = DEFAULT_INNER_PADDING;
     const rowCheckWidth =
       selectionMode !== SelectionMode.none && checkboxVisibility !== CheckboxVisibility.hidden ? CHECKBOX_WIDTH : 0;
     const groupExpandWidth = groups ? GROUP_EXPAND_WIDTH : 0;
     let totalWidth = 0; // offset because we have one less inner padding.
-    const availableWidth = viewportWidth - (outerPadding + rowCheckWidth + groupExpandWidth);
+    const availableWidth = viewportWidth - (rowCheckWidth + groupExpandWidth);
     const adjustedColumns: IColumn[] = newColumns.map((column, i) => {
-      const newColumn = assign(
-        {},
-        column,
-        {
-          calculatedWidth: column.minWidth || MIN_COLUMN_WIDTH
-        },
-        this._columnOverrides[column.key]
-      );
+      const newColumn = {
+        ...column,
+        calculatedWidth: column.minWidth || MIN_COLUMN_WIDTH,
+        ...this._columnOverrides[column.key]
+      };
 
       const isFirst = i + firstIndex === 0;
-      totalWidth += getPaddedWidth(newColumn, isFirst);
+      totalWidth += getPaddedWidth(newColumn, isFirst, props);
 
       return newColumn;
     });
@@ -804,7 +830,7 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
         column.calculatedWidth = Math.max(column.calculatedWidth! - overflowWidth, minWidth);
         totalWidth = availableWidth;
       } else {
-        totalWidth -= getPaddedWidth(column, false);
+        totalWidth -= getPaddedWidth(column, false, props);
         adjustedColumns.splice(lastIndex, 1);
       }
       lastIndex--;
@@ -959,6 +985,17 @@ export class DetailsListBase extends BaseComponent<IDetailsListProps, IDetailsLi
       ...detailsFooterProps
     };
   }
+
+  private _getColumnReorderProps(): IColumnReorderHeaderProps | undefined {
+    const { columnReorderOptions } = this.props;
+    if (columnReorderOptions) {
+      return {
+        ...columnReorderOptions,
+        onColumnDragEnd: this._onColumnDragEnd
+      };
+    }
+  }
+
   private _getGroupProps(detailsGroupProps: IDetailsGroupRenderProps): IGroupRenderProps {
     const {
       onRenderFooter: onRenderDetailsGroupFooter,
@@ -1046,6 +1083,13 @@ function isRightArrow(event: React.KeyboardEvent<HTMLElement>): boolean {
   return event.which === getRTLSafeKeyCode(KeyCodes.right);
 }
 
-function getPaddedWidth(column: IColumn, isFirst: boolean): number {
-  return column.calculatedWidth! + (isFirst ? 0 : DEFAULT_INNER_PADDING) + (column.isPadded ? ISPADDED_WIDTH : 0);
+function getPaddedWidth(column: IColumn, isFirst: boolean, props: IDetailsListProps): number {
+  const { cellStyleProps = DEFAULT_CELL_STYLE_PROPS } = props;
+
+  return (
+    column.calculatedWidth! +
+    cellStyleProps.cellLeftPadding +
+    cellStyleProps.cellRightPadding +
+    (column.isPadded ? cellStyleProps.cellExtraRightPadding : 0)
+  );
 }
