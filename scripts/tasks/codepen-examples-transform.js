@@ -12,6 +12,7 @@ Currently, examples which are scattered across multiple files are NOT supported.
 */
 const babylon = require('babylon');
 const recast = require('recast');
+const prettier = require('prettier');
 
 function parseRaw(code) {
   const parse = source =>
@@ -32,13 +33,6 @@ function transform(file, api) {
   const j = api.jscodeshift;
   let source = j(recast.parse(file.source, { parser: { parse } }));
 
-  //remove react import
-  source = source
-    .find(j.ImportDeclaration, node => node.source.value == 'react')
-    .remove()
-    .toSource();
-  source = j(recast.parse(source, { parser: { parse } }));
-
   //remove css imports
   source = source
     .find(j.ImportDeclaration, node => node.source.value.endsWith('.scss'))
@@ -54,65 +48,74 @@ function transform(file, api) {
   source = j(recast.parse(source, { parser: { parse } }));
 
   // attach all imported components to the window
-  let attachedWindowString = 'let {\n';
+  let attachedWindowString = 'let {';
 
   let imports = source.find(j.ImportDeclaration);
 
   let identifiers = [];
   imports.forEach(p => {
     p.node.specifiers.forEach(spec => {
-      identifiers.push(spec.local.loc.identifierName);
+      const identifier = spec.local.loc.identifierName;
+      if (identifier.toLowerCase() != 'react') {
+        identifiers.push(identifier);
+      }
     });
   });
 
   for (var i = 0; i < identifiers.length; i++) {
-    attachedWindowString += '\t' + identifiers[i] + ',\n';
+    attachedWindowString += identifiers[i] + ',';
   }
-  attachedWindowString += '\tFabric } = window.Fabric;';
+  attachedWindowString += 'Fabric} = window.Fabric;';
 
   let parsedAttachedWindowString = parseRaw(attachedWindowString);
 
-  // remove the rest of the import declarations
   source = source
-    .find(j.ImportDeclaration)
+    .find(j.ImportDeclaration, node => node.source.value.toLowerCase() == 'react')
     .remove()
     .insertBefore(parsedAttachedWindowString)
     .toSource();
   source = j(recast.parse(source, { parser: { parse } }));
 
-  // remove exports and replace with variable or class declarations, whichever the original example used
-  let variableExportDeclarations = source.find(
-    j.ExportNamedDeclaration,
-    node => node.declaration.type == 'VariableDeclaration'
-  );
-  let classExportDeclarations = source.find(
-    j.ExportNamedDeclaration,
-    node => node.declaration.type == 'ClassDeclaration'
-  );
+  // remove the rest of the import declarations
+  source = source
+    .find(j.ImportDeclaration)
+    .remove()
+    .toSource();
+  source = j(recast.parse(source, { parser: { parse } }));
+
   let exampleName;
 
-  // for examples with variable export declarations
-  if (variableExportDeclarations.size() > 0) {
-    // extract name
-    variableExportDeclarations.forEach(p => {
-      exampleName = p.node.declaration.declarations[0].id.name;
-      source = source.find(j.ExportNamedDeclaration).replaceWith(p.node.declaration);
-    });
-  }
+  // remove exports and replace with variable or class declarations, whichever the original example used
+  source.find(j.ExportNamedDeclaration, node => node.declaration.type == 'VariableDeclaration').replaceWith(p => {
+    exampleName = p.node.declaration.declarations[0].id.name;
+    source = source
+      .find(j.ExportNamedDeclaration, node => node.declaration.type == 'VariableDeclaration')
+      .replaceWith(p.node.declaration);
+  });
 
-  // for examples which export react components as a class
-  if (classExportDeclarations.size() > 0) {
-    // extract name
-    classExportDeclarations.forEach(p => {
-      exampleName = p.node.declaration.id.name;
-      source = source.find(j.ExportNamedDeclaration).replaceWith(p.node.declaration);
-    });
-  }
+  source
+    .find(
+      j.ExportNamedDeclaration,
+      node => node.declaration.type == 'ClassDeclaration' || node.declaration.type == 'TSInterfaceDeclaration'
+    )
+    .replaceWith(p => {
+      if (p.node.declaration.type === 'ClassDeclaration') {
+        exampleName = p.node.declaration.id.name;
+      }
+      return p.node.declaration;
+    })
+    .toSource();
 
   // add React Render footer
   const sourceWithFooter =
-    source.toSource() + '\n' + 'ReactDOM.render(<' + exampleName + '/>,document.getElementById("content"));';
-  return sourceWithFooter;
+    source.toSource() + '\n' + 'ReactDOM.render(<' + exampleName + '/>, document.getElementById("content"));';
+
+  return prettier.format(sourceWithFooter, {
+    parser: 'typescript',
+    printWidth: 120,
+    tabWidth: 2,
+    singleQuote: true
+  });
 }
 
 module.exports = transform;

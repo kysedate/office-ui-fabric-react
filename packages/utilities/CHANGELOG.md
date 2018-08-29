@@ -1,6 +1,53 @@
 # Change Log - @uifabric/utilities
 
-This log was last generated on Fri, 10 Aug 2018 10:26:09 GMT and should not be manually modified.
+This log was last generated on Tue, 28 Aug 2018 10:23:58 GMT and should not be manually modified.
+
+## 6.17.0
+Tue, 28 Aug 2018 10:23:58 GMT
+
+### Minor changes
+
+- Add mobileDetector to detect iOS devices
+
+## 6.16.0
+Fri, 24 Aug 2018 17:02:14 GMT
+
+### Minor changes
+
+- Reverting Customizer React 16 context change.
+
+## 6.15.1
+Fri, 24 Aug 2018 10:26:08 GMT
+
+### Patches
+
+- Fix @types/prop-types being inconsistently restrictive.
+
+## 6.15.0
+Thu, 23 Aug 2018 10:28:17 GMT
+
+### Minor changes
+
+- Customizer: moving to use React 16 context.
+- Scroll: allow scrolling within a target element
+
+### Patches
+
+- Scroll: disable ios body scrolling in disableBodyScroll
+
+## 6.14.1
+Tue, 14 Aug 2018 10:27:33 GMT
+
+### Patches
+
+- disabling codepen task
+
+## 6.14.0
+Mon, 13 Aug 2018 03:43:25 GMT
+
+### Minor changes
+
+- Customizer should allow for nesting. Right now, `settings` provided have the reverse precendence expected; the outer-most Customizer wins over an inner one. This is completely backwards. Fixing to be correct.
 
 ## 6.13.0
 Fri, 10 Aug 2018 10:26:09 GMT
