@@ -1,10 +1,12 @@
 /**
  * Enumeration of icon file names, and what extensions they map to.
  * Please keep items alphabetical. Items without extensions may require specific logic in the code to map.
- * Track icon accuracy status here: https://msft-my.spoppe.com/personal/caperez_microsoft_com/Documents/Missing%20List.xlsx?web=1
+ * Always use getFileTypeIconProps to get the most up-to-date icon at the right pixel density.
  */
 export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
-  accdb: { extensions: ['accdb', 'mdb'] },
+  accdb: {
+    extensions: ['accdb', 'mdb']
+  },
   archive: {
     extensions: ['7z', 'ace', 'arc', 'arj', 'dmg', 'gz', 'iso', 'lzh', 'pkg', 'rar', 'sit', 'tgz', 'tar', 'z']
   },
@@ -26,7 +28,6 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'mid',
       'mmf',
       'mp3',
-      'ogg',
       'oga',
       'ra',
       'rm',
@@ -34,6 +35,10 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'wma',
       'wv'
     ]
+  },
+  channelfolder: {},
+  calendar: {
+    extensions: ['ical', 'icalendar', 'ics', 'ifb', 'vcs']
   },
   code: {
     extensions: [
@@ -142,6 +147,7 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'ltx',
       'lua',
       'm',
+      'mak',
       'make',
       'manifest',
       'master',
@@ -174,6 +180,9 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'pp',
       'profile',
       'ps1',
+      'ps1xml',
+      'psd1',
+      'psm1',
       'pss',
       'pt',
       'py',
@@ -207,7 +216,6 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'scss',
       'sgml',
       'sh',
-      'sh',
       'shtml',
       'sml',
       'svn-base',
@@ -238,19 +246,44 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'zsh'
     ]
   },
+  contact: {
+    extensions: ['vcf']
+  },
   css: {}, // we dont have the icon yet, but i believe we want it, snapping to 'code' for now
-  csv: { extensions: ['csv'] },
+  csv: {
+    extensions: ['csv']
+  },
   docset: {},
-  docx: { extensions: ['doc', 'docm', 'docx'] },
-  dotx: { extensions: ['dot', 'dotm', 'dotx'] },
-  email: { extensions: ['eml', 'msg', 'ost', 'pst'] },
-  exe: { extensions: ['application', 'appref-ms', 'apk', 'app', 'appx', 'exe', 'ipa', 'msi', 'xap'] },
+  docx: {
+    extensions: ['doc', 'docm', 'docx', 'docb']
+  },
+  dotx: {
+    extensions: ['dot', 'dotm', 'dotx']
+  },
+  email: {
+    extensions: ['eml', 'msg', 'ost', 'pst']
+  },
+  exe: {
+    extensions: ['application', 'appref-ms', 'apk', 'app', 'appx', 'exe', 'ipa', 'msi', 'xap']
+  },
   folder: {},
-  font: { extensions: ['ttf', 'otf', 'woff'] },
+  font: {
+    extensions: ['ttf', 'otf', 'woff']
+  },
+  fluid: {
+    extensions: ['b', 'fluid']
+  },
   genericfile: {},
-  html: { extensions: ['htm', 'html', 'mht'] },
-  link: { extensions: ['lnk', 'link', 'url', 'website', 'webloc'] },
-  listitem: { extensions: ['listitem'] },
+  html: {
+    extensions: ['htm', 'html', 'mht']
+  },
+  link: {
+    extensions: ['lnk', 'link', 'url', 'website', 'webloc']
+  },
+  linkedfolder: {},
+  splist: {
+    extensions: ['listitem']
+  },
   model: {
     extensions: [
       '3ds',
@@ -266,6 +299,7 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'glb',
       'gltf',
       'holo',
+      'layer',
       'layout',
       'max',
       'mtl',
@@ -280,11 +314,22 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'x'
     ]
   },
-  mpp: { extensions: ['mpp'] },
-  mpt: { extensions: ['mpt'] },
-  one: { extensions: ['one', 'onepkg'] }, // this is a format for exported single-file notebook pages
-  onetoc: { extensions: ['ms-one-stub', 'onetoc', 'onetoc2'] }, // this icon represents a complete, logical notebook.
-  pdf: { extensions: ['pdf'] },
+  mpp: {
+    extensions: ['mpp']
+  },
+  mpt: {
+    extensions: ['mpt']
+  },
+  multiple: {},
+  one: {
+    extensions: ['one'] // this is a format for exported single - file notebook pages
+  },
+  onetoc: {
+    extensions: ['ms-one-stub', 'onetoc', 'onetoc2', 'onepkg'] // this icon represents a complete, logical notebook.
+  },
+  pdf: {
+    extensions: ['pdf']
+  },
   photo: {
     extensions: [
       'arw',
@@ -297,6 +342,8 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'dng',
       'erf',
       'gif',
+      'heic',
+      'heif',
       'ico',
       'jfi',
       'jfif',
@@ -320,15 +367,37 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'wdp'
     ]
   },
-  potx: { extensions: ['pot', 'potm', 'potx'] },
-  ppsx: { extensions: ['pps', 'ppsm', 'ppsx'] },
-  pptx: { extensions: ['ppt', 'pptm', 'pptx'] },
-  presentation: { extensions: ['odp', 'gslides', 'key'] },
-  pub: { extensions: ['pub'] },
-  spo: { extensions: ['aspx'] },
-  spreadsheet: { extensions: ['ods', 'gsheet', 'numbers'] },
-  rtf: { extensions: ['epub', 'gdoc', 'odt', 'rtf', 'wri', 'pages'] },
+  photo360: {},
+  potx: {
+    extensions: ['pot', 'potm', 'potx']
+  },
+  powerbi: {
+    extensions: ['pbids', 'pbix']
+  },
+  ppsx: {
+    extensions: ['pps', 'ppsm', 'ppsx']
+  },
+  pptx: {
+    extensions: ['ppt', 'pptm', 'pptx', 'sldx', 'sldm']
+  },
+  presentation: {
+    extensions: ['odp', 'gslides', 'key']
+  },
+  pub: {
+    extensions: ['pub']
+  },
+  spo: {
+    extensions: ['aspx']
+  },
+  sponews: {},
+  spreadsheet: {
+    extensions: ['odc', 'ods', 'gsheet', 'numbers']
+  },
+  rtf: {
+    extensions: ['epub', 'gdoc', 'odt', 'rtf', 'wri', 'pages']
+  },
   sharedfolder: {},
+  sway: {},
   sysfile: {
     extensions: [
       'bak',
@@ -346,9 +415,9 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'ithmb',
       'jar',
       'kb',
-      'kdc',
       'ldt',
       'lrprev',
+      'pkpass',
       'ppa',
       'ppam',
       'pdb',
@@ -358,20 +427,29 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'vsl',
       'xla',
       'xlam',
+      'xlb',
       'xll'
     ]
   },
-  txt: { extensions: ['dif', 'diff', 'readme', 'out', 'plist', 'properties', 'text', 'txt'] },
+  txt: {
+    extensions: ['dif', 'diff', 'readme', 'out', 'plist', 'properties', 'text', 'txt']
+  },
+  vaultclosed: {},
+  vaultopen: {},
   vector: {
     extensions: [
       'ai',
+      'cvs',
       'dgn',
       'gdraw',
       'pd',
       'emf',
       'eps',
+      'fig',
+      'ind',
       'indd',
       'indt',
+      'indb',
       'ps',
       'svg',
       'svgz',
@@ -384,7 +462,10 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
   },
   video: {
     extensions: [
+      '3g2',
       '3gp',
+      '3gp2',
+      '3gpp',
       'asf',
       'avi',
       'dvr-ms',
@@ -398,7 +479,7 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'mp2',
       'mp2v',
       'mp4',
-      ' mpa',
+      'mpa',
       'mpe',
       'mpeg',
       'mpg',
@@ -417,12 +498,29 @@ export const FileTypeIconMap: { [key: string]: { extensions?: string[] } } = {
       'wmx'
     ]
   },
-  vsdx: { extensions: ['vsd', 'vsdm', 'vsdx', 'vdw'] },
-  vssx: { extensions: ['vss', 'vssm', 'vssx'] },
-  vstx: { extensions: ['vst', 'vstm', 'vstx'] },
-  xlsx: { extensions: ['xls', 'xlsb', 'xlsm', 'xlsx'] },
-  xltx: { extensions: ['xlt', 'xltm', 'xltx'] },
-  xml: { extensions: ['xaml', 'xml', 'xsl'] },
-  xsn: { extensions: ['xsn'] },
-  zip: { extensions: ['zip'] }
+  video360: {},
+  vsdx: {
+    extensions: ['vdx', 'vsd', 'vsdm', 'vsdx', 'vsw', 'vdw']
+  },
+  vssx: {
+    extensions: ['vss', 'vssm', 'vssx']
+  },
+  vstx: {
+    extensions: ['vst', 'vstm', 'vstx', 'vsx']
+  },
+  xlsx: {
+    extensions: ['xlc', 'xls', 'xlsb', 'xlsm', 'xlsx']
+  },
+  xltx: {
+    extensions: ['xlt', 'xltm', 'xltx']
+  },
+  xml: {
+    extensions: ['xaml', 'xml', 'xsl']
+  },
+  xsn: {
+    extensions: ['xsn']
+  },
+  zip: {
+    extensions: ['zip']
+  }
 };

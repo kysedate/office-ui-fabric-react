@@ -40,10 +40,7 @@ export function addMonths(date: Date, months: number): Date {
   // We want to maintain the same day-of-month, but that may not be possible if the new month doesn't have enough days.
   // Loop until we back up to a day the new month has.
   // (Weird modulo math is due to Javascript's treatment of negative numbers in modulo)
-  if (
-    result.getMonth() !==
-    ((newMonth % TimeConstants.MonthInOneYear) + TimeConstants.MonthInOneYear) % TimeConstants.MonthInOneYear
-  ) {
+  if (result.getMonth() !== ((newMonth % TimeConstants.MonthInOneYear) + TimeConstants.MonthInOneYear) % TimeConstants.MonthInOneYear) {
     result = addDays(result, -result.getDate());
   }
   return result;
@@ -131,11 +128,7 @@ export function compareDates(date1: Date, date2: Date): boolean {
   } else if (!date1 || !date2) {
     return false;
   } else {
-    return (
-      date1.getFullYear() === date2.getFullYear() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getDate() === date2.getDate()
-    );
+    return date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate();
   }
 }
 
@@ -157,13 +150,16 @@ export function compareDatePart(date1: Date, date2: Date): Number {
  * @param {DateRangeType} dateRangeType - The desired date range type, i.e., day, week, month, etc.
  * @param {DayOfWeek} firstDayOfWeek - The first day of the week.
  * @param {DayOfWeek[]} workWeekDays - The allowed days in work week. If not provided, assumes all days are allowed.
+ * @param {number} daysToSelectInDayView - The number of days to include when using dateRangeType === DateRangeType.Day
+ * for multiday view. Defaults to 1
  * @returns {Date[]} An array of dates representing the date range containing the specified date.
  */
 export function getDateRangeArray(
   date: Date,
   dateRangeType: DateRangeType,
   firstDayOfWeek: DayOfWeek,
-  workWeekDays?: DayOfWeek[]
+  workWeekDays?: DayOfWeek[],
+  daysToSelectInDayView: number = 1
 ): Date[] {
   const datesArray = new Array<Date>();
   let startDate: Date;
@@ -173,10 +169,12 @@ export function getDateRangeArray(
     workWeekDays = [DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday];
   }
 
+  daysToSelectInDayView = Math.max(daysToSelectInDayView, 1);
+
   switch (dateRangeType) {
     case DateRangeType.Day:
       startDate = getDatePart(date);
-      endDate = addDays(startDate, 1);
+      endDate = addDays(startDate, daysToSelectInDayView);
       break;
 
     case DateRangeType.Week:
@@ -201,7 +199,7 @@ export function getDateRangeArray(
     if (dateRangeType !== DateRangeType.WorkWeek) {
       // push all days not in work week view
       datesArray.push(nextDate);
-    } else if (workWeekDays.includes(nextDate.getDay())) {
+    } else if (workWeekDays.indexOf(nextDate.getDay()) !== -1) {
       datesArray.push(nextDate);
     }
     nextDate = addDays(nextDate, 1);
@@ -244,9 +242,7 @@ export function getWeekNumbersInMonth(
   let dayOfMonth = 1;
   const fistDayOfMonth = new Date(selectedYear, selectedMonth, dayOfMonth);
   const endOfFirstWeek =
-    dayOfMonth +
-    (firstDayOfWeek + TimeConstants.DaysInOneWeek - 1) -
-    adjustWeekDay(firstDayOfWeek, fistDayOfMonth.getDay());
+    dayOfMonth + (firstDayOfWeek + TimeConstants.DaysInOneWeek - 1) - adjustWeekDay(firstDayOfWeek, fistDayOfMonth.getDay());
   let endOfWeekRange = new Date(selectedYear, selectedMonth, endOfFirstWeek);
   dayOfMonth = endOfWeekRange.getDate();
 
@@ -285,27 +281,27 @@ export function getWeekNumber(date: Date, firstDayOfWeek: DayOfWeek, firstWeekOf
 }
 
 /**
- * Gets a new date with the time portion zeroed out, i.e., set to midnight
- * @param {Date} date - The origin date
- * @returns {Date} A new date with the time set to midnight
- */
-function getDatePart(date: Date): Date {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
-
-/**
  * Gets the date for the first day of the week based on the given date assuming
  * the specified first day of the week.
  * @param {Date} date - The date to find the beginning of the week date for.
  * @return {Date} A new date object representing the first day of the week containing the input date.
  */
-function getStartDateOfWeek(date: Date, firstDayOfWeek: DayOfWeek): Date {
+export function getStartDateOfWeek(date: Date, firstDayOfWeek: DayOfWeek): Date {
   let daysOffset = firstDayOfWeek - date.getDay();
   if (daysOffset > 0) {
     // If first day of week is > date, go 1 week back, to ensure resulting date is in the past.
     daysOffset -= TimeConstants.DaysInOneWeek;
   }
   return addDays(date, daysOffset);
+}
+
+/**
+ * Gets a new date with the time portion zeroed out, i.e., set to midnight
+ * @param {Date} date - The origin date
+ * @returns {Date} A new date with the time set to midnight
+ */
+function getDatePart(date: Date): Date {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
 
 /**
@@ -376,9 +372,7 @@ function getFirstDayWeekOfYear(date: Date, firstDayOfWeek: number): number {
  * @return {DayOfWeek} The day of week adjusted to firstDayOfWeek. E.g. when FirstDyOfWeek is Monday (1), Sunday becomes = 7 (7 > 1).
  */
 function adjustWeekDay(firstDayOfWeek: DayOfWeek, dateWeekDay: DayOfWeek): number {
-  return firstDayOfWeek !== DayOfWeek.Sunday && dateWeekDay < firstDayOfWeek
-    ? dateWeekDay + TimeConstants.DaysInOneWeek
-    : dateWeekDay;
+  return firstDayOfWeek !== DayOfWeek.Sunday && dateWeekDay < firstDayOfWeek ? dateWeekDay + TimeConstants.DaysInOneWeek : dateWeekDay;
 }
 
 /**

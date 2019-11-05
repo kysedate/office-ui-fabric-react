@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseComponent, KeyCodes, css, createRef } from '../../Utilities';
+import { BaseComponent, KeyCodes, css } from '../../Utilities';
 import { Autofill } from '../../Autofill';
 import { IInputProps } from '../../Pickers';
 import * as stylesImport from './BaseExtendedPicker.scss';
@@ -12,18 +12,18 @@ import { Selection, SelectionMode, SelectionZone } from '../../Selection';
 const styles: any = stylesImport;
 
 export interface IBaseExtendedPickerState<T> {
+  queryString: string | null;
   selectedItems: T[] | null;
   suggestionItems: T[] | null;
 }
 
-export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
-  extends BaseComponent<P, IBaseExtendedPickerState<T>>
+export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>> extends BaseComponent<P, IBaseExtendedPickerState<T>>
   implements IBaseExtendedPicker<T> {
-  public floatingPicker = createRef<BaseFloatingPicker<T, IBaseFloatingPickerProps<T>>>();
-  public selectedItemsList = createRef<BaseSelectedItemsList<T, IBaseSelectedItemsListProps<T>>>();
+  public floatingPicker = React.createRef<BaseFloatingPicker<T, IBaseFloatingPickerProps<T>>>();
+  public selectedItemsList = React.createRef<BaseSelectedItemsList<T, IBaseSelectedItemsListProps<T>>>();
 
-  protected root = createRef<HTMLDivElement>();
-  protected input = createRef<Autofill>();
+  protected root = React.createRef<HTMLDivElement>();
+  protected input = React.createRef<Autofill>();
   protected selection: Selection;
   protected floatingPickerProps: IBaseFloatingPickerProps<T>;
   protected selectedItemsListProps: IBaseSelectedItemsListProps<T>;
@@ -34,12 +34,13 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
     this.selection = new Selection({ onSelectionChanged: () => this.onSelectionChange() });
 
     this.state = {
+      queryString: '',
       suggestionItems: this.props.suggestionItems ? (this.props.suggestionItems as T[]) : null,
       selectedItems: this.props.defaultSelectedItems
         ? (this.props.defaultSelectedItems as T[])
         : this.props.selectedItems
-          ? (this.props.selectedItems as T[])
-          : null
+        ? (this.props.selectedItems as T[])
+        : null
     };
 
     this.floatingPickerProps = this.props.floatingPickerProps;
@@ -51,15 +52,16 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
     return this.state.selectedItems
       ? this.state.selectedItems
       : this.selectedItemsList.current
-        ? this.selectedItemsList.current.items
-        : null;
+      ? this.selectedItemsList.current.items
+      : null;
   }
 
   public componentDidMount(): void {
     this.forceUpdate();
   }
 
-  public componentWillReceiveProps(newProps: P): void {
+  // tslint:disable-next-line function-name
+  public UNSAFE_componentWillReceiveProps(newProps: P): void {
     if (newProps.floatingPickerProps) {
       this.floatingPickerProps = newProps.floatingPickerProps;
     }
@@ -99,6 +101,7 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
       this.floatingPicker.current && this.floatingPicker.current.currentSelectedSuggestionIndex !== -1
         ? 'sug-' + this.floatingPicker.current.currentSelectedSuggestionIndex
         : undefined;
+    const isExpanded = this.floatingPicker.current ? this.floatingPicker.current.isSuggestionsShown : false;
 
     return (
       <div
@@ -121,21 +124,20 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
                   onClick={this.onInputClick}
                   onInputValueChange={this.onInputChange}
                   aria-activedescendant={activeDescendant}
-                  aria-owns="suggestion-list"
-                  aria-expanded={this.floatingPicker.current ? this.floatingPicker.current.isSuggestionsShown : false}
+                  aria-owns={isExpanded ? 'suggestion-list' : undefined}
+                  aria-expanded={isExpanded}
                   aria-haspopup="true"
                   autoCapitalize="off"
                   autoComplete="off"
                   role="combobox"
                   disabled={disabled}
-                  aria-controls="selected-suggestion-alert"
                   onPaste={this.onPaste}
                 />
               )}
             </div>
           </SelectionZone>
         </FocusZone>
-        {this.renderSuggestions()}
+        {this.renderFloatingPicker()}
       </div>
     );
   }
@@ -149,30 +151,37 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
     return itemLimit === undefined || this.items.length < itemLimit;
   }
 
-  protected renderSuggestions(): JSX.Element {
-    const onRenderFloatingPicker = this.props.onRenderFloatingPicker;
-    return onRenderFloatingPicker({
-      componentRef: this.floatingPicker,
-      onChange: this._onSuggestionSelected,
-      inputElement: this.input.current ? this.input.current.inputElement : undefined,
-      selectedItems: this.items,
-      suggestionItems: this.props.suggestionItems ? this.props.suggestionItems : undefined,
-      ...this.floatingPickerProps
-    });
+  protected renderFloatingPicker(): JSX.Element {
+    const FloatingPicker: React.ComponentType<IBaseFloatingPickerProps<T>> = this.props.onRenderFloatingPicker;
+    return (
+      <FloatingPicker
+        componentRef={this.floatingPicker}
+        onChange={this._onSuggestionSelected}
+        onSuggestionsHidden={this._onSuggestionsShownOrHidden}
+        onSuggestionsShown={this._onSuggestionsShownOrHidden}
+        inputElement={this.input.current ? this.input.current.inputElement : undefined}
+        selectedItems={this.items}
+        suggestionItems={this.props.suggestionItems ? this.props.suggestionItems : undefined}
+        {...this.floatingPickerProps}
+      />
+    );
   }
 
   protected renderSelectedItemsList(): JSX.Element {
-    const onRenderSelectedItems = this.props.onRenderSelectedItems;
-    return onRenderSelectedItems({
-      componentRef: this.selectedItemsList,
-      selection: this.selection,
-      selectedItems: this.props.selectedItems ? this.props.selectedItems : undefined,
-      onItemsDeleted: this.props.selectedItems ? this.props.onItemsRemoved : undefined,
-      ...this.selectedItemsListProps
-    });
+    const SelectedItems: React.ComponentType<IBaseSelectedItemsListProps<T>> = this.props.onRenderSelectedItems;
+    return (
+      <SelectedItems
+        componentRef={this.selectedItemsList}
+        selection={this.selection}
+        selectedItems={this.props.selectedItems ? this.props.selectedItems : undefined}
+        onItemsDeleted={this.props.selectedItems ? this.props.onItemsRemoved : undefined}
+        {...this.selectedItemsListProps}
+      />
+    );
   }
 
   protected onInputChange = (value: string): void => {
+    this.setState({ queryString: value });
     if (this.floatingPicker.current) {
       this.floatingPicker.current.onQueryStringChanged(value);
     }
@@ -195,8 +204,7 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
 
     if (this.floatingPicker.current && this.inputElement) {
       // Update the value if the input value is empty or it is different than the current inputText from the floatingPicker
-      const shoudUpdateValue =
-        this.inputElement.value === '' || this.inputElement.value !== this.floatingPicker.current.inputText;
+      const shoudUpdateValue = this.inputElement.value === '' || this.inputElement.value !== this.floatingPicker.current.inputText;
       this.floatingPicker.current.showPicker(shoudUpdateValue);
     }
   };
@@ -248,31 +256,46 @@ export class BaseExtendedPicker<T, P extends IBaseExtendedPickerProps<T>>
   };
 
   protected _onSuggestionSelected = (item: T): void => {
-    const processedItem: T | PromiseLike<T> | null = this.props.onItemSelected
-      ? (this.props.onItemSelected as any)(item)
-      : item;
+    const currentRenderedQueryString = this.props.currentRenderedQueryString;
+    const queryString = this.state.queryString;
+    if (currentRenderedQueryString === undefined || currentRenderedQueryString === queryString) {
+      const processedItem: T | PromiseLike<T> | null = this.props.onItemSelected ? (this.props.onItemSelected as any)(item) : item;
 
-    if (processedItem === null) {
-      return;
-    }
+      if (processedItem === null) {
+        return;
+      }
 
-    const processedItemObject: T = processedItem as T;
-    const processedItemPromiseLike: PromiseLike<T> = processedItem as PromiseLike<T>;
+      const processedItemObject: T = processedItem as T;
+      const processedItemPromiseLike: PromiseLike<T> = processedItem as PromiseLike<T>;
 
-    let newItem: T;
-    if (processedItemPromiseLike && processedItemPromiseLike.then) {
-      processedItemPromiseLike.then((resolvedProcessedItem: T) => {
-        newItem = resolvedProcessedItem;
+      let newItem: T;
+      if (processedItemPromiseLike && processedItemPromiseLike.then) {
+        processedItemPromiseLike.then((resolvedProcessedItem: T) => {
+          newItem = resolvedProcessedItem;
+          this._addProcessedItem(newItem);
+        });
+      } else {
+        newItem = processedItemObject;
         this._addProcessedItem(newItem);
-      });
-    } else {
-      newItem = processedItemObject;
-      this._addProcessedItem(newItem);
+      }
     }
   };
 
   protected _onSelectedItemsChanged = (): void => {
     this.focus();
+  };
+
+  /**
+   * The floating picker is the source of truth for if the menu has been opened or not.
+   *
+   * Because this isn't tracked inside the state of this component, we need to
+   * force an update here to keep the rendered output that depends on the picker being open
+   * in sync with the state
+   *
+   * Called when the suggestions is shown or closed
+   */
+  private _onSuggestionsShownOrHidden = () => {
+    this.forceUpdate();
   };
 
   private _addProcessedItem(newItem: T) {

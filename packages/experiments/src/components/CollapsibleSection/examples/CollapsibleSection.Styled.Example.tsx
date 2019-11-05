@@ -5,54 +5,42 @@ import { FocusZone } from 'office-ui-fabric-react/lib/FocusZone';
 import {
   CollapsibleSection,
   CollapsibleSectionStateless,
-  ICollapsibleSectionStyleProps,
-  ICollapsibleSectionStyles,
-  ICollapsibleSectionTitleStyleProps,
-  ICollapsibleSectionTitleStyles
+  ICollapsibleSectionComponent,
+  ICollapsibleSectionStylesReturnType,
+  ICollapsibleSectionTitleComponent,
+  ICollapsibleSectionTitleStylesReturnType
 } from '@uifabric/experiments/lib/CollapsibleSection';
 
-function getPropStyles(props: ICollapsibleSectionStyleProps): Partial<ICollapsibleSectionStyles> {
-  const { theme } = props;
-  return {
-    root: [
-      {
-        background: theme.semanticColors.inputBackground
-      }
-    ],
-    body: [
-      theme.fonts.small,
-      {
-        background: theme.semanticColors.disabledBackground
-      }
-    ]
-  };
-}
+const getPropStyles: ICollapsibleSectionComponent['styles'] = (props, theme): ICollapsibleSectionStylesReturnType => ({
+  root: [
+    {
+      background: theme.semanticColors.inputBackground
+    }
+  ],
+  body: [
+    theme.fonts.small,
+    {
+      background: theme.semanticColors.disabledBackground
+    }
+  ]
+});
 
-function getCustomizerStyles(props: ICollapsibleSectionStyleProps): Partial<ICollapsibleSectionStyles> {
-  const { theme } = props;
-  return {
-    body: [
-      {
-        color: theme.semanticColors.link
-      }
-    ]
-  };
-}
+const getCustomizerStyles: ICollapsibleSectionComponent['styles'] = (props, theme): ICollapsibleSectionStylesReturnType => ({
+  body: [
+    {
+      color: theme.semanticColors.link
+    }
+  ]
+});
 
-function getPropTitleStyles(props: ICollapsibleSectionTitleStyleProps): Partial<ICollapsibleSectionTitleStyles> {
-  const { theme } = props;
-  return {
-    text: [theme.fonts.large]
-  };
-}
+const getPropTitleStyles: ICollapsibleSectionTitleComponent['styles'] = (props, theme): ICollapsibleSectionTitleStylesReturnType => ({
+  text: [theme.fonts.large]
+});
 
-function getCustomizerTitleStyles(props: ICollapsibleSectionTitleStyleProps): Partial<ICollapsibleSectionTitleStyles> {
-  const { theme } = props;
-  return {
-    icon: { color: theme.semanticColors.link },
-    text: { color: theme.semanticColors.link }
-  };
-}
+const getCustomizerTitleStyles: ICollapsibleSectionTitleComponent['styles'] = (props, theme): ICollapsibleSectionTitleStylesReturnType => ({
+  chevron: { color: theme.semanticColors.link },
+  text: { color: theme.semanticColors.link }
+});
 
 const csCustomizerTheme: ITheme = createTheme({
   semanticColors: {
@@ -73,33 +61,27 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
     return (
       <div>
         <p>
-          This is a demonstration of the various levels of theming and styling that have effect on created components,
-          with and without state. Themes and styles should have priority based on how locally they are defined:
-          individual props as highest priority followed by contextual (Customizer) and finally global.
+          This is a demonstration of the various levels of theming and styling that have effect on created components, with and without
+          state. Themes and styles should have priority based on how locally they are defined: individual props as highest priority followed
+          by contextual (Customizer) and finally global.
         </p>
         <p>
-          If everything is working correctly color gradients should gradually get darker within each type of component
-          with any variant having Theme prop looking identical.
+          If everything is working correctly color gradients should gradually get darker within each type of component with any variant
+          having Theme prop looking identical.
         </p>
         <p>
           <b>Stateful Components</b>
         </p>
         <FocusZone>
-          <CollapsibleSection
-            key={1}
-            defaultCollapsed={false}
-            titleProps={{
-              text: `No Styling`
-            }}
-          >
+          <CollapsibleSection key={1} defaultCollapsed={false} title="No Styling">
             Body
           </CollapsibleSection>
           <br />
           <CollapsibleSection
             key={2}
             defaultCollapsed={false}
-            titleProps={{
-              text: `Prop Styles`,
+            title={{
+              text: 'Prop Styles',
               styles: getPropTitleStyles
             }}
             styles={getPropStyles}
@@ -116,8 +98,8 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
             <CollapsibleSection
               key={3}
               defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Styles`,
+              title={{
+                text: 'Prop Styles + Customizer Styles',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}
@@ -130,8 +112,8 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
             <CollapsibleSection
               key={4}
               defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Theme`,
+              title={{
+                text: 'Prop Styles + Customizer Theme',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}
@@ -143,8 +125,8 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           <CollapsibleSection
             key={5}
             defaultCollapsed={false}
-            titleProps={{
-              text: `Prop Styles + Prop Theme`,
+            title={{
+              text: 'Prop Styles + Prop Theme',
               styles: getPropTitleStyles
             }}
             styles={getPropStyles}
@@ -157,8 +139,8 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
             <CollapsibleSection
               key={6}
               defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Theme + Prop Theme`,
+              title={{
+                text: 'Prop Styles + Customizer Theme + Prop Theme',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}
@@ -170,21 +152,15 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           <p>
             <b>Stateless Components</b>
           </p>
-          <CollapsibleSectionStateless
-            key={7}
-            defaultCollapsed={false}
-            titleProps={{
-              text: `No Styling`
-            }}
-          >
+          <CollapsibleSectionStateless key={7} collapsed={false} title="No Styling">
             Body
           </CollapsibleSectionStateless>
           <br />
           <CollapsibleSectionStateless
             key={8}
-            defaultCollapsed={false}
-            titleProps={{
-              text: `Prop Styles`,
+            collapsed={false}
+            title={{
+              text: 'Prop Styles',
               styles: getPropTitleStyles
             }}
             styles={getPropStyles}
@@ -200,9 +176,9 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           >
             <CollapsibleSectionStateless
               key={9}
-              defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Styles`,
+              collapsed={false}
+              title={{
+                text: 'Prop Styles + Customizer Styles',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}
@@ -214,9 +190,9 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           <Customizer settings={{ theme: csCustomizerTheme }}>
             <CollapsibleSectionStateless
               key={10}
-              defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Theme`,
+              collapsed={false}
+              title={{
+                text: 'Prop Styles + Customizer Theme',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}
@@ -227,9 +203,9 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           <br />
           <CollapsibleSectionStateless
             key={11}
-            defaultCollapsed={false}
-            titleProps={{
-              text: `Prop Styles + Prop Theme`,
+            collapsed={false}
+            title={{
+              text: 'Prop Styles + Prop Theme',
               styles: getPropTitleStyles
             }}
             styles={getPropStyles}
@@ -241,9 +217,9 @@ export class CollapsibleSectionStyledExample extends React.Component<{}, {}> {
           <Customizer settings={{ theme: csCustomizerTheme }}>
             <CollapsibleSectionStateless
               key={12}
-              defaultCollapsed={false}
-              titleProps={{
-                text: `Prop Styles + Customizer Theme + Prop Theme`,
+              collapsed={false}
+              title={{
+                text: 'Prop Styles + Customizer Theme + Prop Theme',
                 styles: getPropTitleStyles
               }}
               styles={getPropStyles}

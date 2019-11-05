@@ -1,12 +1,13 @@
 import { IPersonaCoinStyleProps, IPersonaCoinStyles, PersonaSize } from '../Persona.types';
-import { HighContrastSelector, FontSizes, FontWeights, getGlobalClassNames } from '../../../Styling';
-import { personaSize, sizeBoolean } from '../PersonaConsts';
+import { HighContrastSelector, FontWeights, getGlobalClassNames } from '../../../Styling';
+import { sizeBoolean, sizeToPixels } from '../PersonaConsts';
 
 const GlobalClassNames = {
   coin: 'ms-Persona-coin',
   imageArea: 'ms-Persona-imageArea',
   image: 'ms-Persona-image',
   initials: 'ms-Persona-initials',
+  size8: 'ms-Persona--size8',
   size10: 'ms-Persona--size10',
   size16: 'ms-Persona--size16',
   size24: 'ms-Persona--size24',
@@ -14,27 +15,32 @@ const GlobalClassNames = {
   size32: 'ms-Persona--size32',
   size40: 'ms-Persona--size40',
   size48: 'ms-Persona--size48',
+  size56: 'ms-Persona--size56',
   size72: 'ms-Persona--size72',
-  size100: 'ms-Persona--size100'
+  size100: 'ms-Persona--size100',
+  size120: 'ms-Persona--size120'
 };
 
 export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => {
-  const { className, theme } = props;
+  const { className, theme, coinSize } = props;
 
-  const { palette } = theme;
+  const { palette, fonts } = theme;
 
   const size = sizeBoolean(props.size as PersonaSize);
 
   const classNames = getGlobalClassNames(GlobalClassNames, theme);
 
   // Static colors used when displaying 'unknown persona' coin
-  const unknownPersonaBackgroundColor = palette.neutralLight;
-  const unknownPersonaFontColor = palette.redDark;
+  const unknownPersonaBackgroundColor = 'rgb(234, 234, 234)';
+  const unknownPersonaFontColor = 'rgb(168, 0, 0)';
+
+  const dimension = coinSize || (props.size && sizeToPixels[props.size]) || 48;
 
   return {
     coin: [
       classNames.coin,
-      theme.fonts.medium,
+      fonts.medium,
+      size.isSize8 && classNames.size8,
       size.isSize10 && classNames.size10,
       size.isSize16 && classNames.size16,
       size.isSize24 && classNames.size24,
@@ -42,13 +48,15 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
       size.isSize32 && classNames.size32,
       size.isSize40 && classNames.size40,
       size.isSize48 && classNames.size48,
+      size.isSize56 && classNames.size56,
       size.isSize72 && classNames.size72,
       size.isSize100 && classNames.size100,
+      size.isSize120 && classNames.size120,
       className
     ],
 
     size10WithoutPresenceIcon: {
-      fontSize: '10px',
+      fontSize: fonts.xSmall.fontSize,
       position: 'absolute',
       top: '5px',
       right: 'auto',
@@ -61,50 +69,15 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
         position: 'relative',
         textAlign: 'center',
         flex: '0 0 auto',
-        height: personaSize.size48,
-        width: personaSize.size48
+        height: dimension,
+        width: dimension
       },
 
-      size.isSize10 && {
+      dimension <= 10 && {
         overflow: 'visible',
         background: 'transparent',
         height: 0,
         width: 0
-      },
-
-      size.isSize16 && {
-        height: personaSize.size16,
-        width: personaSize.size16
-      },
-
-      size.isSize24 && {
-        height: personaSize.size24,
-        width: personaSize.size24
-      },
-
-      size.isSize28 && {
-        height: personaSize.size28,
-        width: personaSize.size28
-      },
-
-      size.isSize32 && {
-        height: personaSize.size32,
-        width: personaSize.size32
-      },
-
-      size.isSize40 && {
-        height: personaSize.size40,
-        width: personaSize.size40
-      },
-
-      size.isSize72 && {
-        height: personaSize.size72,
-        width: personaSize.size72
-      },
-
-      size.isSize100 && {
-        height: personaSize.size100,
-        width: personaSize.size100
       }
     ],
 
@@ -122,46 +95,16 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
         perspective: '1px'
       },
 
-      size.isSize10 && {
+      dimension <= 10 && {
         overflow: 'visible',
         background: 'transparent',
         height: 0,
         width: 0
       },
 
-      size.isSize16 && {
-        height: personaSize.size16,
-        width: personaSize.size16
-      },
-
-      size.isSize24 && {
-        height: personaSize.size24,
-        width: personaSize.size24
-      },
-
-      size.isSize28 && {
-        height: personaSize.size28,
-        width: personaSize.size28
-      },
-
-      size.isSize32 && {
-        height: personaSize.size32,
-        width: personaSize.size32
-      },
-
-      size.isSize40 && {
-        height: personaSize.size40,
-        width: personaSize.size40
-      },
-
-      size.isSize72 && {
-        height: personaSize.size72,
-        width: personaSize.size72
-      },
-
-      size.isSize100 && {
-        height: personaSize.size100,
-        width: personaSize.size100
+      dimension > 10 && {
+        height: dimension,
+        width: dimension
       }
     ],
 
@@ -170,10 +113,10 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
       {
         borderRadius: '50%',
         color: props.showUnknownPersonaCoin ? unknownPersonaFontColor : palette.white,
-        fontSize: FontSizes.large,
-        fontWeight: FontWeights.regular,
-        lineHeight: '46px',
-        height: personaSize.size48,
+        fontSize: fonts.large.fontSize,
+        fontWeight: FontWeights.semibold,
+        lineHeight: dimension === 48 ? 46 : dimension, // copying the logic for the dimensions; defaulted to 46 for size48
+        height: dimension,
 
         selectors: {
           [HighContrastSelector]: {
@@ -182,6 +125,9 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
             color: 'WindowText',
             boxSizing: 'border-box',
             backgroundColor: 'Window !important'
+          },
+          i: {
+            fontWeight: FontWeights.semibold
           }
         }
       },
@@ -190,49 +136,32 @@ export const getStyles = (props: IPersonaCoinStyleProps): IPersonaCoinStyles => 
         backgroundColor: unknownPersonaBackgroundColor
       },
 
-      (size.isSize16 || size.isSize24 || size.isSize28) && {
-        fontSize: FontSizes.xSmall
+      dimension < 32 && {
+        fontSize: fonts.xSmall.fontSize
       },
 
-      size.isSize16 && {
-        height: personaSize.size16,
-        lineHeight: personaSize.size16
-      },
+      dimension >= 32 &&
+        dimension < 40 && {
+          fontSize: fonts.medium.fontSize
+        },
 
-      size.isSize24 && {
-        height: personaSize.size24,
-        lineHeight: personaSize.size24
-      },
+      dimension >= 40 &&
+        dimension < 56 && {
+          fontSize: fonts.mediumPlus.fontSize
+        },
 
-      size.isSize28 && {
-        height: personaSize.size28,
-        lineHeight: personaSize.size28
-      },
+      dimension >= 56 &&
+        dimension < 72 && {
+          fontSize: fonts.xLarge.fontSize
+        },
 
-      (size.isSize32 || size.isSize40) && {
-        fontSize: FontSizes.medium
-      },
+      dimension >= 72 &&
+        dimension < 100 && {
+          fontSize: fonts.xxLarge.fontSize
+        },
 
-      size.isSize32 && {
-        height: personaSize.size32,
-        lineHeight: personaSize.size32
-      },
-
-      size.isSize40 && {
-        height: personaSize.size40,
-        lineHeight: personaSize.size40
-      },
-
-      size.isSize72 && {
-        fontSize: FontSizes.xxLarge,
-        height: personaSize.size72,
-        lineHeight: personaSize.size72
-      },
-
-      size.isSize100 && {
-        fontSize: FontSizes.superLarge,
-        height: personaSize.size100,
-        lineHeight: personaSize.size100
+      dimension >= 100 && {
+        fontSize: fonts.superLarge.fontSize
       }
     ]
   };

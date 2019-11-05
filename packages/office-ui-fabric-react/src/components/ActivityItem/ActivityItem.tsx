@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { BaseComponent } from '../../Utilities';
 import { IActivityItemProps } from './ActivityItem.types';
 import { IActivityItemClassNames, getClassNames } from './ActivityItem.classNames';
 import { getStyles } from './ActivityItem.styles';
@@ -7,7 +6,10 @@ import { PersonaSize, PersonaCoin, IPersonaSharedProps, IPersonaCoinProps } from
 
 type OptionalReactKey = { key?: React.Key };
 
-export class ActivityItem extends BaseComponent<IActivityItemProps, {}> {
+/**
+ * {@docCategory ActivityItem}
+ */
+export class ActivityItem extends React.Component<IActivityItemProps, {}> {
   constructor(props: IActivityItemProps) {
     super(props);
   }
@@ -124,14 +126,7 @@ export class ActivityItem extends BaseComponent<IActivityItemProps, {}> {
 
   private _getClassNames(props: IActivityItemProps): IActivityItemClassNames {
     return getClassNames(
-      getStyles(
-        undefined,
-        props.styles,
-        props.animateBeaconSignal,
-        props.beaconColorOne,
-        props.beaconColorTwo,
-        props.isCompact
-      ),
+      getStyles(undefined, props.styles, props.animateBeaconSignal, props.beaconColorOne, props.beaconColorTwo, props.isCompact),
       props.className!,
       props.activityPersonas!,
       props.isCompact!

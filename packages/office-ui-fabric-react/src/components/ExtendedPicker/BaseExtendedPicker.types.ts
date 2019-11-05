@@ -62,12 +62,12 @@ export interface IBaseExtendedPickerProps<T> {
   /**
    * Function that specifies how the floating picker will appear.
    */
-  onRenderFloatingPicker: (props: IBaseFloatingPickerProps<T>) => JSX.Element;
+  onRenderFloatingPicker: React.ComponentType<IBaseFloatingPickerProps<T>>;
 
   /**
    * Function that specifies how the floating picker will appear.
    */
-  onRenderSelectedItems: (props: IBaseSelectedItemsListProps<T>) => JSX.Element;
+  onRenderSelectedItems: React.ComponentType<IBaseSelectedItemsListProps<T>>;
 
   /**
    * Floating picker properties
@@ -81,19 +81,19 @@ export interface IBaseExtendedPickerProps<T> {
 
   /**
    * Autofill input native props
-   * @default undefined
+   * @defaultvalue undefined
    */
   inputProps?: IInputProps;
 
   /**
    * Flag for disabling the picker.
-   * @default false
+   * @defaultvalue false
    */
   disabled?: boolean;
 
   /**
    * Restrict the amount of selectable items.
-   * @default undefined
+   * @defaultvalue undefined
    */
   itemLimit?: number;
 
@@ -127,4 +127,9 @@ export interface IBaseExtendedPickerProps<T> {
    * Focus zone props
    */
   focusZoneProps?: IFocusZoneProps;
+
+  /**
+   * Current rendered query string that's corealte to current rendered result
+   **/
+  currentRenderedQueryString?: string;
 }

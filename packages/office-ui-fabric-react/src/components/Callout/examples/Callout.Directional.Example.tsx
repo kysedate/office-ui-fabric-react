@@ -1,13 +1,6 @@
 import * as React from 'react';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Callout, DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
-import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
-import { Slider } from 'office-ui-fabric-react/lib/Slider';
+import { DefaultButton, Callout, DirectionalHint, Dropdown, IDropdownOption, Checkbox, Slider } from 'office-ui-fabric-react';
 import './CalloutExample.scss';
-
-import * as exampleStylesImport from '../../../common/_exampleStyles.scss';
-const exampleStyles: any = exampleStylesImport;
 
 export interface ICalloutDirectionalExampleState {
   isCalloutVisible?: boolean;
@@ -49,20 +42,14 @@ export class CalloutDirectionalExample extends React.Component<{}, ICalloutDirec
 
   public render(): JSX.Element {
     const { isCalloutVisible, isBeakVisible, directionalHint, gapSpace, beakWidth } = this.state;
-    //  ms-Callout-smallbeak is used in this directional example to reflect all the positions. Large beak will disable some position to avoid beak over the callout edge.
+    //  ms-Callout-smallbeak is used in this directional example to reflect all the positions.
+    //  Large beak will disable some position to avoid beak over the callout edge.
     return (
       <div className="ms-CalloutExample">
         <div className="ms-CalloutExample-configArea">
-          <Checkbox
-            className={exampleStyles.exampleCheckbox}
-            label="Show beak"
-            checked={isBeakVisible}
-            onChange={this._onShowBeakChange}
-          />
+          <Checkbox styles={{ root: { margin: '10px 0' } }} label="Show beak" checked={isBeakVisible} onChange={this._onShowBeakChange} />
           <Slider max={30} label="Gap Space" min={0} defaultValue={0} onChange={this._onGapSlider} />
-          {isBeakVisible && (
-            <Slider max={50} label="Beak Width" min={10} defaultValue={16} onChange={this._onBeakWidthSlider} />
-          )}
+          {isBeakVisible && <Slider max={50} label="Beak Width" min={10} defaultValue={16} onChange={this._onBeakWidthSlider} />}
           <Dropdown
             label="Directional hint"
             selectedKey={directionalHint!}
@@ -86,6 +73,7 @@ export class CalloutDirectionalExample extends React.Component<{}, ICalloutDirec
             beakWidth={beakWidth}
             onDismiss={this._onCalloutDismiss}
             directionalHint={directionalHint}
+            setInitialFocus={true}
           >
             <div className="ms-CalloutExample-header">
               <p className="ms-CalloutExample-title">All of your favorite people</p>
@@ -93,8 +81,7 @@ export class CalloutDirectionalExample extends React.Component<{}, ICalloutDirec
             <div className="ms-CalloutExample-inner">
               <div className="ms-CalloutExample-content">
                 <p className="ms-CalloutExample-subText">
-                  Message body is optional. If help documentation is available, consider adding a link to learn more at
-                  the bottom.
+                  Message body is optional. If help documentation is available, consider adding a link to learn more at the bottom.
                 </p>
               </div>
             </div>
@@ -125,7 +112,7 @@ export class CalloutDirectionalExample extends React.Component<{}, ICalloutDirec
 
   private _onDirectionalChanged = (event: React.FormEvent<HTMLDivElement>, option: IDropdownOption): void => {
     this.setState({
-      directionalHint: option.key as number
+      directionalHint: option.key as DirectionalHint
     });
   };
 

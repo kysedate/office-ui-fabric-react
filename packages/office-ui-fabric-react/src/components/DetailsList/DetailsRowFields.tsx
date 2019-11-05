@@ -1,93 +1,102 @@
 import * as React from 'react';
 import { IColumn } from './DetailsList.types';
-import { BaseComponent, css } from '../../Utilities';
+import { css } from '../../Utilities';
 import { IDetailsRowFieldsProps } from './DetailsRowFields.types';
 import { DEFAULT_CELL_STYLE_PROPS } from './DetailsRow.styles';
 
-export interface IDetailsRowFieldsState {
-  cellContent: React.ReactNode[];
-}
+const getCellText = (item: any, column: IColumn): string => {
+  let value = item && column && column.fieldName ? item[column.fieldName] : '';
 
-export class DetailsRowFields extends BaseComponent<IDetailsRowFieldsProps, IDetailsRowFieldsState> {
-  constructor(props: IDetailsRowFieldsProps) {
-    super(props);
-
-    this.state = this._getState(props);
+  if (value === null || value === undefined) {
+    value = '';
   }
 
-  public componentWillReceiveProps(newProps: IDetailsRowFieldsProps): void {
-    this.setState(this._getState(newProps));
+  if (typeof value === 'boolean') {
+    return value.toString();
   }
 
-  public render(): JSX.Element {
-    const { columns, columnStartIndex, shimmer, rowClassNames, cellStyleProps = DEFAULT_CELL_STYLE_PROPS } = this.props;
+  return value;
+};
 
-    const { cellContent } = this.state;
+/**
+ * Component for rendering a row's cells in a `DetailsList`.
+ *
+ * {@docCategory DetailsList}
+ */
+export const DetailsRowFields: React.FunctionComponent<IDetailsRowFieldsProps> = props => {
+  const {
+    columns,
+    columnStartIndex,
+    rowClassNames,
+    cellStyleProps = DEFAULT_CELL_STYLE_PROPS,
+    item,
+    itemIndex,
+    onRenderItemColumn,
+    getCellValueKey,
+    cellsByColumn,
+    enableUpdateAnimations
+  } = props;
 
-    return (
-      <div className={rowClassNames.fields} data-automationid="DetailsRowFields" role="presentation">
-        {columns.map((column, columnIndex) => {
-          const width: string | number =
-            typeof column.calculatedWidth === 'undefined'
-              ? 'auto'
-              : column.calculatedWidth +
-                cellStyleProps.cellLeftPadding +
-                cellStyleProps.cellRightPadding +
-                (column.isPadded ? cellStyleProps.cellExtraRightPadding : 0);
+  const cellValueKeysRef = React.useRef<{
+    [columnKey: string]: string | undefined;
+  }>();
 
-          return (
-            <div
-              key={columnIndex}
-              role={column.isRowHeader ? 'rowheader' : 'gridcell'}
-              aria-colindex={columnIndex + columnStartIndex + 1}
-              className={css(
-                column.className,
-                column.isMultiline && rowClassNames.isMultiline,
-                column.isRowHeader && rowClassNames.isRowHeader,
-                column.isIconOnly && shimmer && rowClassNames.shimmerIconPlaceholder,
-                shimmer && rowClassNames.shimmer,
-                rowClassNames.cell,
-                column.isPadded ? rowClassNames.cellPadded : rowClassNames.cellUnpadded
-              )}
-              style={{ width }}
-              data-automationid="DetailsRowCell"
-              data-automation-key={column.key}
-            >
-              {cellContent[columnIndex]}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
+  const cellValueKeys = cellValueKeysRef.current || (cellValueKeysRef.current = {});
 
-  private _getState(props: IDetailsRowFieldsProps): IDetailsRowFieldsState {
-    const { item, itemIndex, onRenderItemColumn, shimmer } = props;
+  return (
+    <div className={rowClassNames.fields} data-automationid="DetailsRowFields" role="presentation">
+      {columns.map((column, columnIndex) => {
+        const width: string | number =
+          typeof column.calculatedWidth === 'undefined'
+            ? 'auto'
+            : column.calculatedWidth +
+              cellStyleProps.cellLeftPadding +
+              cellStyleProps.cellRightPadding +
+              (column.isPadded ? cellStyleProps.cellExtraRightPadding : 0);
 
-    return {
-      cellContent: props.columns.map(column => {
-        let cellContent;
+        const { onRender = onRenderItemColumn, getValueKey = getCellValueKey } = column;
+        const cellContentsRender =
+          cellsByColumn && column.key in cellsByColumn
+            ? cellsByColumn[column.key]
+            : onRender
+            ? onRender(item, itemIndex, column)
+            : getCellText(item, column);
 
-        try {
-          const render = column.onRender || onRenderItemColumn;
+        const previousValueKey = cellValueKeys[column.key];
 
-          cellContent = render && !shimmer ? render(item, itemIndex, column) : this._getCellText(item, column);
-        } catch (e) {
-          /* no-op */
+        const cellValueKey = enableUpdateAnimations && getValueKey ? getValueKey(item, itemIndex, column) : undefined;
+
+        let showAnimation = false;
+
+        if (cellValueKey !== undefined && previousValueKey !== undefined && cellValueKey !== previousValueKey) {
+          showAnimation = true;
         }
 
-        return cellContent;
-      })
-    };
-  }
+        cellValueKeys[column.key] = cellValueKey;
 
-  private _getCellText(item: any, column: IColumn): void {
-    let value = item && column && column.fieldName ? item[column.fieldName] : '';
-
-    if (value === null || value === undefined) {
-      value = '';
-    }
-
-    return value;
-  }
-}
+        // generate a key that auto-dirties when content changes, to force the container to re-render, to trigger animation
+        const key = `${column.key}${cellValueKey !== undefined ? `-${cellValueKey}` : ''}`;
+        return (
+          <div
+            key={key}
+            role={column.isRowHeader ? 'rowheader' : 'gridcell'}
+            aria-colindex={columnIndex + columnStartIndex + 1}
+            className={css(
+              column.className,
+              column.isMultiline && rowClassNames.isMultiline,
+              column.isRowHeader && rowClassNames.isRowHeader,
+              rowClassNames.cell,
+              column.isPadded ? rowClassNames.cellPadded : rowClassNames.cellUnpadded,
+              showAnimation && rowClassNames.cellAnimation
+            )}
+            style={{ width }}
+            data-automationid="DetailsRowCell"
+            data-automation-key={column.key}
+          >
+            {cellContentsRender}
+          </div>
+        );
+      })}
+    </div>
+  );
+};

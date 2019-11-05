@@ -14,18 +14,10 @@ import {
   elementContains,
   focusFirstChild,
   getWindow,
-  getDocument,
-  createRef
+  getDocument
 } from '../../../Utilities';
 
-import {
-  getMaxHeight,
-  positionElement,
-  IPositionedData,
-  IPositionProps,
-  IPosition,
-  RectangleEdge
-} from '../../../utilities/positioning';
+import { getMaxHeight, positionElement, IPositionedData, IPositionProps, IPosition, RectangleEdge } from '../../../utilities/positioning';
 
 import { AnimationClassNames, mergeStyles } from '../../../Styling';
 
@@ -69,10 +61,10 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
   /**
    * The primary positioned div.
    */
-  private _positionedHost = createRef<HTMLDivElement>();
+  private _positionedHost = React.createRef<HTMLDivElement>();
 
   // @TODO rename to reflect the name of this class
-  private _contentHost = createRef<HTMLDivElement>();
+  private _contentHost = React.createRef<HTMLDivElement>();
 
   /**
    * Stores an instance of Window, used to check
@@ -105,7 +97,8 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
     this._positionAttempts = 0;
   }
 
-  public componentWillMount(): void {
+  // tslint:disable-next-line function-name
+  public UNSAFE_componentWillMount(): void {
     this._setTargetWindowAndElement(this._getTarget());
   }
 
@@ -118,7 +111,8 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
     this._updateAsyncPosition();
   }
 
-  public componentWillUpdate(newProps: IPositioningContainerProps): void {
+  // tslint:disable-next-line function-name
+  public UNSAFE_componentWillUpdate(newProps: IPositioningContainerProps): void {
     // If the target element changed, find the new one. If we are tracking
     // target with class name, always find element because we do not know if
     // fabric has rendered a new element and disposed the old element.
@@ -186,8 +180,8 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
   }
 
   /**
-   * Deprecated. Use onResize instead.
-   * @deprecated
+   * Deprecated, use `onResize` instead.
+   * @deprecated Use `onResize` instead.
    */
   public dismiss = (ev?: Event | React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>): void => {
     this.onResize(ev);
@@ -211,8 +205,7 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
 
   protected _dismissOnLostFocus(ev: Event): void {
     const target = ev.target as HTMLElement;
-    const clickedOutsideCallout =
-      this._positionedHost.current && !elementContains(this._positionedHost.current, target);
+    const clickedOutsideCallout = this._positionedHost.current && !elementContains(this._positionedHost.current, target);
 
     if (
       (!this._target && clickedOutsideCallout) ||
@@ -363,16 +356,18 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
   }
 
   private _setTargetWindowAndElement(target: HTMLElement | string | MouseEvent | IPoint | null): void {
+    const currentElement = this._positionedHost.current;
+
     if (target) {
       if (typeof target === 'string') {
         const currentDoc: Document = getDocument()!;
         this._target = currentDoc ? (currentDoc.querySelector(target) as HTMLElement) : null;
-        this._targetWindow = getWindow()!;
+        this._targetWindow = getWindow(currentElement)!;
       } else if ((target as MouseEvent).stopPropagation) {
         this._targetWindow = getWindow((target as MouseEvent).toElement as HTMLElement)!;
         this._target = target;
       } else if ((target as IPoint).x !== undefined && (target as IPoint).y !== undefined) {
-        this._targetWindow = getWindow()!;
+        this._targetWindow = getWindow(currentElement)!;
         this._target = target;
       } else {
         const targetElement: HTMLElement = target as HTMLElement;
@@ -380,7 +375,7 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
         this._target = target;
       }
     } else {
-      this._targetWindow = getWindow()!;
+      this._targetWindow = getWindow(currentElement)!;
     }
   }
 
@@ -412,9 +407,7 @@ export class PositioningContainer extends BaseComponent<IPositioningContainerPro
     }
   }
 
-  private _getTarget(
-    props: IPositioningContainerProps = this.props
-  ): HTMLElement | string | MouseEvent | IPoint | null {
+  private _getTarget(props: IPositioningContainerProps = this.props): HTMLElement | string | MouseEvent | IPoint | null {
     const { target } = props;
     return target!;
   }

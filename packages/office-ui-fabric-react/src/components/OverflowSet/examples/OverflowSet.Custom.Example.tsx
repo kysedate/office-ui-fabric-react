@@ -1,21 +1,24 @@
 import * as React from 'react';
-import { BaseComponent, css } from 'office-ui-fabric-react/lib/Utilities';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
-import { IOverflowSetItemProps, OverflowSet } from 'office-ui-fabric-react/lib/OverflowSet';
+import { CommandBarButton, IButtonStyles, IOverflowSetItemProps, OverflowSet, Checkbox } from 'office-ui-fabric-react';
 
-import * as stylesImport from './OverflowSet.Example.scss';
-const styles: any = stylesImport;
+const noOp = () => undefined;
 
-export class OverflowSetCustomExample extends BaseComponent<any, any> {
+const checkboxStyles = {
+  root: {
+    marginRight: 5
+  }
+};
+
+export class OverflowSetCustomExample extends React.PureComponent {
   public render(): JSX.Element {
     return (
       <OverflowSet
+        aria-label="Custom Example"
         items={[
           {
-            key: 'search',
-            onRender: (item: any) => {
-              return <SearchBox placeholder="Search" />;
+            key: 'checkbox',
+            onRender: () => {
+              return <Checkbox role="menuitem" label="A Checkbox" styles={checkboxStyles} />;
             }
           },
           {
@@ -23,9 +26,7 @@ export class OverflowSetCustomExample extends BaseComponent<any, any> {
             name: 'New',
             icon: 'Add',
             ariaLabel: 'New. Use left and right arrow keys to navigate',
-            onClick: () => {
-              return;
-            },
+            onClick: noOp,
             subMenuProps: {
               items: [
                 {
@@ -45,75 +46,40 @@ export class OverflowSetCustomExample extends BaseComponent<any, any> {
             key: 'upload',
             name: 'Upload',
             icon: 'Upload',
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           },
           {
             key: 'share',
             name: 'Share',
             icon: 'Share',
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           }
         ]}
         overflowItems={[
           {
-            key: 'newItem',
-            name: 'Add',
-            icon: 'Add',
-            ariaLabel: 'New. Use left and right arrow keys to navigate',
-            onClick: () => {
-              return;
-            },
-            subMenuProps: {
-              items: [
-                {
-                  key: 'emailMessage',
-                  name: 'Email message',
-                  icon: 'Mail'
-                },
-                {
-                  key: 'calendarEvent',
-                  name: 'Calendar event',
-                  icon: 'Calendar'
-                }
-              ]
-            }
-          },
-          {
             key: 'move',
             name: 'Move to...',
             icon: 'MoveToFolder',
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           },
           {
             key: 'copy',
             name: 'Copy to...',
             icon: 'Copy',
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           },
           {
             key: 'rename',
             name: 'Rename...',
             icon: 'Edit',
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           },
           {
             key: 'disabled',
             name: 'Disabled...',
             icon: 'Cancel',
             disabled: true,
-            onClick: () => {
-              return;
-            }
+            onClick: noOp
           }
         ]}
         onRenderOverflowButton={this._onRenderOverflowButton}
@@ -122,20 +88,30 @@ export class OverflowSetCustomExample extends BaseComponent<any, any> {
     );
   }
 
-  private _onRenderItem(item: IOverflowSetItemProps): JSX.Element {
+  private _onRenderItem = (item: IOverflowSetItemProps): JSX.Element => {
     if (item.onRender) {
       return item.onRender(item);
     }
-    return <DefaultButton iconProps={{ iconName: item.icon }} menuProps={item.subMenuProps} text={item.name} />;
-  }
+    return <CommandBarButton role="menuitem" iconProps={{ iconName: item.icon }} menuProps={item.subMenuProps} text={item.name} />;
+  };
 
-  private _onRenderOverflowButton(overflowItems: any[] | undefined): JSX.Element {
+  private _onRenderOverflowButton = (overflowItems: any[] | undefined): JSX.Element => {
+    const buttonStyles: Partial<IButtonStyles> = {
+      root: {
+        minWidth: 0,
+        padding: '0 4px',
+        alignSelf: 'stretch',
+        height: 'auto'
+      }
+    };
     return (
-      <DefaultButton
-        className={css(styles.overflowButton)}
+      <CommandBarButton
+        ariaLabel="More items"
+        role="menuitem"
+        styles={buttonStyles}
         menuIconProps={{ iconName: 'More' }}
         menuProps={{ items: overflowItems! }}
       />
     );
-  }
+  };
 }

@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { IComponentDemoPageProps, ComponentPage, ExampleCard } from '@uifabric/example-app-base';
 
-import { ThemingBasicExample } from './examples/Theming.Basic.Example';
+import { ThemingSchemesVariantExample } from './examples/Theming.Schemes.Variant.Example';
+import { ThemingSchemesCustomExample } from './examples/Theming.Schemes.Custom.Example';
 
-const FluentThemeBasicExampleCode = require('!raw-loader!@uifabric/experiments/src/components/fluent/theme/examples/FluentTheme.Basic.Example.tsx') as string;
+// tslint:disable:max-line-length
+const ThemingSchemesVariantExampleCode = require('!raw-loader!@uifabric/experiments/src/theming/examples/Theming.Schemes.Variant.Example.tsx') as string;
+const ThemingSchemesCustomExampleCode = require('!raw-loader!@uifabric/experiments/src/theming/examples/Theming.Schemes.Custom.Example.tsx') as string;
 
 export class ThemingPage extends React.Component<IComponentDemoPageProps, {}> {
   public render(): JSX.Element {
@@ -19,8 +22,14 @@ export class ThemingPage extends React.Component<IComponentDemoPageProps, {}> {
         isHeaderVisible={this.props.isHeaderVisible}
         exampleCards={
           <div>
-            <ExampleCard title="Using Customizer to theme components" code={FluentThemeBasicExampleCode}>
-              <ThemingBasicExample />
+            <ExampleCard title="Schemes: Using one Customizer to theme components" code={ThemingSchemesCustomExampleCode}>
+              <ThemingSchemesCustomExample />
+            </ExampleCard>
+            <ExampleCard
+              title="Schemes: Using one Customizer to theme components (using Variant package)"
+              code={ThemingSchemesVariantExampleCode}
+            >
+              <ThemingSchemesVariantExample />
             </ExampleCard>
           </div>
         }

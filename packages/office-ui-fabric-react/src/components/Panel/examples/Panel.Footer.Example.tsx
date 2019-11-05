@@ -1,53 +1,42 @@
 import * as React from 'react';
-import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { Panel } from 'office-ui-fabric-react/lib/Panel';
+import { useConstCallback } from '@uifabric/react-hooks';
 
-export class PanelFooterExample extends React.Component<
-  {},
-  {
-    showPanel: boolean;
-  }
-> {
-  constructor(props: {}) {
-    super(props);
-    this.state = { showPanel: false };
-  }
+const buttonStyles = { root: { marginRight: 8 } };
 
-  public render(): JSX.Element {
-    return (
-      <div>
-        <DefaultButton secondaryText="Opens the Sample Panel" onClick={this._onShowPanel} text="Open Panel" />
-        <Panel
-          isOpen={this.state.showPanel}
-          type={PanelType.smallFixedFar}
-          onDismiss={this._onClosePanel}
-          isFooterAtBottom={true}
-          headerText="Panel with footer at bottom"
-          closeButtonAriaLabel="Close"
-          onRenderFooterContent={this._onRenderFooterContent}
-        >
-          <span>Content goes here.</span>
-        </Panel>
-      </div>
-    );
-  }
+export const PanelFooterExample: React.FunctionComponent = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  private _onClosePanel = () => {
-    this.setState({ showPanel: false });
-  };
+  const openPanel = useConstCallback(() => setIsOpen(true));
+  const dismissPanel = useConstCallback(() => setIsOpen(false));
 
-  private _onRenderFooterContent = (): JSX.Element => {
-    return (
-      <div>
-        <PrimaryButton onClick={this._onClosePanel} style={{ marginRight: '8px' }}>
-          Save
-        </PrimaryButton>
-        <DefaultButton onClick={this._onClosePanel}>Cancel</DefaultButton>
-      </div>
-    );
-  };
+  // This panel doesn't actually save anything; the buttons are just an example of what
+  // someone might want to render in a panel footer.
+  const onRenderFooterContent = useConstCallback(() => (
+    <div>
+      <PrimaryButton onClick={dismissPanel} styles={buttonStyles}>
+        Save
+      </PrimaryButton>
+      <DefaultButton onClick={dismissPanel}>Cancel</DefaultButton>
+    </div>
+  ));
 
-  private _onShowPanel = () => {
-    this.setState({ showPanel: true });
-  };
-}
+  return (
+    <div>
+      <DefaultButton text="Open panel" onClick={openPanel} />
+      <Panel
+        isOpen={isOpen}
+        onDismiss={dismissPanel}
+        headerText="Panel with footer at bottom"
+        closeButtonAriaLabel="Close"
+        onRenderFooterContent={onRenderFooterContent}
+        // Stretch panel content to fill the available height so the footer is positioned
+        // at the bottom of the page
+        isFooterAtBottom={true}
+      >
+        <span>Content goes here.</span>
+      </Panel>
+    </div>
+  );
+};

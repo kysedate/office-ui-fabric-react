@@ -5,6 +5,10 @@ exports[`Component Examples renders ProgressIndicator.Basic.Example.tsx correctl
   className=
       ms-ProgressIndicator
       {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
         font-weight: 400;
       }
 >
@@ -12,8 +16,7 @@ exports[`Component Examples renders ProgressIndicator.Basic.Example.tsx correctl
     className=
         ms-ProgressIndicator-itemName
         {
-          color: #333333;
-          font-size: 14px;
+          color: #323130;
           line-height: 20px;
           overflow: hidden;
           padding-top: 4px;
@@ -40,7 +43,7 @@ exports[`Component Examples renders ProgressIndicator.Basic.Example.tsx correctl
       className=
           ms-ProgressIndicator-progressTrack
           {
-            background-color: #eaeaea;
+            background-color: #edebe9;
             height: 2px;
             position: absolute;
             width: 100%;
@@ -53,7 +56,6 @@ exports[`Component Examples renders ProgressIndicator.Basic.Example.tsx correctl
       aria-valuemax={100}
       aria-valuemin={0}
       aria-valuenow={0}
-      aria-valuetext={undefined}
       className=
           ms-ProgressIndicator-progressBar
           {
@@ -79,8 +81,8 @@ exports[`Component Examples renders ProgressIndicator.Basic.Example.tsx correctl
     className=
         ms-ProgressIndicator-itemDescription
         {
-          color: #666666;
-          font-size: 11px;
+          color: #605e5c;
+          font-size: 12px;
           line-height: 18px;
         }
   >

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { BaseComponent, classNamesFunction, createRef, KeyCodes } from '../../Utilities';
+import { BaseComponent, classNamesFunction, KeyCodes } from '../../Utilities';
 import { ITeachingBubbleProps, ITeachingBubbleStyleProps, ITeachingBubbleStyles } from './TeachingBubble.types';
 import { ITeachingBubbleState } from './TeachingBubble.base';
 import { PrimaryButton, DefaultButton, IconButton } from '../../Button';
 import { Image, ImageFit } from '../../Image';
+import { Stack } from '../../Stack';
 
 const getClassNames = classNamesFunction<ITeachingBubbleStyleProps, ITeachingBubbleStyles>();
 
@@ -18,7 +19,7 @@ export class TeachingBubbleContentBase extends BaseComponent<ITeachingBubbleProp
     }
   };
 
-  public rootElement = createRef<HTMLDivElement>();
+  public rootElement = React.createRef<HTMLDivElement>();
 
   constructor(props: ITeachingBubbleProps) {
     super(props);
@@ -60,7 +61,8 @@ export class TeachingBubbleContentBase extends BaseComponent<ITeachingBubbleProp
       styles,
       theme,
       ariaDescribedBy,
-      ariaLabelledBy
+      ariaLabelledBy,
+      footerContent: customFooterContent
     } = this.props;
 
     let imageContent;
@@ -87,31 +89,38 @@ export class TeachingBubbleContentBase extends BaseComponent<ITeachingBubbleProp
     }
 
     if (headline) {
+      const HeaderWrapperAs = typeof headline === 'string' ? 'p' : 'div';
+
       headerContent = (
         <div className={classNames.header}>
-          <p className={classNames.headline} id={ariaLabelledBy}>
+          <HeaderWrapperAs role="heading" className={classNames.headline} id={ariaLabelledBy}>
             {headline}
-          </p>
+          </HeaderWrapperAs>
         </div>
       );
     }
 
     if (children) {
+      const BodyContentWrapperAs = typeof children === 'string' ? 'p' : 'div';
+
       bodyContent = (
         <div className={classNames.body}>
-          <p className={classNames.subText} id={ariaDescribedBy}>
+          <BodyContentWrapperAs className={classNames.subText} id={ariaDescribedBy}>
             {children}
-          </p>
+          </BodyContentWrapperAs>
         </div>
       );
     }
 
-    if (primaryButtonProps || secondaryButtonProps) {
+    if (primaryButtonProps || secondaryButtonProps || customFooterContent) {
       footerContent = (
-        <div className={classNames.footer}>
-          {primaryButtonProps && <PrimaryButton {...primaryButtonProps} className={classNames.primaryButton} />}
-          {secondaryButtonProps && <DefaultButton {...secondaryButtonProps} className={classNames.secondaryButton} />}
-        </div>
+        <Stack className={classNames.footer} horizontal horizontalAlign={customFooterContent ? 'space-between' : 'end'}>
+          <Stack.Item align="center">{<span>{customFooterContent}</span>}</Stack.Item>
+          <Stack.Item>
+            {secondaryButtonProps && <DefaultButton {...secondaryButtonProps} className={classNames.secondaryButton} />}
+            {primaryButtonProps && <PrimaryButton {...primaryButtonProps} className={classNames.primaryButton} />}
+          </Stack.Item>
+        </Stack>
       );
     }
 
@@ -142,8 +151,8 @@ export class TeachingBubbleContentBase extends BaseComponent<ITeachingBubbleProp
           {headerContent}
           {bodyContent}
           {footerContent}
+          {closeButton}
         </div>
-        {closeButton}
       </div>
     );
   }

@@ -4,11 +4,11 @@ import { TooltipHost, TooltipOverflowMode, DirectionalHint } from '../../Tooltip
 import { PersonaCoin } from './PersonaCoin/PersonaCoin';
 import {
   IPersonaProps,
-  IPersonaSharedProps,
   IPersonaStyleProps,
   IPersonaStyles,
   PersonaPresence as PersonaPresenceEnum,
-  PersonaSize
+  PersonaSize,
+  IPersonaCoinProps
 } from './Persona.types';
 
 const getClassNames = classNamesFunction<IPersonaStyleProps, IPersonaStyles>();
@@ -42,7 +42,8 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
       onRenderOptionalText = _onRenderOptionalText,
       onRenderPrimaryText = _onRenderPrimaryText,
       onRenderSecondaryText = _onRenderSecondaryText,
-      onRenderTertiaryText = _onRenderTertiaryText
+      onRenderTertiaryText = _onRenderTertiaryText,
+      onRenderPersonaCoin = this._onRenderPersonaCoin
     } = this.props;
     const size = this.props.size as PersonaSize;
 
@@ -60,18 +61,19 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
       imageShouldStartVisible,
       imageUrl,
       initialsColor,
+      isOutOfOffice,
       onPhotoLoadingStateChange,
       onRenderCoin,
       onRenderInitials,
       presence,
+      presenceTitle,
       showInitialsUntilImageLoads,
       showSecondaryText,
       theme
     } = this.props;
 
-    const personaCoinProps: IPersonaSharedProps = {
+    const personaCoinProps: IPersonaCoinProps = {
       allowPhoneInitials,
-      coinProps,
       showUnknownPersonaCoin,
       coinSize,
       imageAlt,
@@ -84,9 +86,12 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
       onRenderCoin,
       onRenderInitials,
       presence,
+      presenceTitle,
       showInitialsUntilImageLoads,
       size,
-      text: this._getText()
+      text: this._getText(),
+      isOutOfOffice,
+      ...coinProps
     };
 
     const classNames = getClassNames(styles, {
@@ -97,7 +102,7 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
       size
     });
 
-    const divProps = getNativeProps(this.props, divProperties);
+    const divProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties);
     const personaDetails = (
       <div className={classNames.details}>
         {this._renderElement(classNames.primaryText, onRenderPrimaryText, _onRenderPrimaryText)}
@@ -109,13 +114,10 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
     );
 
     return (
-      <div
-        {...divProps}
-        className={classNames.root}
-        style={coinSize ? { height: coinSize, minWidth: coinSize } : undefined}
-      >
-        <PersonaCoin {...personaCoinProps} />
-        {(!hidePersonaDetails || (size === PersonaSize.size10 || size === PersonaSize.tiny)) && personaDetails}
+      <div {...divProps} className={classNames.root} style={coinSize ? { height: coinSize, minWidth: coinSize } : undefined}>
+        {onRenderPersonaCoin(personaCoinProps, this._onRenderPersonaCoin)}
+        {(!hidePersonaDetails || (size === PersonaSize.size8 || size === PersonaSize.size10 || size === PersonaSize.tiny)) &&
+          personaDetails}
       </div>
     );
   }
@@ -123,16 +125,20 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
   /**
    * Renders various types of Text (primaryText, secondaryText, etc)
    * based on the classNames passed
-   * @param classNames
-   * @param renderFunction
-   * @param defaultRenderFunction
+   * @param classNames - element className
+   * @param renderFunction - render function
+   * @param defaultRenderFunction - default render function
    */
   private _renderElement(
     classNames: string,
     renderFunction: IRenderFunction<IPersonaProps> | undefined,
     defaultRenderFunction: IRenderFunction<IPersonaProps> | undefined
   ): JSX.Element {
-    return <div className={classNames}>{renderFunction && renderFunction(this.props, defaultRenderFunction)}</div>;
+    return (
+      <div dir="auto" className={classNames}>
+        {renderFunction && renderFunction(this.props, defaultRenderFunction)}
+      </div>
+    );
   }
 
   /**
@@ -145,7 +151,7 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
   /**
    * using closure to wrap the default render behavior
    * to make it independent of the type of text passed
-   * @param text
+   * @param text - text to render
    */
   private _onRenderText(text: string | undefined): IRenderFunction<IPersonaProps> | undefined {
     // return default render behaviour for valid text or undefined
@@ -153,15 +159,15 @@ export class PersonaBase extends BaseComponent<IPersonaProps, {}> {
       ? (): JSX.Element => {
           // default onRender behaviour
           return (
-            <TooltipHost
-              content={text}
-              overflowMode={TooltipOverflowMode.Parent}
-              directionalHint={DirectionalHint.topLeftEdge}
-            >
+            <TooltipHost content={text} overflowMode={TooltipOverflowMode.Parent} directionalHint={DirectionalHint.topLeftEdge}>
               {text}
             </TooltipHost>
           );
         }
       : undefined;
   }
+
+  private _onRenderPersonaCoin = (props: IPersonaCoinProps): JSX.Element | null => {
+    return <PersonaCoin {...props} />;
+  };
 }

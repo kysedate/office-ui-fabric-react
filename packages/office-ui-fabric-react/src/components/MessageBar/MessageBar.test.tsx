@@ -16,6 +16,12 @@ describe('MessageBar', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('renders custom message bar icon correctly', () => {
+    const wrapper = mount(<MessageBar messageBarType={MessageBarType.success} messageBarIconProps={{ iconName: 'AddFriend' }} />);
+    const dismissIcon = wrapper.find('[data-icon-name="AddFriend"]');
+    expect(dismissIcon.exists()).toBe(true);
+  });
+
   it('can reflect props changes', () => {
     const wrapper = mount(<MessageBar messageBarType={MessageBarType.success} />);
 
@@ -39,6 +45,27 @@ describe('MessageBar', () => {
         const dismissElement = wrapper.find('.ms-MessageBar-dismissal');
         expect(dismissElement.exists()).toBe(false);
       });
+
+      it('has custom dismiss icon', () => {
+        const wrapper = mount(<MessageBar onDismiss={noop} isMultiline={false} dismissIconProps={{ iconName: 'AddFriend' }} />);
+        const dismissIcon = wrapper.find('[data-icon-name="AddFriend"]');
+        expect(dismissIcon.exists()).toBe(true);
+      });
+
+      it('mixes in native props to the inner text element, except className', () => {
+        const wrapper = mount(
+          <MessageBar aria-live={'polite'} isMultiline={false} className={'sampleClassName'}>
+            Message
+          </MessageBar>
+        );
+
+        const innerText = wrapper.find('.ms-MessageBar-innerText');
+        expect(innerText.prop('aria-live')).toEqual('polite');
+
+        const singleLine = wrapper.find('.ms-MessageBar-singleline');
+        expect(singleLine.prop('className')).toContain('sampleClassName');
+        expect(innerText.prop('className')).not.toContain('sampleClassName');
+      });
     });
 
     describe('multi-line', () => {
@@ -52,6 +79,17 @@ describe('MessageBar', () => {
         const wrapper = mount(<MessageBar isMultiline={true} />);
         const dismissElement = wrapper.find('.ms-MessageBar-dismissal');
         expect(dismissElement.exists()).toBe(false);
+      });
+
+      it('mixes in native props to the inner text element', () => {
+        const wrapper = mount(
+          <MessageBar aria-live={'polite'} isMultiline={true}>
+            Message
+          </MessageBar>
+        );
+
+        const innerText = wrapper.find('.ms-MessageBar-innerText');
+        expect(innerText.prop('aria-live')).toEqual('polite');
       });
     });
   });

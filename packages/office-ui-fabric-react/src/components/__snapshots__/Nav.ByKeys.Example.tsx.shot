@@ -2,8 +2,6 @@
 
 exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
 <div
-  aria-describedby={undefined}
-  aria-labelledby={undefined}
   className="ms-FocusZone"
   data-focuszone-id="FocusZone0"
   onFocus={[Function]}
@@ -12,11 +10,15 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
   role="presentation"
 >
   <nav
-    aria-label={undefined}
     className=
         ms-Nav
         {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
           -webkit-overflow-scrolling: touch;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
           overflow-y: auto;
           user-select: none;
         }
@@ -68,18 +70,13 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                   ms-Nav-compositeLink
                   {
                     background-color: #ffffff;
-                    color: #333333;
+                    color: #323130;
                     display: block;
                     position: relative;
                   }
               name="Home"
             >
               <button
-                aria-describedby="id__3"
-                aria-disabled={undefined}
-                aria-label={undefined}
-                aria-labelledby={undefined}
-                aria-pressed={undefined}
                 className=
                     ms-Button
                     ms-Button--action
@@ -89,10 +86,10 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       -moz-osx-font-smoothing: grayscale;
                       -webkit-font-smoothing: antialiased;
                       background-color: transparent;
-                      border-radius: 0px;
-                      border: none;
+                      border-radius: 2px;
+                      border: 1px solid transparent;
                       box-sizing: border-box;
-                      color: #333333;
+                      color: #323130;
                       cursor: pointer;
                       display: block;
                       font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
@@ -123,7 +120,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       bottom: 1px;
                       content: "";
                       left: 1px;
-                      outline: 1px solid #666666;
+                      outline: 1px solid #605e5c;
                       position: absolute;
                       right: 1px;
                       top: 1px;
@@ -136,6 +133,11 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       outline-color: ButtonText;
                       right: -2px;
                       top: -2px;
+                    }
+                    &:active > * {
+                      left: 0px;
+                      position: relative;
+                      top: 0px;
                     }
                     &:hover {
                       color: #0078d4;
@@ -154,18 +156,16 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       color: #004578;
                     }
                     .ms-Nav-compositeLink:hover & {
-                      background-color: #f8f8f8;
-                      color: #333333;
+                      background-color: #faf9f8;
+                      color: #323130;
                     }
                 data-is-focusable={true}
-                disabled={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
-                rel={undefined}
                 title="Home"
                 type="button"
               >
@@ -181,7 +181,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       }
                 >
                   <i
-                    aria-hidden={true}
                     className=
                         ms-Icon-placeHolder
                         ms-Button-icon
@@ -203,28 +202,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                     data-icon-name=""
                     role="presentation"
                   />
-                  <span
-                    className=
-                        ms-Button-screenReaderText
-                        {
-                          border: 0px;
-                          height: 1px;
-                          margin-bottom: -1px;
-                          margin-left: -1px;
-                          margin-right: -1px;
-                          margin-top: -1px;
-                          overflow: hidden;
-                          padding-bottom: 0px;
-                          padding-left: 0px;
-                          padding-right: 0px;
-                          padding-top: 0px;
-                          position: absolute;
-                          width: 1px;
-                        }
-                    id="id__3"
-                  >
-                    Home
-                  </span>
                   <div
                     className=
                         ms-Nav-linkText
@@ -234,6 +211,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                           margin-right: 4px;
                           margin-top: 0;
                           overflow: hidden;
+                          text-align: left;
                           text-overflow: ellipsis;
                           vertical-align: middle;
                         }
@@ -260,18 +238,13 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                   ms-Nav-compositeLink
                   {
                     background-color: #ffffff;
-                    color: #333333;
+                    color: #323130;
                     display: block;
                     position: relative;
                   }
               name="Activity"
             >
               <button
-                aria-describedby="id__6"
-                aria-disabled={undefined}
-                aria-label={undefined}
-                aria-labelledby={undefined}
-                aria-pressed={undefined}
                 className=
                     ms-Button
                     ms-Button--action
@@ -281,10 +254,10 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       -moz-osx-font-smoothing: grayscale;
                       -webkit-font-smoothing: antialiased;
                       background-color: transparent;
-                      border-radius: 0px;
-                      border: none;
+                      border-radius: 2px;
+                      border: 1px solid transparent;
                       box-sizing: border-box;
-                      color: #333333;
+                      color: #323130;
                       cursor: pointer;
                       display: block;
                       font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
@@ -315,7 +288,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       bottom: 1px;
                       content: "";
                       left: 1px;
-                      outline: 1px solid #666666;
+                      outline: 1px solid #605e5c;
                       position: absolute;
                       right: 1px;
                       top: 1px;
@@ -328,6 +301,11 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       outline-color: ButtonText;
                       right: -2px;
                       top: -2px;
+                    }
+                    &:active > * {
+                      left: 0px;
+                      position: relative;
+                      top: 0px;
                     }
                     &:hover {
                       color: #0078d4;
@@ -346,18 +324,16 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       color: #004578;
                     }
                     .ms-Nav-compositeLink:hover & {
-                      background-color: #f8f8f8;
-                      color: #333333;
+                      background-color: #faf9f8;
+                      color: #323130;
                     }
                 data-is-focusable={true}
-                disabled={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
-                rel={undefined}
                 title="Activity"
                 type="button"
               >
@@ -373,7 +349,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       }
                 >
                   <i
-                    aria-hidden={true}
                     className=
                         ms-Icon-placeHolder
                         ms-Button-icon
@@ -395,28 +370,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                     data-icon-name=""
                     role="presentation"
                   />
-                  <span
-                    className=
-                        ms-Button-screenReaderText
-                        {
-                          border: 0px;
-                          height: 1px;
-                          margin-bottom: -1px;
-                          margin-left: -1px;
-                          margin-right: -1px;
-                          margin-top: -1px;
-                          overflow: hidden;
-                          padding-bottom: 0px;
-                          padding-left: 0px;
-                          padding-right: 0px;
-                          padding-top: 0px;
-                          position: absolute;
-                          width: 1px;
-                        }
-                    id="id__6"
-                  >
-                    Activity
-                  </span>
                   <div
                     className=
                         ms-Nav-linkText
@@ -426,6 +379,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                           margin-right: 4px;
                           margin-top: 0;
                           overflow: hidden;
+                          text-align: left;
                           text-overflow: ellipsis;
                           vertical-align: middle;
                         }
@@ -452,18 +406,13 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                   ms-Nav-compositeLink
                   {
                     background-color: #ffffff;
-                    color: #333333;
+                    color: #323130;
                     display: block;
                     position: relative;
                   }
               name="News"
             >
               <button
-                aria-describedby="id__9"
-                aria-disabled={undefined}
-                aria-label={undefined}
-                aria-labelledby={undefined}
-                aria-pressed={undefined}
                 className=
                     ms-Button
                     ms-Button--action
@@ -473,10 +422,10 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       -moz-osx-font-smoothing: grayscale;
                       -webkit-font-smoothing: antialiased;
                       background-color: transparent;
-                      border-radius: 0px;
-                      border: none;
+                      border-radius: 2px;
+                      border: 1px solid transparent;
                       box-sizing: border-box;
-                      color: #333333;
+                      color: #323130;
                       cursor: pointer;
                       display: block;
                       font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
@@ -507,7 +456,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       bottom: 1px;
                       content: "";
                       left: 1px;
-                      outline: 1px solid #666666;
+                      outline: 1px solid #605e5c;
                       position: absolute;
                       right: 1px;
                       top: 1px;
@@ -520,6 +469,11 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       outline-color: ButtonText;
                       right: -2px;
                       top: -2px;
+                    }
+                    &:active > * {
+                      left: 0px;
+                      position: relative;
+                      top: 0px;
                     }
                     &:hover {
                       color: #0078d4;
@@ -538,18 +492,16 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       color: #004578;
                     }
                     .ms-Nav-compositeLink:hover & {
-                      background-color: #f8f8f8;
-                      color: #333333;
+                      background-color: #faf9f8;
+                      color: #323130;
                     }
                 data-is-focusable={true}
-                disabled={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
-                rel={undefined}
                 title="News"
                 type="button"
               >
@@ -565,7 +517,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       }
                 >
                   <i
-                    aria-hidden={true}
                     className=
                         ms-Icon-placeHolder
                         ms-Button-icon
@@ -587,28 +538,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                     data-icon-name=""
                     role="presentation"
                   />
-                  <span
-                    className=
-                        ms-Button-screenReaderText
-                        {
-                          border: 0px;
-                          height: 1px;
-                          margin-bottom: -1px;
-                          margin-left: -1px;
-                          margin-right: -1px;
-                          margin-top: -1px;
-                          overflow: hidden;
-                          padding-bottom: 0px;
-                          padding-left: 0px;
-                          padding-right: 0px;
-                          padding-top: 0px;
-                          position: absolute;
-                          width: 1px;
-                        }
-                    id="id__9"
-                  >
-                    News
-                  </span>
                   <div
                     className=
                         ms-Nav-linkText
@@ -618,6 +547,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                           margin-right: 4px;
                           margin-top: 0;
                           overflow: hidden;
+                          text-align: left;
                           text-overflow: ellipsis;
                           vertical-align: middle;
                         }
@@ -644,18 +574,13 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                   ms-Nav-compositeLink
                   {
                     background-color: #ffffff;
-                    color: #333333;
+                    color: #323130;
                     display: block;
                     position: relative;
                   }
               name="Documents"
             >
               <button
-                aria-describedby="id__12"
-                aria-disabled={undefined}
-                aria-label={undefined}
-                aria-labelledby={undefined}
-                aria-pressed={undefined}
                 className=
                     ms-Button
                     ms-Button--action
@@ -665,10 +590,10 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       -moz-osx-font-smoothing: grayscale;
                       -webkit-font-smoothing: antialiased;
                       background-color: transparent;
-                      border-radius: 0px;
-                      border: none;
+                      border-radius: 2px;
+                      border: 1px solid transparent;
                       box-sizing: border-box;
-                      color: #333333;
+                      color: #323130;
                       cursor: pointer;
                       display: block;
                       font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
@@ -699,7 +624,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       bottom: 1px;
                       content: "";
                       left: 1px;
-                      outline: 1px solid #666666;
+                      outline: 1px solid #605e5c;
                       position: absolute;
                       right: 1px;
                       top: 1px;
@@ -712,6 +637,11 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       outline-color: ButtonText;
                       right: -2px;
                       top: -2px;
+                    }
+                    &:active > * {
+                      left: 0px;
+                      position: relative;
+                      top: 0px;
                     }
                     &:hover {
                       color: #0078d4;
@@ -730,18 +660,16 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       color: #004578;
                     }
                     .ms-Nav-compositeLink:hover & {
-                      background-color: #f8f8f8;
-                      color: #333333;
+                      background-color: #faf9f8;
+                      color: #323130;
                     }
                 data-is-focusable={true}
-                disabled={undefined}
                 onClick={[Function]}
                 onKeyDown={[Function]}
                 onKeyPress={[Function]}
                 onKeyUp={[Function]}
                 onMouseDown={[Function]}
                 onMouseUp={[Function]}
-                rel={undefined}
                 title="Documents"
                 type="button"
               >
@@ -757,7 +685,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                       }
                 >
                   <i
-                    aria-hidden={true}
                     className=
                         ms-Icon-placeHolder
                         ms-Button-icon
@@ -779,28 +706,6 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                     data-icon-name=""
                     role="presentation"
                   />
-                  <span
-                    className=
-                        ms-Button-screenReaderText
-                        {
-                          border: 0px;
-                          height: 1px;
-                          margin-bottom: -1px;
-                          margin-left: -1px;
-                          margin-right: -1px;
-                          margin-top: -1px;
-                          overflow: hidden;
-                          padding-bottom: 0px;
-                          padding-left: 0px;
-                          padding-right: 0px;
-                          padding-top: 0px;
-                          position: absolute;
-                          width: 1px;
-                        }
-                    id="id__12"
-                  >
-                    Documents
-                  </span>
                   <div
                     className=
                         ms-Nav-linkText
@@ -810,6 +715,7 @@ exports[`Component Examples renders Nav.ByKeys.Example.tsx correctly 1`] = `
                           margin-right: 4px;
                           margin-top: 0;
                           overflow: hidden;
+                          text-align: left;
                           text-overflow: ellipsis;
                           vertical-align: middle;
                         }

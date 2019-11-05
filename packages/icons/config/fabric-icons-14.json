@@ -10,156 +10,404 @@
   },
   "glyphs": [
     {
-      "name": "DeleteRowsMirrored",
-      "unicode": "F650"
+      "name": "Snooze",
+      "unicode": "F4BD"
     },
     {
-      "name": "DeleteTable",
-      "unicode": "F651"
+      "name": "WaffleOffice365",
+      "unicode": "F4E0"
     },
     {
-      "name": "VersionControlPush",
-      "unicode": "F664"
+      "name": "ImageSearch",
+      "unicode": "F4E8"
     },
     {
-      "name": "WhiteBoardApp16",
-      "unicode": "F673"
+      "name": "NewsSearch",
+      "unicode": "F4E9"
     },
     {
-      "name": "WhiteBoardApp32",
-      "unicode": "F674"
+      "name": "VideoSearch",
+      "unicode": "F4EA"
     },
     {
-      "name": "InsertSignatureLine",
-      "unicode": "F677"
+      "name": "R",
+      "unicode": "F4EB"
     },
     {
-      "name": "ArrangeByFrom",
-      "unicode": "F678"
+      "name": "FontColorA",
+      "unicode": "F4EC"
     },
     {
-      "name": "Phishing",
-      "unicode": "F679"
+      "name": "FontColorSwatch",
+      "unicode": "F4ED"
     },
     {
-      "name": "CreateMailRule",
-      "unicode": "F67A"
+      "name": "LightWeight",
+      "unicode": "F4EE"
     },
     {
-      "name": "PublishCourse",
-      "unicode": "F699"
+      "name": "NormalWeight",
+      "unicode": "F4EF"
     },
     {
-      "name": "DictionaryRemove",
-      "unicode": "F69A"
+      "name": "SemiboldWeight",
+      "unicode": "F4F0"
     },
     {
-      "name": "UserRemove",
-      "unicode": "F69B"
+      "name": "GroupObject",
+      "unicode": "F4F1"
     },
     {
-      "name": "UserEvent",
-      "unicode": "F69C"
+      "name": "UngroupObject",
+      "unicode": "F4F2"
     },
     {
-      "name": "Encryption",
-      "unicode": "F69D"
+      "name": "AlignHorizontalLeft",
+      "unicode": "F4F3"
     },
     {
-      "name": "D365TalentLearn",
-      "unicode": "F6BB"
+      "name": "AlignHorizontalCenter",
+      "unicode": "F4F4"
     },
     {
-      "name": "D365TalentInsight",
-      "unicode": "F6BC"
+      "name": "AlignHorizontalRight",
+      "unicode": "F4F5"
     },
     {
-      "name": "D365TalentHRCore",
-      "unicode": "F6BD"
+      "name": "AlignVerticalTop",
+      "unicode": "F4F6"
     },
     {
-      "name": "BacklogList",
-      "unicode": "F6BF"
+      "name": "AlignVerticalCenter",
+      "unicode": "F4F7"
     },
     {
-      "name": "ButtonControl",
-      "unicode": "F6C0"
+      "name": "AlignVerticalBottom",
+      "unicode": "F4F8"
     },
     {
-      "name": "TableGroup",
-      "unicode": "F6D9"
+      "name": "HorizontalDistributeCenter",
+      "unicode": "F4F9"
     },
     {
-      "name": "MountainClimbing",
-      "unicode": "F6DB"
+      "name": "VerticalDistributeCenter",
+      "unicode": "F4FA"
     },
     {
-      "name": "TagUnknown",
-      "unicode": "F6DF"
+      "name": "Ellipse",
+      "unicode": "F4FB"
     },
     {
-      "name": "TagUnknownMirror",
-      "unicode": "F6E0"
+      "name": "Line",
+      "unicode": "F4FC"
     },
     {
-      "name": "TagUnknown12",
-      "unicode": "F6E1"
+      "name": "Octagon",
+      "unicode": "F4FD"
     },
     {
-      "name": "TagUnknown12Mirror",
-      "unicode": "F6E2"
+      "name": "Hexagon",
+      "unicode": "F4FE"
     },
     {
-      "name": "Link12",
-      "unicode": "F6E3"
+      "name": "Pentagon",
+      "unicode": "F4FF"
     },
     {
-      "name": "Presentation",
-      "unicode": "F6E4"
+      "name": "RightTriangle",
+      "unicode": "F500"
     },
     {
-      "name": "Presentation12",
-      "unicode": "F6E5"
+      "name": "HalfCircle",
+      "unicode": "F501"
     },
     {
-      "name": "Lock12",
-      "unicode": "F6E6"
+      "name": "QuarterCircle",
+      "unicode": "F502"
     },
     {
-      "name": "BuildDefinition",
-      "unicode": "F6E9"
+      "name": "ThreeQuarterCircle",
+      "unicode": "F503"
     },
     {
-      "name": "ReleaseDefinition",
-      "unicode": "F6EA"
+      "name": "6PointStar",
+      "unicode": "F504"
     },
     {
-      "name": "SaveTemplate",
-      "unicode": "F6EC"
+      "name": "12PointStar",
+      "unicode": "F505"
     },
     {
-      "name": "UserGauge",
-      "unicode": "F6ED"
+      "name": "ArrangeBringToFront",
+      "unicode": "F506"
     },
     {
-      "name": "BlockedSiteSolid12",
-      "unicode": "F70A"
+      "name": "ArrangeSendToBack",
+      "unicode": "F507"
     },
     {
-      "name": "TagSolid",
-      "unicode": "F70E"
+      "name": "ArrangeSendBackward",
+      "unicode": "F508"
     },
     {
-      "name": "OfficeChat",
-      "unicode": "F70F"
+      "name": "ArrangeBringForward",
+      "unicode": "F509"
     },
     {
-      "name": "OfficeChatSolid",
-      "unicode": "F710"
+      "name": "BorderDash",
+      "unicode": "F50A"
     },
     {
-      "name": "MailSchedule",
-      "unicode": "F72E"
+      "name": "BorderDot",
+      "unicode": "F50B"
+    },
+    {
+      "name": "LineStyle",
+      "unicode": "F50C"
+    },
+    {
+      "name": "LineThickness",
+      "unicode": "F50D"
+    },
+    {
+      "name": "WindowEdit",
+      "unicode": "F50E"
+    },
+    {
+      "name": "HintText",
+      "unicode": "F50F"
+    },
+    {
+      "name": "MediaAdd",
+      "unicode": "F510"
+    },
+    {
+      "name": "AnchorLock",
+      "unicode": "F511"
+    },
+    {
+      "name": "AutoHeight",
+      "unicode": "F512"
+    },
+    {
+      "name": "ChartSeries",
+      "unicode": "F513"
+    },
+    {
+      "name": "ChartXAngle",
+      "unicode": "F514"
+    },
+    {
+      "name": "ChartYAngle",
+      "unicode": "F515"
+    },
+    {
+      "name": "Combobox",
+      "unicode": "F516"
+    },
+    {
+      "name": "LineSpacing",
+      "unicode": "F517"
+    },
+    {
+      "name": "Padding",
+      "unicode": "F518"
+    },
+    {
+      "name": "PaddingTop",
+      "unicode": "F519"
+    },
+    {
+      "name": "PaddingBottom",
+      "unicode": "F51A"
+    },
+    {
+      "name": "PaddingLeft",
+      "unicode": "F51B"
+    },
+    {
+      "name": "PaddingRight",
+      "unicode": "F51C"
+    },
+    {
+      "name": "NavigationFlipper",
+      "unicode": "F51D"
+    },
+    {
+      "name": "AlignJustify",
+      "unicode": "F51E"
+    },
+    {
+      "name": "TextOverflow",
+      "unicode": "F51F"
+    },
+    {
+      "name": "VisualsFolder",
+      "unicode": "F520"
+    },
+    {
+      "name": "VisualsStore",
+      "unicode": "F521"
+    },
+    {
+      "name": "PictureCenter",
+      "unicode": "F522"
+    },
+    {
+      "name": "PictureFill",
+      "unicode": "F523"
+    },
+    {
+      "name": "PicturePosition",
+      "unicode": "F524"
+    },
+    {
+      "name": "PictureStretch",
+      "unicode": "F525"
+    },
+    {
+      "name": "PictureTile",
+      "unicode": "F526"
+    },
+    {
+      "name": "Slider",
+      "unicode": "F527"
+    },
+    {
+      "name": "SliderHandleSize",
+      "unicode": "F528"
+    },
+    {
+      "name": "DefaultRatio",
+      "unicode": "F529"
+    },
+    {
+      "name": "NumberSequence",
+      "unicode": "F52A"
+    },
+    {
+      "name": "GUID",
+      "unicode": "F52B"
+    },
+    {
+      "name": "ReportAdd",
+      "unicode": "F52C"
+    },
+    {
+      "name": "DashboardAdd",
+      "unicode": "F52D"
+    },
+    {
+      "name": "MapPinSolid",
+      "unicode": "F52E"
+    },
+    {
+      "name": "WebPublish",
+      "unicode": "F52F"
+    },
+    {
+      "name": "PieSingleSolid",
+      "unicode": "F530"
+    },
+    {
+      "name": "BlockedSolid",
+      "unicode": "F531"
+    },
+    {
+      "name": "DrillDown",
+      "unicode": "F532"
+    },
+    {
+      "name": "DrillDownSolid",
+      "unicode": "F533"
+    },
+    {
+      "name": "DrillExpand",
+      "unicode": "F534"
+    },
+    {
+      "name": "DrillShow",
+      "unicode": "F535"
+    },
+    {
+      "name": "SpecialEvent",
+      "unicode": "F536"
+    },
+    {
+      "name": "OneDriveFolder16",
+      "unicode": "F53B"
+    },
+    {
+      "name": "FunctionalManagerDashboard",
+      "unicode": "F542"
+    },
+    {
+      "name": "BIDashboard",
+      "unicode": "F543"
+    },
+    {
+      "name": "CodeEdit",
+      "unicode": "F544"
+    },
+    {
+      "name": "RenewalCurrent",
+      "unicode": "F545"
+    },
+    {
+      "name": "RenewalFuture",
+      "unicode": "F546"
+    },
+    {
+      "name": "SplitObject",
+      "unicode": "F547"
+    },
+    {
+      "name": "BulkUpload",
+      "unicode": "F548"
+    },
+    {
+      "name": "DownloadDocument",
+      "unicode": "F549"
+    },
+    {
+      "name": "GreetingCard",
+      "unicode": "F54B"
+    },
+    {
+      "name": "Flower",
+      "unicode": "F54E"
+    },
+    {
+      "name": "WaitlistConfirm",
+      "unicode": "F550"
+    },
+    {
+      "name": "WaitlistConfirmMirrored",
+      "unicode": "F551"
+    },
+    {
+      "name": "LaptopSecure",
+      "unicode": "F552"
+    },
+    {
+      "name": "DragObject",
+      "unicode": "F553"
+    },
+    {
+      "name": "EntryView",
+      "unicode": "F554"
+    },
+    {
+      "name": "EntryDecline",
+      "unicode": "F555"
+    },
+    {
+      "name": "ContactCardSettings",
+      "unicode": "F556"
+    },
+    {
+      "name": "ContactCardSettingsMirrored",
+      "unicode": "F557"
     }
   ]
 }

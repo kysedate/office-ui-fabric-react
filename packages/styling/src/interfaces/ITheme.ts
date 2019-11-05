@@ -1,9 +1,24 @@
 import { IPalette } from './IPalette';
 import { IFontStyles } from './IFontStyles';
 import { ISemanticColors } from './ISemanticColors';
-import { ITypography, IPartialTypography } from './ITypography';
+import { ISpacing } from './ISpacing';
+import { IEffects } from './IEffects';
+import { IRawStyle } from '@uifabric/merge-styles';
 
-export interface ITheme {
+/**
+ * @internal
+ * Predefined scheme identifiers.
+ * Schemes are is still in an experimental phase.
+ * This interface's naming and values are not finalized and are subject to change.
+ * {@docCategory IScheme}
+ */
+export type ISchemeNames = 'default' | 'neutral' | 'soft' | 'strong';
+
+/**
+ * {@docCategory IScheme}
+ */
+export interface IScheme {
+  rtl?: boolean;
   palette: IPalette;
   fonts: IFontStyles;
   semanticColors: ISemanticColors;
@@ -21,17 +36,45 @@ export interface ITheme {
 
   /**
    * @internal
-   * The typography property is still in an experimental phase. The intent is the have it
-   * eventually replace IFontStyles in a future release, but it is still undergoing review.
+   * The spacing property is still in an experimental phase. The intent is to have it
+   * be used for padding and margin sizes in a future release, but it is still undergoing review.
    * Avoid using it until it is finalized.
    */
-  typography: ITypography;
+  spacing: ISpacing;
+
+  effects: IEffects;
 }
 
+/**
+ * {@docCategory ITheme}
+ */
+export interface ITheme extends IScheme {
+  /**
+   * @internal
+   * The schemes property is still in an experimental phase. The intent is to have it work
+   * in conjunction with new 'schemes' prop that any component making use of Foundation can use.
+   * Alternative themes that can be referred to by name.
+   */
+  schemes?: { [P in ISchemeNames]?: IScheme };
+}
+
+/**
+ * {@docCategory ITheme}
+ */
 export type IPartialTheme = {
-  [P in keyof Pick<
-    ITheme,
-    'palette' | 'fonts' | 'semanticColors' | 'isInverted' | 'disableGlobalClassNames'
-  >]?: Partial<ITheme[P]>
-} &
-  { [P in keyof Pick<ITheme, 'typography'>]?: IPartialTypography };
+  palette?: Partial<IPalette>;
+  fonts?: Partial<IFontStyles>;
+
+  /**
+   * Use this property to specify font property defaults.
+   */
+  defaultFontStyle?: IRawStyle;
+
+  semanticColors?: Partial<ISemanticColors>;
+  isInverted?: boolean;
+  disableGlobalClassNames?: boolean;
+  rtl?: boolean;
+  spacing?: Partial<ISpacing>;
+  effects?: Partial<IEffects>;
+  schemes?: { [P in ISchemeNames]?: IScheme };
+};

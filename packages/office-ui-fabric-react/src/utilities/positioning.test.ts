@@ -127,8 +127,32 @@ describe('Callout Positioning', () => {
     positionCalloutTest(basicTestCase, DirectionalHint.bottomRightEdge, validateBottomRight);
   });
 
+  it('Correctly positions the callout when none of the alignment options fit within bounds', () => {
+    const basicTestCase: ITestValues = {
+      callout: new Rectangle(0, 200, 0, 200),
+      target: new Rectangle(150, 160, 150, 160),
+      bounds: new Rectangle(8, 300, 8, 300),
+      beakWidth: 0
+    };
+
+    const validateBottomLeft: ITestValidation = {
+      callout: new Rectangle(8, 208, 100, 300),
+      beak: null
+    };
+
+    const validateTopRight: ITestValidation = {
+      callout: new Rectangle(8, 208, 8, 208),
+      beak: null
+    };
+
+    validateNoBeakTest(basicTestCase, DirectionalHint.bottomLeftEdge, validateBottomLeft);
+
+    validateNoBeakTest(basicTestCase, DirectionalHint.topRightEdge, validateTopRight);
+  });
+
   it('Correctly determines max height', () => {
     const getMaxHeight = __positioningTestPackage._getMaxHeightFromTargetRectangle;
+
     let targetTop;
     let targetBot;
     const targetRight = (targetBot = 20);
@@ -187,11 +211,14 @@ describe('Callout Positioning', () => {
         };
       }
     };
+    // create a dummy beak
+    const beakPos = new Rectangle(8, -8, 8, -8);
     const pos: IElementPosition = {
-      elementRectangle: new Rectangle(0, 100, 0, 100),
+      elementRectangle: new Rectangle(400, 500, 400, 500),
       targetEdge: RectangleEdge.top,
       alignmentEdge: RectangleEdge.left
     };
+    const bounds = new Rectangle(0, 500, 0, 500);
 
     // Normal positioning should target the alignment edge and the opposite of the target edge.
     // In this case, that's left (alignment) and bottom (opposite of target)
@@ -202,9 +229,33 @@ describe('Callout Positioning', () => {
 
     // Cover positioning should target the alignment edge and the target edge.
     // In this case, that's left (alignment) and top (target)
-    finalizedPosition = __positioningTestPackage._finalizePositionData(pos, host as any, true);
+    finalizedPosition = __positioningTestPackage._finalizePositionData(pos, host as any, undefined, true);
     expect(finalizedPosition.elementPosition.left).toBeDefined();
     expect(finalizedPosition.elementPosition.top).toBeDefined();
     expect(finalizedPosition.elementPosition.bottom).toBeUndefined();
+
+    // With bounds introduced, if the elementRectangle is closer to one edge of bounds than another,
+    // should align to edge closest to bounds
+    // In this case, that's bottom (opposite of target) and right (closer to edge of bounds)
+    finalizedPosition = __positioningTestPackage._finalizePositionData(pos, host as any, bounds);
+    expect(finalizedPosition.elementPosition.right).toBeDefined();
+    expect(finalizedPosition.elementPosition.bottom).toBeDefined();
+    expect(finalizedPosition.elementPosition.left).toBeUndefined();
+
+    // With bounds introduced, if the elementRectangle is closer to one edge of bounds than another,
+    // but it has already been positioned previously, then don't change the edge
+    // In this case, that's bottom (opposite of target) and left
+    finalizedPosition = __positioningTestPackage._finalizePositionData(pos, host as any, bounds, false, true);
+    expect(finalizedPosition.elementPosition.left).toBeDefined();
+    expect(finalizedPosition.elementPosition.bottom).toBeDefined();
+    expect(finalizedPosition.elementPosition.right).toBeUndefined();
+
+    // With bounds introduced, the alignment should apply to the beak as well, aligning it to
+    // the edge closest to bounds
+    // In this case, that's the bottom (opposite of target) and right (closer to edge of bounds)
+    const finalizedBeakPosition = __positioningTestPackage._finalizeBeakPosition(pos, beakPos, bounds);
+    expect(finalizedBeakPosition.elementPosition.right).toBeDefined();
+    expect(finalizedBeakPosition.elementPosition.bottom).toBeDefined();
+    expect(finalizedBeakPosition.elementPosition.left).toBeUndefined();
   });
 });

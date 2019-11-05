@@ -1,10 +1,12 @@
 {
   "name": "@uifabric/merge-styles",
-  "version": "6.8.2",
-  "description": "Office UI Fabric style loading utilities.",
+  "version": "7.8.0",
+  "description": "Style loading utilities.",
   "main": "lib-commonjs/index.js",
   "module": "lib/index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "lib/version.js"
+  ],
   "typings": "lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -12,21 +14,21 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "node ../../scripts/build.js",
-    "clean": "node ../../scripts/clean.js",
-    "code-style": "node ../../scripts/code-style.js",
-    "start-test": "node ../../scripts/start-test.js"
+    "build": "just-scripts build",
+    "just": "just-scripts",
+    "clean": "just-scripts clean",
+    "code-style": "just-scripts code-style",
+    "start-test": "just-scripts jest-watch",
+    "update-api": "just-scripts update-api"
   },
-  "disabledTasks": [
-    "copy",
-    "sass",
-    "karma"
-  ],
   "devDependencies": {
     "@types/jest": "23.0.0",
-    "office-ui-fabric-react-tslint": ">=6.0.0 <7.0.0"
+    "@uifabric/prettier-rules": "^7.0.4",
+    "@uifabric/tslint-rules": "^7.0.5",
+    "@uifabric/build": "^7.0.0"
   },
   "dependencies": {
+    "@uifabric/set-version": "^7.0.2",
     "tslib": "^1.7.1"
   }
 }

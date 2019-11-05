@@ -1,13 +1,17 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
+import * as glob from 'glob';
+import * as path from 'path';
 
 import { resetIds } from '../Utilities';
 
-import * as DataUtil from '../utilities/exampleData';
+import * as DataUtil from '@uifabric/example-data';
 import * as mergeStylesSerializer from '@uifabric/jest-serializer-merge-styles';
 
+const ReactDOM = require('react-dom');
+
 // Extend Jest Expect to allow us to map each component example to its own snapshot file.
-const snapshotsStateMap = new Map();
+const snapshotsStateMap = new Map<string, ISnapshotState>();
 const jestSnapshot = require('jest-snapshot');
 
 // jest-snapshot currently has no DefinitelyTyped or module defs so type the one object we care about for now here
@@ -17,6 +21,9 @@ interface ISnapshotState {
   matched: number;
   updated: number;
   added: number;
+  getUncheckedCount(): number;
+  removeUncheckedKeys(): void;
+  save(): void;
 }
 
 let globalSnapshotState: ISnapshotState;
@@ -42,10 +49,10 @@ expect.extend({
         updateSnapshot: globalSnapshotState._updateSnapshot
       });
       // and save it to the map for tracking
-      snapshotsStateMap.set(absoluteSnapshotFile, snapshotState);
+      snapshotsStateMap.set(absoluteSnapshotFile, snapshotState!);
     }
 
-    const newThis = Object.assign({}, this, { snapshotState });
+    const newThis = { ...this, snapshotState };
     const patchedToMatchSnapshot = jestSnapshot.toMatchSnapshot.bind(newThis);
 
     return patchedToMatchSnapshot(received);
@@ -63,6 +70,7 @@ const excludedExampleFiles: string[] = [
   'ExampleHelper.tsx', // Helper file with no actual component
   'GroupedList.Basic.Example.tsx',
   'GroupedList.Custom.Example.tsx',
+  'HoverCard.InstantDismiss.Example.tsx', // https://github.com/OfficeDev/office-ui-fabric-react/issues/6681
   'List.Basic.Example.tsx',
   'List.Ghosting.Example.tsx',
   'List.Grid.Example.tsx',
@@ -71,7 +79,9 @@ const excludedExampleFiles: string[] = [
   'Picker.CustomResult.Example.tsx',
   'ScrollablePane.Default.Example.tsx',
   'ScrollablePane.DetailsList.Example.tsx',
-  'SelectedPeopleList.Basic.Example.tsx'
+  'SelectedPeopleList.Basic.Example.tsx',
+  // Snapshots of these examples are worthless since the component isn't open by default
+  'Panel.'
 ];
 
 declare const global: any;
@@ -86,6 +96,7 @@ declare const global: any;
  *       from the example, or add your component to the exclusion list above.
  *    2) If there is some other run-time issue you can either modify the example or add your component
  *       to the exclusion list above.
+ *    3) Only export functions that are React components from your example.
  *
  * In any case, adding your component to the exclusion list is discouraged as this will make regression
  *    harder to catch.
@@ -94,16 +105,20 @@ declare const global: any;
  *    what you expect before submitting a PR.
  */
 describe('Component Examples', () => {
-  const glob = require('glob');
-  const path = require('path');
   const realDate = Date;
   const realToLocaleString = global.Date.prototype.toLocaleString;
   const realToLocaleTimeString = global.Date.prototype.toLocaleTimeString;
   const realToLocaleDateString = global.Date.prototype.toLocaleDateString;
-  const constantDate = new Date(Date.UTC(2017, 13, 6, 4, 41, 20));
+  const constantDate = new Date(Date.UTC(2017, 0, 6, 4, 41, 20));
   const files: string[] = glob.sync(path.resolve(process.cwd(), 'src/components/**/examples/*Example*.tsx'));
+  const createPortal = ReactDOM.createPortal;
 
   beforeAll(() => {
+    // Mock createPortal to capture its component hierarchy in snapshot output.
+    ReactDOM.createPortal = jest.fn(element => {
+      return element;
+    });
+
     // Ensure test output is consistent across machine locale and time zone config.
     const mockToLocaleString = () => {
       return constantDate.toUTCString();
@@ -116,11 +131,11 @@ describe('Component Examples', () => {
     // Prevent random and time elements from failing repeated tests.
     global.Date = class {
       public static now() {
-        return constantDate;
+        return new realDate(constantDate);
       }
 
       constructor() {
-        return constantDate;
+        return new realDate(constantDate);
       }
     };
 
@@ -134,6 +149,9 @@ describe('Component Examples', () => {
 
   afterAll(() => {
     jest.restoreAllMocks();
+
+    ReactDOM.createPortal = createPortal;
+
     global.Date = realDate;
     global.Date.prototype.toLocaleString = realToLocaleString;
     global.Date.prototype.toLocaleTimeString = realToLocaleTimeString;
@@ -160,22 +178,28 @@ describe('Component Examples', () => {
 
   files
     .filter((componentFile: string) => {
-      return excludedExampleFiles.find(excludedFile => componentFile.endsWith(excludedFile)) === undefined;
+      return !excludedExampleFiles.some(excludedFile => componentFile.indexOf('/' + excludedFile) !== -1);
     })
     .forEach((componentFile: string) => {
       const componentFileName = componentFile.substring(componentFile.lastIndexOf('/') + 1);
       it('renders ' + componentFileName + ' correctly', () => {
         try {
           const ExampleFile = require(componentFile);
-          Object.keys(ExampleFile).forEach(key => {
-            // Resetting ids by each object creates predictability in generated ids.
-            resetIds();
-            const ComponentUnderTest: React.ComponentClass = ExampleFile[key];
-            const component = renderer.create(<ComponentUnderTest />);
-            const tree = component.toJSON();
-            (expect(tree) as any).toMatchSpecificSnapshot(componentFileName);
-          });
+          // This code assumes all exported example functions are React components and attempts to render them.
+          Object.keys(ExampleFile)
+            .filter(key => typeof ExampleFile[key] === 'function')
+            .forEach(key => {
+              // Resetting ids by each object creates predictability in generated ids.
+              resetIds();
+              const ComponentUnderTest: React.ComponentClass = ExampleFile[key];
+              const component = renderer.create(<ComponentUnderTest />);
+              const tree = component.toJSON();
+              (expect(tree) as any).toMatchSpecificSnapshot(componentFileName);
+            });
         } catch (e) {
+          // If you are getting this error with an example file make sure that the example file only
+          // exports example components. This test attempts to render all exports from an example file and will
+          // generate errors if those exports are functions that are not React components.
           console.warn(
             'ERROR: ' +
               e +
@@ -183,7 +207,8 @@ describe('Component Examples', () => {
               'TEST NOTE: Failure with ' +
               componentFile +
               '. ' +
-              'Have you recently added a component? If so, please see notes in ComponentExamples.test.tsx.'
+              'Have you recently added a component? If so, please see notes in ComponentExamples.test.tsx. ' +
+              'Make sure your example only exports React components and no other functions.'
           );
         }
       });

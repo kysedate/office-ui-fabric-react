@@ -19,18 +19,14 @@ export const getStyles = (props: IFabricStyleProps): IFabricStyles => {
   return {
     root: [
       classNames.root,
-      isFocusVisible && 'is-focusVisible',
+      isFocusVisible && 'is-focusVisible ms-Fabric--isFocusVisible',
       theme.fonts.medium,
       {
         color: theme.palette.neutralPrimary,
         selectors: {
           '& button': inheritFont,
           '& input': inheritFont,
-          '& textarea': inheritFont,
-          ':global(button)': {
-            overflow: 'visible',
-            margin: 0
-          }
+          '& textarea': inheritFont
         }
       },
       className

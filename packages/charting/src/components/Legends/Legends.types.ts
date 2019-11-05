@@ -24,6 +24,11 @@ export interface ILegendsStyles {
   rect: IStyle;
 
   /**
+   * Style set for the triangle that represents a legend
+   */
+  triangle: IStyle;
+
+  /**
    * Style for the legend text
    */
   text: IStyle;
@@ -64,6 +69,11 @@ export interface ILegend {
    * The color for the legend
    */
   color: string;
+
+  /**
+   * The shape for the legend
+   */
+  shape?: LegendShape;
 }
 
 export interface ILegendStyleProps {
@@ -94,4 +104,21 @@ export interface ILegendsProps {
    * Call to provide customized styling that will layer on top of the variant rules.
    */
   styles?: IStyleFunctionOrObject<ILegendStyleProps, ILegendsStyles>;
+
+  /**
+   * This prop makes the legends component align itself to the center in the container it is sitting in
+   */
+  centerLegends?: boolean;
+
+  /**
+   * Enable the legends to wrap lines if there is not enough space to show all legends on a single line
+   */
+  enabledWrapLines?: boolean;
 }
+
+/**
+ * The shape for the legend
+ * default: show the rect legend
+ * triangle: show the triangle legend
+ */
+export type LegendShape = 'default' | 'triangle';

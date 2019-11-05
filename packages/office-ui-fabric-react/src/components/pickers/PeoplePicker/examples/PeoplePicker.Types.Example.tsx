@@ -1,6 +1,5 @@
-/* tslint:disable */
 import * as React from 'react';
-/* tslint:enable */
+
 import { BaseComponent, assign } from 'office-ui-fabric-react/lib/Utilities';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
@@ -13,12 +12,9 @@ import {
   NormalPeoplePicker,
   ValidationState
 } from 'office-ui-fabric-react/lib/Pickers';
-import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
-import { IPersonaWithMenu } from 'office-ui-fabric-react/lib/components/pickers/PeoplePicker/PeoplePickerItems/PeoplePickerItem.types';
-import { people, mru } from './PeoplePickerExampleData';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Promise } from 'es6-promise';
-import './PeoplePicker.Types.Example.scss';
+import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { people, mru } from '@uifabric/example-data';
+import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 
 export interface IPeoplePickerExampleState {
   currentPicker?: number | string;
@@ -26,6 +22,7 @@ export interface IPeoplePickerExampleState {
   peopleList: IPersonaProps[];
   mostRecentlyUsed: IPersonaProps[];
   currentSelectedItems?: IPersonaProps[];
+  isPickerDisabled?: boolean;
 }
 
 const suggestionProps: IBasePickerSuggestionsProps = {
@@ -47,24 +44,19 @@ const limitedSearchAdditionalProps: IBasePickerSuggestionsProps = {
 const limitedSearchSuggestionProps: IBasePickerSuggestionsProps = assign(limitedSearchAdditionalProps, suggestionProps);
 
 export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerExampleState> {
-  private _picker: IBasePicker<IPersonaProps>;
+  // All pickers extend from BasePicker specifying the item type.
+  private _picker = React.createRef<IBasePicker<IPersonaProps>>();
 
   constructor(props: {}) {
     super(props);
-    const peopleList: IPersonaWithMenu[] = [];
-    people.forEach((persona: IPersonaProps) => {
-      const target: IPersonaWithMenu = {};
-
-      assign(target, persona);
-      peopleList.push(target);
-    });
 
     this.state = {
       currentPicker: 1,
       delayResults: false,
-      peopleList: peopleList,
+      peopleList: people,
       mostRecentlyUsed: mru,
-      currentSelectedItems: []
+      currentSelectedItems: [],
+      isPickerDisabled: false
     };
   }
 
@@ -89,6 +81,7 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
         break;
       case 6:
         currentPicker = this._renderProcessSelectionPicker();
+        break;
       case 7:
         currentPicker = this._renderControlledPicker();
         break;
@@ -98,7 +91,7 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
     return (
       <div>
         {currentPicker}
-        <div className={'dropdown-div'}>
+        <div style={{ width: 200 }}>
           <Dropdown
             label="Select People Picker Type"
             options={[
@@ -112,6 +105,12 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
             ]}
             selectedKey={this.state.currentPicker}
             onChange={this._dropDownSelected}
+          />
+          <Checkbox
+            styles={{ root: { marginTop: 10 } }}
+            label="Disable People Picker"
+            checked={this.state.isPickerDisabled}
+            onChange={this._onDisabledButtonClick}
           />
           <Toggle label="Delay Suggestion Results" defaultChecked={false} onChange={this._toggleDelayResultsChange} />
         </div>
@@ -139,8 +138,9 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -162,9 +162,10 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         onInputChange={this._onInputChange}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -184,8 +185,9 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -207,8 +209,9 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -230,8 +233,9 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -253,8 +257,9 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
           onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called'),
           'aria-label': 'People Picker'
         }}
-        componentRef={this._resolveRef('_picker')}
+        componentRef={this._picker}
         resolveDelay={300}
+        disabled={this.state.isPickerDisabled}
       />
     );
   }
@@ -281,14 +286,15 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
             onBlur: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onBlur called'),
             onFocus: (ev: React.FocusEvent<HTMLInputElement>) => console.log('onFocus called')
           }}
-          componentRef={this._resolveRef('_picker')}
+          componentRef={this._picker}
           resolveDelay={300}
+          disabled={this.state.isPickerDisabled}
         />
         <label> Click to Add a person </label>
         {controlledItems.map((item, index) => (
           <div key={index}>
             <DefaultButton
-              className="controlledPickerButton"
+              styles={{ root: { height: 'auto' } }}
               // tslint:disable-next-line:jsx-no-lambda
               onClick={() => {
                 this.setState({
@@ -311,8 +317,8 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
   };
 
   private _onSetFocusButtonClicked = (): void => {
-    if (this._picker) {
-      this._picker.focusInput();
+    if (this._picker.current) {
+      this._picker.current.focusInput();
     }
   };
 
@@ -326,9 +332,7 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
     const indexMostRecentlyUsed: number = mruState.indexOf(item);
 
     if (indexPeopleList >= 0) {
-      const newPeople: IPersonaProps[] = peopleList
-        .slice(0, indexPeopleList)
-        .concat(peopleList.slice(indexPeopleList + 1));
+      const newPeople: IPersonaProps[] = peopleList.slice(0, indexPeopleList).concat(peopleList.slice(indexPeopleList + 1));
       this.setState({ peopleList: newPeople });
     }
 
@@ -341,7 +345,7 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
   };
 
   private _onItemSelected = (item: IPersonaProps): Promise<IPersonaProps> => {
-    const processedItem = Object.assign({}, item);
+    const processedItem = { ...item };
     processedItem.text = `${item.text} (selected)`;
     return new Promise<IPersonaProps>((resolve, reject) => setTimeout(() => resolve(processedItem), 250));
   };
@@ -368,9 +372,7 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
     return this._filterPromise(mostRecentlyUsed);
   };
 
-  private _returnMostRecentlyUsedWithLimit = (
-    currentPersonas: IPersonaProps[]
-  ): IPersonaProps[] | Promise<IPersonaProps[]> => {
+  private _returnMostRecentlyUsedWithLimit = (currentPersonas: IPersonaProps[]): IPersonaProps[] | Promise<IPersonaProps[]> => {
     let { mostRecentlyUsed } = this.state;
     mostRecentlyUsed = this._removeDuplicates(mostRecentlyUsed, currentPersonas);
     mostRecentlyUsed = mostRecentlyUsed.splice(0, 3);
@@ -450,4 +452,10 @@ export class PeoplePickerTypesExample extends BaseComponent<any, IPeoplePickerEx
 
     return input;
   }
+
+  private _onDisabledButtonClick = (): void => {
+    this.setState({
+      isPickerDisabled: !this.state.isPickerDisabled
+    });
+  };
 }

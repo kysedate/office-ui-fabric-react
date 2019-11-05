@@ -15,6 +15,7 @@ export const getStyles = (props: ILayerStyleProps): ILayerStyles => {
   return {
     root: [
       classNames.root,
+      theme.fonts.medium,
       isNotHost && [
         classNames.rootNoHost,
         {
@@ -22,8 +23,8 @@ export const getStyles = (props: ILayerStyleProps): ILayerStyles => {
           zIndex: ZIndexes.Layer,
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
+          bottom: 0,
+          right: 0,
           visibility: 'hidden'
         }
       ],

@@ -1,6 +1,10 @@
+import * as React from 'react';
 import { IStyle, ITheme } from '../../Styling';
 import { IStyleFunctionOrObject } from '../../Utilities';
 
+/**
+ * {@docCategory SwatchColorPicker}
+ */
 export interface IColorPickerGridCellProps {
   /**
    * Item to render
@@ -50,6 +54,25 @@ export interface IColorPickerGridCellProps {
   selected: boolean;
 
   /**
+   * Height of the cell, in pixels
+   * @defaultvalue 20
+   */
+  height?: number;
+
+  /**
+   * Width of the cell, in pixels
+   * @defaultvalue 20
+   */
+  width?: number;
+
+  /**
+   * Width of the border that indicates a selected/hovered cell, in pixels.
+   * If `cellWidth` is less than 24px, then default value is 2px. Otherwise it defaults to 4px.
+   * @defaultvalue 2
+   */
+  borderWidth?: number;
+
+  /**
    * The on click handler
    */
   onClick?: (item: IColorCellProps) => void;
@@ -97,6 +120,9 @@ export interface IColorPickerGridCellProps {
   onKeyDown?: (ev: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
+/**
+ * {@docCategory SwatchColorPicker}
+ */
 export interface IColorCellProps {
   /**
    * Arbitrary unique string associated with this option
@@ -123,6 +149,7 @@ export interface IColorCellProps {
 
 /**
  * Properties required to build the styles for the color picker component.
+ * {@docCategory SwatchColorPicker}
  */
 export interface IColorPickerGridCellStyleProps {
   /**
@@ -149,10 +176,26 @@ export interface IColorPickerGridCellStyleProps {
    * Whether the color being rendered is white or not. If it is white we show a border around it.
    */
   isWhite?: boolean;
+
+  /**
+   * The height of this cell, in pixels.
+   */
+  height?: number;
+
+  /**
+   * The width of this cell, in pixels.
+   */
+  width?: number;
+
+  /**
+   * The width of the border indicating a hovered or selected cell, in pixels.
+   */
+  borderWidth?: number;
 }
 
 /**
  * Styles for the Color Picker Component.
+ * {@docCategory SwatchColorPicker}
  */
 export interface IColorPickerGridCellStyles {
   /**

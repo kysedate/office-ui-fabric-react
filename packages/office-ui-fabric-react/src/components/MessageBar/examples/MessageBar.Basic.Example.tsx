@@ -1,311 +1,207 @@
-// @codepen
 import * as React from 'react';
-import { MessageBarButton } from 'office-ui-fabric-react/lib/Button';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Label } from 'office-ui-fabric-react/lib/Label';
-import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
-import './MessageBar.Basic.Example.scss';
+import { MessageBarButton, Link, Stack, StackItem, MessageBar, MessageBarType, ChoiceGroup, IStackProps } from 'office-ui-fabric-react';
 
-const log = (text: string): (() => void) => (): void => console.log(text);
+interface IExampleProps {
+  resetChoice?: () => void;
+}
 
-export const MessageBarBasicExample = () => (
-  <div className="ms-BasicMessageBarsExample">
-    <Label>Info/Default MessageBar</Label>
-    <MessageBar>
-      Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
+const horizontalStackProps: IStackProps = {
+  horizontal: true,
+  tokens: { childrenGap: 16 }
+};
+const verticalStackProps: IStackProps = {
+  styles: { root: { overflow: 'hidden', width: '100%' } },
+  tokens: { childrenGap: 20 }
+};
 
-    <Label>Error MessageBar - single line, with dismiss button</Label>
-    <MessageBar
-      messageBarType={MessageBarType.error}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-    >
-      Error lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
+const choiceGroupStyles = {
+  label: {
+    maxWidth: 250
+  }
+};
 
-    <Label>
-      Blocked MessageBar - single line, with dismiss button and truncated text. Truncation is not available if you use
-      action buttons or multiline and should be used sparingly.
-    </Label>
-    <MessageBar
-      messageBarType={MessageBarType.blocked}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      truncated={true}
-      overflowButtonAriaLabel="See more"
-    >
-      Blocked lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio
-      augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae
-      orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac
-      placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu
-      ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit
-      magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>SevereWarning MessageBar - defaults to multiline, with action buttons</Label>
-    <MessageBar
-      messageBarType={MessageBarType.severeWarning}
-      actions={
-        <div>
-          <MessageBarButton>Yes</MessageBarButton>
-          <MessageBarButton>No</MessageBarButton>
-        </div>
-      }
-    >
-      <span>Severe warning lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</span>
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Success MessageBar - single line, with action buttons</Label>
-    <MessageBar
-      actions={
-        <div>
-          <MessageBarButton>Yes</MessageBarButton>
-          <MessageBarButton>No</MessageBarButton>
-        </div>
-      }
-      messageBarType={MessageBarType.success}
-      isMultiline={false}
-    >
-      Success lorem ipsum dolor sit amet. <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Warning MessageBar - single line, with dismiss and action buttons</Label>
-    <MessageBar
-      messageBarType={MessageBarType.warning}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      actions={
-        <div>
-          <MessageBarButton>Action</MessageBarButton>
-        </div>
-      }
-    >
-      Warning lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Warning MessageBar - defaults to multiline, with dismiss and action buttons</Label>
-    <MessageBar
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      messageBarType={MessageBarType.warning}
-      ariaLabel="Aria help text here"
-      actions={
-        <div>
-          <MessageBarButton>Yes</MessageBarButton>
-          <MessageBarButton>No</MessageBarButton>
-        </div>
-      }
-    >
-      Warning lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio
-      augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae
-      orci nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac
-      placerat erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu
-      ante commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit
-      magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Info/Default MessageBar - custom styles</Label>
-    <MessageBar
-      styles={{
-        root: {
-          background: 'rgba(113, 175, 229, 0.2)',
-          color: '#00188f'
-        },
-        icon: {
-          color: '#00188f'
-        }
-      }}
-    >
-      Info lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Error, single line, with dismiss button - custom styles</Label>
-    <MessageBar
-      styles={{
-        content: {
-          background: 'rgba(50, 20, 90, 0.2)'
-        },
-        text: {
-          background: 'rgba(166, 166, 166, 0.5)'
-        },
-        dismissal: {
-          selectors: {
-            '& .ms-Button-icon': {
-              color: '#107c10'
-            }
-          }
-        }
-      }}
-      messageBarType={MessageBarType.error}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-    >
-      Lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Blocked, single line, with dismiss button and truncated text - custom styles</Label>
-    <MessageBar
-      styles={{
-        root: {
-          background: 'rgba(0, 178, 148, 0.2)'
-        },
-        dismissSingleLine: {
-          border: '1px solid #5c2d91'
-        },
-        expandSingleLine: {
-          border: '1px solid #e3008c'
-        },
-        dismissal: {
-          selectors: {
-            '& .ms-Button-icon': {
-              color: '#004b50'
-            }
-          }
-        },
-        expand: {
-          selectors: {
-            '& .ms-Button-icon': {
-              color: '#004b50'
-            }
-          }
-        },
-        innerText: {
-          textDecoration: 'underline'
-        }
-      }}
-      messageBarType={MessageBarType.blocked}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      truncated={true}
-      overflowButtonAriaLabel="See more"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue
-      pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci
-      nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat
-      erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante
-      commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit
-      magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Severe warning, multiline, with action buttons - custom styles</Label>
-    <MessageBar
-      styles={{
-        root: {
-          background: 'rgba(227, 0, 140, 0.2)'
-        },
-        icon: {
-          color: '#e3008c'
-        },
-        actions: {
-          background: 'rgba(180, 0, 158, 0.4)'
-        }
-      }}
-      messageBarType={MessageBarType.severeWarning}
-      actions={
-        <div>
-          <MessageBarButton styles={{ root: { color: '#e3008c' } }}>Yes</MessageBarButton>
-          <MessageBarButton styles={{ root: { color: '#e3008c' } }}>No</MessageBarButton>
-        </div>
-      }
-    >
-      <span>Lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.</span>
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Success, single line, with action buttons - custom styles</Label>
-    <MessageBar
-      styles={{
-        actions: {
-          background: '#007d84',
-          border: '1px solid #ffb900'
-        }
-      }}
-      actions={
-        <div>
-          <MessageBarButton>Yes</MessageBarButton>
-          <MessageBarButton>No</MessageBarButton>
-        </div>
-      }
-      messageBarType={MessageBarType.success}
-      isMultiline={false}
-    >
-      Lorem ipsum dolor sit amet. <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Warning, single line, with dismiss and action buttons - custom styles</Label>
-    <MessageBar
-      styles={{
-        content: {
-          background: 'rgba(234, 67, 0, 0.2)'
-        },
-        actions: {
-          border: '1px solid #ea4300'
-        },
-        dismissSingleLine: {
-          border: '1px solid #ea4300'
-        }
-      }}
-      messageBarType={MessageBarType.warning}
-      isMultiline={false}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      actions={
-        <div>
-          <MessageBarButton>Action</MessageBarButton>
-        </div>
-      }
-    >
-      Lorem ipsum dolor sit amet, a elit sem interdum consectetur adipiscing elit.{' '}
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-
-    <Label>Warning, multiline, with dismiss and action buttons - custom styles</Label>
-    <MessageBar
-      styles={{
-        root: {
-          background: 'rgba(0, 188, 242, 0.4)'
-        },
-        dismissal: {
-          border: '1px solid #00188f'
-        },
-        actions: {
-          border: '1px solid #0078d4',
-          flexDirection: 'row'
-        }
-      }}
-      onDismiss={log('test')}
-      dismissButtonAriaLabel="Close"
-      messageBarType={MessageBarType.warning}
-      ariaLabel="Aria help text here"
-      actions={
-        <div>
-          <MessageBarButton>Yes</MessageBarButton>
-          <MessageBarButton>No</MessageBarButton>
-        </div>
-      }
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique, odio augue
-      pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci
-      nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat
-      erat euismod et. Donec pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante
-      commodo, condimentum nibh pellentesque, laoreet enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit
-      magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.
-      <Link href="www.bing.com">Visit our website.</Link>
-    </MessageBar>
-  </div>
+const DefaultExample = () => (
+  <MessageBar>
+    Info/Default MessageBar.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
 );
+
+const ErrorExample = (p: IExampleProps) => (
+  <MessageBar messageBarType={MessageBarType.error} isMultiline={false} onDismiss={p.resetChoice} dismissButtonAriaLabel="Close">
+    Error MessageBar with single line, with dismiss button.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
+);
+
+const BlockedExample = (p: IExampleProps) => (
+  <MessageBar
+    messageBarType={MessageBarType.blocked}
+    isMultiline={false}
+    onDismiss={p.resetChoice}
+    dismissButtonAriaLabel="Close"
+    truncated={true}
+    overflowButtonAriaLabel="See more"
+  >
+    <b>Blocked MessageBar - single line, with dismiss button and truncated text.</b> Truncation is not available if you use action buttons
+    or multiline and should be used sparingly. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis
+    tristique, odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci
+    nec quam condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec
+    pulvinar commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet
+    enim. Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum
+    mauris.
+  </MessageBar>
+);
+
+const SevereExample = (p: IExampleProps) => (
+  <MessageBar
+    messageBarType={MessageBarType.severeWarning}
+    actions={
+      <div>
+        <MessageBarButton>Yes</MessageBarButton>
+        <MessageBarButton>No</MessageBarButton>
+      </div>
+    }
+  >
+    SevereWarning MessageBar with action buttons which defaults to multiline.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
+);
+
+const SuccessExample = () => (
+  <MessageBar
+    actions={
+      <div>
+        <MessageBarButton>Yes</MessageBarButton>
+        <MessageBarButton>No</MessageBarButton>
+      </div>
+    }
+    messageBarType={MessageBarType.success}
+    isMultiline={false}
+  >
+    Success MessageBar with single line and action buttons.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
+);
+
+const WarningExample = (p: IExampleProps) => (
+  <MessageBar
+    messageBarType={MessageBarType.warning}
+    isMultiline={false}
+    onDismiss={p.resetChoice}
+    dismissButtonAriaLabel="Close"
+    actions={
+      <div>
+        <MessageBarButton>Action</MessageBarButton>
+      </div>
+    }
+  >
+    Warning MessageBar content.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
+);
+
+const WarningExample2 = (p: IExampleProps) => (
+  <MessageBar
+    onDismiss={p.resetChoice}
+    dismissButtonAriaLabel="Close"
+    messageBarType={MessageBarType.warning}
+    actions={
+      <div>
+        <MessageBarButton>Yes</MessageBarButton>
+        <MessageBarButton>No</MessageBarButton>
+      </div>
+    }
+  >
+    <b>Warning defaults to multiline</b>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus, purus a lobortis tristique,
+    odio augue pharetra metus, ac placerat nunc mi nec dui. Vestibulum aliquam et nunc semper scelerisque. Curabitur vitae orci nec quam
+    condimentum porttitor et sed lacus. Vivamus ac efficitur leo. Cras faucibus mauris libero, ac placerat erat euismod et. Donec pulvinar
+    commodo odio sit amet faucibus. In hac habitasse platea dictumst. Duis eu ante commodo, condimentum nibh pellentesque, laoreet enim.
+    Fusce massa lorem, ultrices eu mi a, fermentum suscipit magna. Integer porta purus pulvinar, hendrerit felis eget, condimentum mauris.
+    <Link href="www.bing.com" target="_blank">
+      Visit our website.
+    </Link>
+  </MessageBar>
+);
+
+const choiceOptions = [
+  {
+    key: 'default',
+    text: 'Default'
+  },
+  {
+    key: 'error',
+    text: 'Error MessageBar'
+  },
+  {
+    key: 'blocked',
+    text: 'Blocked MessageBar'
+  },
+  {
+    key: 'severe',
+    text: 'SevereWarning MessageBar'
+  },
+  {
+    key: 'success',
+    text: 'Success MessageBar'
+  },
+  {
+    key: 'warning',
+    text: 'Warning MessageBar - single line'
+  },
+  {
+    key: 'warning2',
+    text: 'Warning MessageBar - multiline'
+  },
+  {
+    key: 'all',
+    text: 'Show All'
+  }
+];
+
+export const MessageBarBasicExample: React.StatelessComponent = () => {
+  const [choice, setChoice] = React.useState<string | undefined>(undefined);
+  const showAll = choice === 'all';
+
+  const resetChoice = () => setChoice(undefined);
+
+  return (
+    <Stack {...horizontalStackProps}>
+      <StackItem disableShrink>
+        <ChoiceGroup
+          styles={choiceGroupStyles}
+          label="Select a MessageBar Example Below. To test in narrator, show one message at a time."
+          selectedKey={choice}
+          // tslint:disable-next-line: jsx-no-lambda
+          onChange={(e, v) => setChoice(v!.key)}
+          options={choiceOptions}
+        />
+      </StackItem>
+      <Stack {...verticalStackProps}>
+        {(choice === 'default' || showAll) && <DefaultExample />}
+
+        {(choice === 'error' || showAll) && <ErrorExample resetChoice={resetChoice} />}
+
+        {(choice === 'blocked' || showAll) && <BlockedExample resetChoice={resetChoice} />}
+
+        {(choice === 'severe' || showAll) && <SevereExample resetChoice={resetChoice} />}
+
+        {(choice === 'success' || showAll) && <SuccessExample />}
+
+        {(choice === 'warning' || showAll) && <WarningExample resetChoice={resetChoice} />}
+
+        {(choice === 'warning2' || showAll) && <WarningExample2 resetChoice={resetChoice} />}
+      </Stack>
+    </Stack>
+  );
+};

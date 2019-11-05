@@ -2,11 +2,13 @@
 
 exports[`OverflowSet snapshot tests basicSnapshot 1`] = `
 <div
-  aria-describedby={undefined}
-  aria-labelledby={undefined}
+  aria-orientation="horizontal"
   className=
       ms-FocusZone
       ms-OverflowSet
+      &:focus {
+        outline: none;
+      }
       {
         display: flex;
         flex-wrap: nowrap;
@@ -22,12 +24,14 @@ exports[`OverflowSet snapshot tests basicSnapshot 1`] = `
 
 exports[`OverflowSet snapshot tests snapshot with classname 1`] = `
 <div
-  aria-describedby={undefined}
-  aria-labelledby={undefined}
+  aria-orientation="horizontal"
   className=
       ms-FocusZone
       ms-OverflowSet
       foobar
+      &:focus {
+        outline: none;
+      }
       {
         display: flex;
         flex-wrap: nowrap;
@@ -43,12 +47,14 @@ exports[`OverflowSet snapshot tests snapshot with classname 1`] = `
 
 exports[`OverflowSet snapshot tests snapshot with classname and vertical layout 1`] = `
 <div
-  aria-describedby={undefined}
-  aria-labelledby={undefined}
+  aria-orientation="vertical"
   className=
       ms-FocusZone
       ms-OverflowSet
       foobar
+      &:focus {
+        outline: none;
+      }
       {
         display: flex;
         flex-direction: column;

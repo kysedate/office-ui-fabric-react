@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
-import { HoverCard, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
-import { classNamesFunction } from 'office-ui-fabric-react/lib/Utilities';
+import { HoverCard, HoverCardType, IExpandingCardProps } from 'office-ui-fabric-react/lib/HoverCard';
+import { classNamesFunction, find } from 'office-ui-fabric-react/lib/Utilities';
 import { ResizeGroup } from 'office-ui-fabric-react/lib/ResizeGroup';
 import { IProcessedStyleSet } from 'office-ui-fabric-react/lib/Styling';
 import { OverflowSet, IOverflowSetItemProps } from 'office-ui-fabric-react/lib/OverflowSet';
-import { ILegend, ILegendsProps, ILegendsStyles, ILegendStyleProps, ILegendOverflowData } from './Legends.types';
+import { ILegend, ILegendsProps, LegendShape, ILegendsStyles, ILegendStyleProps, ILegendOverflowData } from './Legends.types';
 
 const getClassNames = classNamesFunction<ILegendStyleProps, ILegendsStyles>();
 
@@ -18,6 +18,7 @@ interface ILegendItem {
   hoverAction: VoidFunction;
   onMouseOutAction: VoidFunction;
   color: string;
+  shape?: LegendShape;
   key: number;
 }
 
@@ -47,12 +48,16 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
     const dataToRender = this._generateData();
     return (
       <div className={this._classNames.root}>
-        <ResizeGroup
-          data={dataToRender}
-          onReduceData={this._onReduceData}
-          onRenderData={this._onRenderData}
-          onGrowData={this._onGrowData}
-        />
+        {this.props.enabledWrapLines ? (
+          this._onRenderData(dataToRender)
+        ) : (
+          <ResizeGroup
+            data={dataToRender}
+            onReduceData={this._onReduceData}
+            onRenderData={this._onRenderData}
+            onGrowData={this._onGrowData}
+          />
+        )}
       </div>
     );
   }
@@ -66,6 +71,7 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
         hoverAction: legend.hoverAction!,
         onMouseOutAction: legend.onMouseOutAction!,
         color: legend.color,
+        shape: legend.shape,
         key: index
       };
       dataItems.push(legendItem);
@@ -77,13 +83,22 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
     return result;
   }
 
-  private _onRenderData = (data: IOverflowSetItemProps): JSX.Element => {
+  private _onRenderData = (data: IOverflowSetItemProps | ILegendOverflowData): JSX.Element => {
     return (
       <OverflowSet
         items={data.primary}
         overflowItems={data.overflow}
         onRenderItem={this._renderButton}
         onRenderOverflowButton={this._renderOverflowItems}
+        styles={{
+          root: {
+            justifyContent: this.props.centerLegends ? 'center' : 'unset',
+            flexWrap: 'wrap'
+          },
+          item: {
+            marginBottom: '16px'
+          }
+        }}
       />
     );
   };
@@ -109,6 +124,9 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
   private _onClick = (legend: ILegend): void => {
     if (this.state.selectedState === true && this.state.selectedLegend === legend.title) {
       this.setState({ selectedLegend: 'none', selectedState: false });
+      if (legend.action) {
+        legend.action();
+      }
     } else {
       this.setState({ selectedState: true, selectedLegend: legend.title });
       if (legend.action) {
@@ -123,7 +141,8 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
       const hoverCardElement = this._renderButton(legend, index, true);
       overflowHoverCardLegends.push(hoverCardElement);
     });
-    return <div>{overflowHoverCardLegends}</div>;
+    const hoverCardData = <div className="hoverCardRoot">{overflowHoverCardLegends}</div>;
+    return hoverCardData;
   };
 
   private _renderOverflowItems = (legends: ILegend[]) => {
@@ -132,18 +151,42 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
       items.push({ key: i.toString(), name: legend.title, onClick: legend.action });
     });
     const renderOverflowData: IExpandingCardProps = { renderData: legends };
-    const expandingCardProps: IExpandingCardProps = {
-      onRenderCompactCard: this._onRenderCompactCard,
-      renderData: renderOverflowData,
-      mode: 0
-    };
     const { theme, className, styles } = this.props;
     const classNames = getClassNames(styles!, {
       theme: theme!,
       className
     });
+    const plainCardProps = {
+      onRenderPlainCard: this._onRenderCompactCard,
+      renderData: renderOverflowData
+    };
+
+    // execute similar to "_onClick" and "_onLeave" logic at HoverCard onCardHide event
+    const onHoverCardHideHandler = () => {
+      if (this.state.selectedState) {
+        const selectedOverflowItem = find(legends, (legend: ILegend) => legend.title === this.state.selectedLegend);
+        if (selectedOverflowItem) {
+          this.setState({ selectedLegend: 'none', selectedState: false }, () => {
+            if (selectedOverflowItem.action) {
+              selectedOverflowItem.action();
+            }
+            this.setState({ hoverState: false }, () => {
+              if (selectedOverflowItem.onMouseOutAction) {
+                selectedOverflowItem.onMouseOutAction();
+              }
+            });
+          });
+        }
+      }
+    };
     return (
-      <HoverCard expandingCardProps={expandingCardProps}>
+      <HoverCard
+        type={HoverCardType.plain}
+        plainCardProps={plainCardProps}
+        sticky={true}
+        instantOpenOnClick={true}
+        onCardHide={onHoverCardHideHandler}
+      >
         <div className={classNames.overflowIndicationTextStyle}>{items.length} more</div>
       </HoverCard>
     );
@@ -171,6 +214,7 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
     const legend: ILegend = {
       title: data.title,
       color: data.color,
+      shape: data.shape,
       action: data.action,
       hoverAction: data.hoverAction,
       onMouseOutAction: data.onMouseOutAction
@@ -201,12 +245,23 @@ export class LegendsBase extends React.Component<ILegendsProps, ILegendState> {
         onClick={onClickHandler}
         onMouseOver={onHoverHandler}
         onMouseOut={onMouseOut}
+        onFocus={onHoverHandler}
+        onBlur={onMouseOut}
+        data-is-focusable={true}
       >
-        <div className={classNames.rect} />
+        <div className={this._getShapeClass(classNames, legend)} />
         <div className={classNames.text}>{legend.title}</div>
       </div>
     );
   };
+
+  private _getShapeClass(classNames: IProcessedStyleSet<ILegendsStyles>, legend: ILegend): string {
+    if (legend.shape === 'triangle') {
+      return classNames.triangle;
+    }
+
+    return classNames.rect;
+  }
 
   private _getColor(title: string, color: string): string {
     const { theme } = this.props;

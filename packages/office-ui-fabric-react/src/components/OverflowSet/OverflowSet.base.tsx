@@ -2,24 +2,10 @@ import * as React from 'react';
 
 import { FocusZone, FocusZoneDirection, IFocusZone } from '../../FocusZone';
 import { IKeytipProps } from '../../Keytip';
-import {
-  BaseComponent,
-  classNamesFunction,
-  createRef,
-  divProperties,
-  elementContains,
-  focusFirstChild,
-  getNativeProps
-} from '../../Utilities';
+import { BaseComponent, classNamesFunction, divProperties, elementContains, focusFirstChild, getNativeProps } from '../../Utilities';
 import { IProcessedStyleSet } from '../../Styling';
 import { KeytipManager } from '../../utilities/keytips/KeytipManager';
-import {
-  IOverflowSet,
-  IOverflowSetItemProps,
-  IOverflowSetProps,
-  IOverflowSetStyles,
-  IOverflowSetStyleProps
-} from './OverflowSet.types';
+import { IOverflowSet, IOverflowSetItemProps, IOverflowSetProps, IOverflowSetStyles, IOverflowSetStyleProps } from './OverflowSet.types';
 
 const getClassNames = classNamesFunction<IOverflowSetStyleProps, IOverflowSetStyles>();
 
@@ -29,10 +15,10 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
     role: 'menubar'
   };
 
-  private _focusZone = createRef<IFocusZone>();
+  private _focusZone = React.createRef<IFocusZone>();
   private _persistedKeytips: { [uniqueID: string]: IKeytipProps } = {};
   private _keytipManager: KeytipManager = KeytipManager.getInstance();
-  private _divContainer = createRef<HTMLDivElement>();
+  private _divContainer = React.createRef<HTMLDivElement>();
   private _classNames: IProcessedStyleSet<IOverflowSetStyles>;
 
   constructor(props: IOverflowSetProps) {
@@ -46,16 +32,7 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
   }
 
   public render(): JSX.Element {
-    const {
-      items,
-      overflowItems,
-      className,
-      focusZoneProps,
-      styles,
-      vertical,
-      role,
-      doNotContainWithinFocusZone
-    } = this.props;
+    const { items, overflowItems, className, focusZoneProps, styles, vertical, role, doNotContainWithinFocusZone } = this.props;
 
     this._classNames = getClassNames(styles, { className, vertical });
 
@@ -65,13 +42,13 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
     if (doNotContainWithinFocusZone) {
       Tag = 'div';
       uniqueComponentProps = {
-        ...getNativeProps(this.props, divProperties),
+        ...getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties),
         ref: this._divContainer
       };
     } else {
       Tag = FocusZone;
       uniqueComponentProps = {
-        ...getNativeProps(this.props, divProperties),
+        ...getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, divProperties),
         ...focusZoneProps,
         componentRef: this._focusZone,
         direction: vertical ? FocusZoneDirection.vertical : FocusZoneDirection.horizontal
@@ -79,7 +56,7 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
     }
 
     return (
-      <Tag {...uniqueComponentProps} className={this._classNames.root} role={role}>
+      <Tag aria-orientation={vertical ? 'vertical' : 'horizontal'} {...uniqueComponentProps} className={this._classNames.root} role={role}>
         {items && this._onRenderItems(items)}
         {overflowItems && overflowItems.length > 0 && this._onRenderOverflowButtonWrapper(overflowItems)}
       </Tag>
@@ -88,7 +65,7 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
 
   /**
    * Sets focus to the first tabbable item in the OverflowSet.
-   * @param {boolean} forceIntoFirstElement If true, focus will be forced into the first element,
+   * @param forceIntoFirstElement - If true, focus will be forced into the first element,
    * even if focus is already in theOverflowSet
    * @returns True if focus could be set to an active element, false if no operation was taken.
    */
@@ -108,7 +85,7 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
 
   /**
    * Sets focus to a specific child element within the OverflowSet.
-   * @param {HTMLElement} childElement The child element within the zone to focus.
+   * @param childElement - The child element within the zone to focus.
    * @returns True if focus could be set to an active element, false if no operation was taken.
    */
   public focusElement(childElement?: HTMLElement): boolean {
@@ -139,7 +116,8 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
     this._unregisterPersistedKeytips();
   }
 
-  public componentWillUpdate() {
+  // tslint:disable-next-line function-name
+  public UNSAFE_componentWillUpdate() {
     this._unregisterPersistedKeytips();
   }
 
@@ -194,7 +172,9 @@ export class OverflowSetBase extends BaseComponent<IOverflowSetProps, {}> implem
           const persistedKeytip: IKeytipProps = {
             content: keytip.content,
             keySequences: keytip.keySequences,
-            disabled: keytip.disabled || !!(overflowItem.disabled || overflowItem.isDisabled)
+            disabled: keytip.disabled || !!(overflowItem.disabled || overflowItem.isDisabled),
+            hasDynamicChildren: keytip.hasDynamicChildren,
+            hasMenu: keytip.hasMenu
           };
 
           if (keytip.hasDynamicChildren || this._getSubMenuForItem(overflowItem)) {

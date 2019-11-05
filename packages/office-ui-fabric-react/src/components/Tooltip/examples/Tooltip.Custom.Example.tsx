@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { BaseComponent } from 'office-ui-fabric-react/lib/Utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { TooltipHost, TooltipDelay, DirectionalHint } from 'office-ui-fabric-react/lib/Tooltip';
+import { getId } from 'office-ui-fabric-react/lib/Utilities';
 
-export class TooltipCustomExample extends BaseComponent<any, any> {
+export class TooltipCustomExample extends React.Component<any, any> {
+  // Use getId() to ensure that the ID is unique on the page.
+  // (It's also okay to use a plain string without getId() and manually ensure uniqueness.)
+  private _hostId: string = getId('tooltipHost');
+
   public render(): JSX.Element {
     return (
       <TooltipHost
-        calloutProps={{ gapSpace: 20 }}
         tooltipProps={{
           onRenderContent: () => {
             return (
@@ -21,10 +24,11 @@ export class TooltipCustomExample extends BaseComponent<any, any> {
           }
         }}
         delay={TooltipDelay.zero}
-        id="customID"
+        id={this._hostId}
         directionalHint={DirectionalHint.bottomCenter}
+        styles={{ root: { display: 'inline-block' } }}
       >
-        <DefaultButton aria-describedby="customID" text="Hover Over Me" />
+        <DefaultButton aria-describedby={this._hostId} text="Hover Over Me" />
       </TooltipHost>
     );
   }

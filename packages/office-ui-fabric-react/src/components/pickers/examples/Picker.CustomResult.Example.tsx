@@ -15,18 +15,9 @@ import {
 import { ImageFit } from 'office-ui-fabric-react/lib/Image';
 import { Persona, PersonaSize } from 'office-ui-fabric-react/lib/Persona';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
-import {
-  IBasePickerProps,
-  BasePickerListBelow,
-  IPickerItemProps,
-  ISuggestionItemProps
-} from 'office-ui-fabric-react/lib/Pickers';
-
-import { TestImages } from '../../../common/TestImages';
+import { IBasePickerProps, BasePickerListBelow, IPickerItemProps, ISuggestionItemProps } from 'office-ui-fabric-react/lib/Pickers';
 import { IButtonProps } from 'office-ui-fabric-react/lib/Button';
-import './Picker.CustomResult.Example.scss';
-import * as exampleStylesImport from '../../../common/_exampleStyles.scss';
-const exampleStyles: any = exampleStylesImport;
+import { mergeStyles } from 'office-ui-fabric-react/lib/Styling';
 
 export interface IPeoplePickerExampleState {
   contextualMenuVisible?: boolean;
@@ -43,6 +34,19 @@ export interface IFullDocumentCardProps {
 }
 
 export interface IDocumentPickerProps extends IBasePickerProps<IFullDocumentCardProps> {}
+
+const rootClass = mergeStyles({
+  maxWidth: 500
+});
+
+const baseProductionCdnUrl = 'https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/';
+const TestImages = {
+  documentPreview: baseProductionCdnUrl + 'document-preview.png',
+  documentPreviewTwo: baseProductionCdnUrl + 'document-preview2.png',
+  documentPreviewThree: baseProductionCdnUrl + 'document-preview3.png',
+  iconPpt: baseProductionCdnUrl + 'icon-ppt.png',
+  personaFemale: baseProductionCdnUrl + 'persona-female.png'
+};
 
 const data: IFullDocumentCardProps[] = [
   {
@@ -267,16 +271,10 @@ const data: IFullDocumentCardProps[] = [
   }
 ];
 
-export const SuggestedDocumentItem: (documentProps: IFullDocumentCardProps) => JSX.Element = (
-  documentProps: IFullDocumentCardProps
-) => {
-  return <div> {documentProps.documentTitleProps && documentProps.documentTitleProps.title} </div>;
-};
-
-export const SuggestedBigItem: (
+const SuggestedBigItem: (documentProps: IFullDocumentCardProps, itemProps: ISuggestionItemProps<any>) => JSX.Element = (
   documentProps: IFullDocumentCardProps,
   itemProps: ISuggestionItemProps<any>
-) => JSX.Element = (documentProps: IFullDocumentCardProps, itemProps: ISuggestionItemProps<any>) => {
+) => {
   const { documentPreviewProps, documentTitleProps } = documentProps;
 
   return (
@@ -288,7 +286,7 @@ export const SuggestedBigItem: (
   );
 };
 
-export const SelectedDocumentItem: (documentProps: IPickerItemProps<IFullDocumentCardProps>) => JSX.Element = (
+const SelectedDocumentItem: (documentProps: IPickerItemProps<IFullDocumentCardProps>) => JSX.Element = (
   documentProps: IPickerItemProps<IFullDocumentCardProps>
 ) => {
   const { documentActionsProps, documentPreviewProps, documentActivityProps, documentTitleProps } = documentProps.item;
@@ -309,11 +307,7 @@ export const SelectedDocumentItem: (documentProps: IPickerItemProps<IFullDocumen
   return (
     <DocumentCard onClick={log('You clicked the card.')}>
       <DocumentCardPreview {...documentPreviewProps as IDocumentCardPreviewProps} />
-      <DocumentCardLocation
-        location="Marketing Documents"
-        locationHref="http://microsoft.com"
-        ariaLabel="Location, Marketing Documents"
-      />
+      <DocumentCardLocation location="Marketing Documents" locationHref="http://microsoft.com" ariaLabel="Location, Marketing Documents" />
       <DocumentCardTitle {...documentTitleProps as IDocumentCardTitleProps} />
       <DocumentCardActivity {...documentActivityProps as IDocumentCardActivityProps} />
       <DocumentCardActions actions={actions} />
@@ -321,7 +315,8 @@ export const SelectedDocumentItem: (documentProps: IPickerItemProps<IFullDocumen
   );
 };
 
-export class DocumentPicker extends BasePickerListBelow<IFullDocumentCardProps, IDocumentPickerProps> {}
+class DocumentPicker extends BasePickerListBelow<IFullDocumentCardProps, IDocumentPickerProps> {}
+
 export class PickerCustomResultExample extends React.Component<{}, IPeoplePickerExampleState> {
   constructor(props: {}) {
     super(props);
@@ -333,9 +328,9 @@ export class PickerCustomResultExample extends React.Component<{}, IPeoplePicker
 
   public render(): JSX.Element {
     return (
-      <div>
+      <div className={rootClass}>
         <Checkbox
-          className={exampleStyles.exampleCheckbox}
+          styles={{ root: { margin: '10px 0' } }}
           label="Disable Document Picker"
           checked={this.state.isPickerDisabled}
           onChange={this._onDisabledButtonClick}
@@ -347,13 +342,13 @@ export class PickerCustomResultExample extends React.Component<{}, IPeoplePicker
           getTextFromItem={this._getTextFromItem}
           pickerSuggestionsProps={{
             suggestionsHeaderText: 'Suggested Documents',
-            noResultsFoundText: 'No Documents Found',
-            suggestionsItemClassName: 'ms-DocumentPicker-bigSuggestion'
+            noResultsFoundText: 'No Documents Found'
           }}
           disabled={this.state.isPickerDisabled}
           inputProps={{
             onFocus: () => console.log('onFocus called'),
-            onBlur: () => console.log('onBlur called')
+            onBlur: () => console.log('onBlur called'),
+            'aria-label': 'Document Picker'
           }}
         />
       </div>
@@ -373,11 +368,7 @@ export class PickerCustomResultExample extends React.Component<{}, IPeoplePicker
   private _onFilterChanged(filterText: string, items: IFullDocumentCardProps[]): IFullDocumentCardProps[] {
     return filterText
       ? data
-          .filter(
-            item =>
-              item.documentTitleProps &&
-              item.documentTitleProps.title.toLowerCase().indexOf(filterText.toLowerCase()) === 0
-          )
+          .filter(item => item.documentTitleProps && item.documentTitleProps.title.toLowerCase().indexOf(filterText.toLowerCase()) === 0)
           .filter(item => !this._listContainsDocument(item, items))
       : [];
   }
@@ -387,8 +378,6 @@ export class PickerCustomResultExample extends React.Component<{}, IPeoplePicker
       return false;
     }
     const documentTitle = document.documentTitleProps && document.documentTitleProps.title;
-    return (
-      items.filter(item => (item.documentTitleProps && item.documentTitleProps.title) === documentTitle).length > 0
-    );
+    return items.filter(item => (item.documentTitleProps && item.documentTitleProps.title) === documentTitle).length > 0;
   }
 }

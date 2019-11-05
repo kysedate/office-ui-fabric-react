@@ -1,4 +1,3 @@
-// @codepen
 import * as React from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Callout, DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
@@ -6,28 +5,19 @@ import { Calendar, DayOfWeek } from 'office-ui-fabric-react/lib/Calendar';
 import { FocusTrapZone } from 'office-ui-fabric-react/lib/FocusTrapZone';
 
 const DayPickerStrings = {
-  months: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ],
-
+  months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   shortMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-
   days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-
   shortDays: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-
-  goToToday: 'Go to today'
+  goToToday: 'Go to today',
+  weekNumberFormatString: 'Week number {0}',
+  prevMonthAriaLabel: 'Previous month',
+  nextMonthAriaLabel: 'Next month',
+  prevYearAriaLabel: 'Previous year',
+  nextYearAriaLabel: 'Next year',
+  prevYearRangeAriaLabel: 'Previous year range',
+  nextYearRangeAriaLabel: 'Next year range',
+  closeButtonAriaLabel: 'Close'
 };
 
 export interface ICalendarButtonExampleState {
@@ -42,6 +32,7 @@ export interface ICalendarButtonExampleProps {
   highlightSelectedMonth?: boolean;
   buttonString?: string;
   showMonthPickerAsOverlay?: boolean;
+  showGoToToday?: boolean;
 }
 
 export class CalendarButtonExample extends React.Component<ICalendarButtonExampleProps, ICalendarButtonExampleState> {
@@ -49,6 +40,7 @@ export class CalendarButtonExample extends React.Component<ICalendarButtonExampl
     showMonthPickerAsOverlay: false,
     isDayPickerVisible: true,
     isMonthPickerVisible: true,
+    showGoToToday: true,
     buttonString: 'Click for Calendar'
   };
 
@@ -99,6 +91,7 @@ export class CalendarButtonExample extends React.Component<ICalendarButtonExampl
                 highlightCurrentMonth={this.props.highlightCurrentMonth}
                 highlightSelectedMonth={this.props.highlightSelectedMonth}
                 showMonthPickerAsOverlay={this.props.showMonthPickerAsOverlay}
+                showGoToToday={this.props.showGoToToday}
               />
             </FocusTrapZone>
           </Callout>

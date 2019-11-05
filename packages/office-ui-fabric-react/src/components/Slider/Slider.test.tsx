@@ -1,8 +1,13 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import * as renderer from 'react-test-renderer';
+import * as ReactTestUtils from 'react-dom/test-utils';
+
 import { mount } from 'enzyme';
 import { Slider } from './Slider';
 import { ISlider } from './Slider.types';
+import { ONKEYDOWN_TIMEOUT_DURATION } from './Slider.base';
+import { KeyCodes } from '../../Utilities';
 
 describe('Slider', () => {
   it('renders correctly', () => {
@@ -66,6 +71,20 @@ describe('Slider', () => {
     expect(slider.current!.value).toEqual(12);
   });
 
+  it('should be able to handler zero default value', () => {
+    const slider = React.createRef<ISlider>();
+
+    mount(<Slider label="slider" defaultValue={0} min={-100} max={100} componentRef={slider} />);
+    expect(slider.current!.value).toEqual(0);
+  });
+
+  it('should be able to handler zero value', () => {
+    const slider = React.createRef<ISlider>();
+
+    mount(<Slider label="slider" value={0} min={-100} max={100} componentRef={slider} />);
+    expect(slider.current!.value).toEqual(0);
+  });
+
   it('renders correct aria-valuetext', () => {
     let component = mount(<Slider />);
 
@@ -78,5 +97,43 @@ describe('Slider', () => {
     component = mount(<Slider value={selected} ariaValueText={getTextValue} />);
 
     expect(component.find('.ms-Slider-slideBox').prop('aria-valuetext')).toEqual(values[selected]);
+  });
+
+  it('formats the value when a format function is passed', () => {
+    const value = 10;
+    const valueFormat = (val: any) => `${val}%`;
+    const component = mount(<Slider value={value} min={0} max={100} showValue={true} valueFormat={valueFormat} />);
+
+    expect(component.find('label.ms-Label.ms-Slider-value').text()).toEqual(valueFormat(value));
+  });
+
+  it('calls onChanged after keyboard event', () => {
+    jest.useFakeTimers();
+    const onChanged = jest.fn();
+
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    ReactDOM.render(<Slider label="slider" defaultValue={12} min={0} max={100} onChanged={onChanged} />, container);
+    const sliderSlideBox = container.querySelector('.ms-Slider-slideBox') as HTMLElement;
+
+    ReactTestUtils.Simulate.keyDown(sliderSlideBox, { which: KeyCodes.down });
+    ReactTestUtils.Simulate.keyDown(sliderSlideBox, { which: KeyCodes.down });
+    ReactTestUtils.Simulate.keyDown(sliderSlideBox, { which: KeyCodes.down });
+    ReactTestUtils.Simulate.keyDown(sliderSlideBox, { which: KeyCodes.up });
+    ReactTestUtils.Simulate.keyDown(sliderSlideBox, { which: KeyCodes.down });
+
+    expect(sliderSlideBox.getAttribute('aria-valuenow')).toEqual('9');
+
+    // onChanged should only be called after a delay
+    expect(onChanged).toHaveBeenCalledTimes(0);
+
+    setTimeout(() => {
+      expect(onChanged).toHaveBeenCalledTimes(1);
+    }, ONKEYDOWN_TIMEOUT_DURATION);
+
+    jest.runOnlyPendingTimers();
+
+    ReactDOM.unmountComponentAtNode(container);
   });
 });

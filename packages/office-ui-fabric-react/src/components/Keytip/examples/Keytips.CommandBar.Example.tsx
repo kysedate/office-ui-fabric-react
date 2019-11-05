@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
-import { keytipMap } from './KeytipSetup';
+import { keytipMap } from 'office-ui-fabric-react/lib/components/Keytip/examples/KeytipSetup';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { MessageBar, MessageBarType } from 'office-ui-fabric-react/lib/MessageBar';
 
@@ -117,9 +117,7 @@ export class KeytipsCommandBarExample extends React.Component<{}, IKeytipsComman
             }
           ]}
         />
-        {this.state.showMessageBar && (
-          <MessageBar messageBarType={MessageBarType.success}>Success Uploading</MessageBar>
-        )}
+        {this.state.showMessageBar && <MessageBar messageBarType={MessageBarType.success}>Success Uploading</MessageBar>}
         <Modal isOpen={this.state.showModal} onDismiss={this._hideModal} isBlocking={false}>
           <h3>New Modal</h3>
         </Modal>

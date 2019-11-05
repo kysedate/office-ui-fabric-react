@@ -9,7 +9,7 @@ const GlobalClassNames = {
 export function getStyles(props: IShimmerCircleStyleProps): IShimmerCircleStyles {
   const { height, borderStyle, theme } = props;
 
-  const { palette } = theme;
+  const { semanticColors } = theme;
   const globalClassNames = getGlobalClassNames(GlobalClassNames, theme);
 
   const borderStyles: IRawStyle = !!borderStyle ? borderStyle : {};
@@ -17,6 +17,7 @@ export function getStyles(props: IShimmerCircleStyleProps): IShimmerCircleStyles
   return {
     root: [
       globalClassNames.root,
+      theme.fonts.medium,
       {
         width: `${height}px`,
         height: `${height}px`,
@@ -24,7 +25,7 @@ export function getStyles(props: IShimmerCircleStyleProps): IShimmerCircleStyles
         boxSizing: 'content-box',
         borderTopStyle: 'solid',
         borderBottomStyle: 'solid',
-        borderColor: palette.white,
+        borderColor: semanticColors.bodyBackground,
         selectors: {
           [HighContrastSelector]: {
             borderColor: 'Window'
@@ -37,7 +38,7 @@ export function getStyles(props: IShimmerCircleStyleProps): IShimmerCircleStyles
       globalClassNames.svg,
       {
         display: 'block',
-        fill: palette.white,
+        fill: semanticColors.bodyBackground,
         selectors: {
           [HighContrastSelector]: {
             fill: 'Window'

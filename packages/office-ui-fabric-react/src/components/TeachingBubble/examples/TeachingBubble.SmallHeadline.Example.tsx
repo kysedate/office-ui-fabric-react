@@ -13,6 +13,7 @@ export class TeachingBubbleSmallHeadlineExample extends React.Component<{}, ITea
     super(props);
 
     this._onDismiss = this._onDismiss.bind(this);
+    this._onShow = this._onShow.bind(this);
 
     this.state = {
       isTeachingBubbleVisible: false
@@ -22,32 +23,30 @@ export class TeachingBubbleSmallHeadlineExample extends React.Component<{}, ITea
   public render(): JSX.Element {
     const { isTeachingBubbleVisible } = this.state;
     const examplePrimaryButton: IButtonProps = {
-      children: 'Try it out'
+      children: 'Try it out',
+      onClick: this._onDismiss
     };
 
     return (
       <div className="ms-TeachingBubbleExample">
-        <span
-          className="ms-TeachingBubbleBasicExample-buttonArea"
-          ref={menuButton => (this._menuButtonElement = menuButton!)}
-        >
+        <span className="ms-TeachingBubbleBasicExample-buttonArea" ref={menuButton => (this._menuButtonElement = menuButton!)}>
           <DefaultButton
-            onClick={this._onDismiss}
+            onClick={isTeachingBubbleVisible ? this._onDismiss : this._onShow}
             text={isTeachingBubbleVisible ? 'Hide TeachingBubble' : 'Show TeachingBubble'}
           />
         </span>
         {isTeachingBubbleVisible ? (
           <div>
             <TeachingBubble
-              targetElement={this._menuButtonElement}
+              target={this._menuButtonElement}
               hasSmallHeadline={true}
               onDismiss={this._onDismiss}
               hasCloseIcon={true}
+              closeButtonAriaLabel="Close"
               primaryButtonProps={examplePrimaryButton}
               headline="Discover what’s trending around you"
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nulla, ipsum? Molestiae quis aliquam
-              magni harum non?
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nulla, ipsum? Molestiae quis aliquam magni harum non?
             </TeachingBubble>
           </div>
         ) : null}
@@ -57,7 +56,13 @@ export class TeachingBubbleSmallHeadlineExample extends React.Component<{}, ITea
 
   private _onDismiss(ev: any): void {
     this.setState({
-      isTeachingBubbleVisible: !this.state.isTeachingBubbleVisible
+      isTeachingBubbleVisible: false
+    });
+  }
+
+  private _onShow(ev: any): void {
+    this.setState({
+      isTeachingBubbleVisible: true
     });
   }
 }

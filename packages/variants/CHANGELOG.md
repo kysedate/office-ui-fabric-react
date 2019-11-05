@@ -1,6 +1,127 @@
 # Change Log - @uifabric/variants
 
-This log was last generated on Tue, 28 Aug 2018 10:23:58 GMT and should not be manually modified.
+This log was last generated on Wed, 04 Sep 2019 04:09:58 GMT and should not be manually modified.
+
+## 7.0.5
+Wed, 04 Sep 2019 04:09:58 GMT
+
+### Patches
+
+- fix version file (kchau@microsoft.com)
+## 7.0.4
+Fri, 23 Aug 2019 12:35:28 GMT
+
+### Patches
+
+- Update npmignores, delete unused jest setup files (elcraig@microsoft.com)
+- Fix up readme and package.json descriptions (elcraig@microsoft.com)
+
+## 7.0.3
+Wed, 17 Jul 2019 18:58:57 GMT
+
+### Patches
+
+- Adding @types/react and @types/react-dom to package.json that have peer dependencies on react and react-dom. (makotom@microsoft.com)
+
+## 7.0.2
+Fri, 14 Jun 2019 12:26:30 GMT
+
+### Patches
+
+- Fix missing assets in production build.
+
+## 7.0.1
+Thu, 13 Jun 2019 00:24:48 GMT
+
+### Patches
+
+- Initial release of Fabric 7
+
+## 6.14.3
+Wed, 12 Jun 2019 00:42:26 GMT
+
+*Version update only*
+
+## 6.14.2
+Tue, 14 May 2019 07:50:30 GMT
+
+### Patches
+
+- Update Fabric assets link
+
+## 6.14.1
+Tue, 02 Apr 2019 00:38:15 GMT
+
+### Patches
+
+- Use ^ ranges instead of >=
+
+## 6.14.0
+Tue, 04 Dec 2018 13:36:40 GMT
+
+### Minor changes
+
+- DevExp: const enums are replaced with constants, this allows the use of isolatedModules mode of compilation
+
+## 6.13.0
+Thu, 29 Nov 2018 19:34:12 GMT
+
+### Minor changes
+
+- semantic slot value updates
+
+## 6.12.0
+Mon, 22 Oct 2018 12:29:57 GMT
+
+### Minor changes
+
+- Add addVariants utility function.
+
+## 6.11.1
+Mon, 08 Oct 2018 12:24:15 GMT
+
+### Patches
+
+- Moving tslint/prettier dependencies
+
+## 6.11.0
+Mon, 01 Oct 2018 12:27:24 GMT
+
+### Minor changes
+
+- semantic slot value updates per design direction
+
+## 6.10.0
+Fri, 21 Sep 2018 14:25:46 GMT
+
+### Minor changes
+
+- Variants: export everything
+
+### Patches
+
+- Adding a version stamp file
+
+## 6.9.0
+Thu, 13 Sep 2018 17:38:04 GMT
+
+### Minor changes
+
+- Adds new semantic slots per design direction
+
+## 6.8.0
+Fri, 07 Sep 2018 16:29:48 GMT
+
+### Minor changes
+
+- Updates button slots with correct pre-fluent palette values and scss fallbacks
+
+## 6.7.0
+Thu, 06 Sep 2018 10:28:35 GMT
+
+### Minor changes
+
+- add buttonBackgroundDisabled semantic slot
 
 ## 6.6.0
 Tue, 28 Aug 2018 10:23:58 GMT

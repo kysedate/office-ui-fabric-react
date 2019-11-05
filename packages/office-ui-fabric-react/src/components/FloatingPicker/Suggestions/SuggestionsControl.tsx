@@ -10,6 +10,7 @@ import {
 } from './Suggestions.types';
 import { SuggestionsCore } from './SuggestionsCore';
 import * as stylesImport from './SuggestionsControl.scss';
+import { hiddenContentStyle, mergeStyles } from 'office-ui-fabric-react/lib/Styling';
 
 // tslint:disable-next-line:no-any
 const styles: any = stylesImport;
@@ -28,19 +29,19 @@ export interface ISuggestionsControlState<T> {
 
 export class SuggestionsHeaderFooterItem extends BaseComponent<ISuggestionsHeaderFooterItemProps, {}> {
   public render(): JSX.Element {
-    const { renderItem, onExecute, isSelected, id } = this.props;
+    const { renderItem, onExecute, isSelected, id, className } = this.props;
     return onExecute ? (
       <div
         id={id}
         onClick={onExecute}
-        className={css('ms-Suggestions-sectionButton', styles.actionButton, {
+        className={css('ms-Suggestions-sectionButton', className, styles.actionButton, {
           ['is-selected ' + styles.buttonSelected]: isSelected
         })}
       >
         {renderItem()}
       </div>
     ) : (
-      <div id={id} className={css('ms-Suggestions-section', styles.suggestionsTitle)}>
+      <div id={id} className={css('ms-Suggestions-section', className, styles.suggestionsTitle)}>
         {renderItem()}
       </div>
     );
@@ -55,9 +56,9 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
   protected _searchForMoreButton: IButton;
   protected _selectedElement: HTMLDivElement;
   protected _suggestions: SuggestionsCore<T>;
-  private SuggestionsOfProperType: new (props: ISuggestionsCoreProps<T>) => SuggestionsCore<
-    T
-  > = SuggestionsCore as new (props: ISuggestionsCoreProps<T>) => SuggestionsCore<T>;
+  private SuggestionsOfProperType: new (props: ISuggestionsCoreProps<T>) => SuggestionsCore<T> = SuggestionsCore as new (
+    props: ISuggestionsCoreProps<T>
+  ) => SuggestionsCore<T>;
 
   constructor(suggestionsProps: ISuggestionsControlProps<T>) {
     super(suggestionsProps);
@@ -77,7 +78,8 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
     this.scrollSelected();
   }
 
-  public componentWillReceiveProps(newProps: ISuggestionsControlProps<T>): void {
+  // tslint:disable-next-line function-name
+  public UNSAFE_componentWillReceiveProps(newProps: ISuggestionsControlProps<T>): void {
     if (newProps.suggestions) {
       this.setState({ suggestions: newProps.suggestions }, () => {
         this.resetSelectedItem();
@@ -90,16 +92,22 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
   }
 
   public render(): JSX.Element {
-    const { className, headerItemsProps, footerItemsProps } = this.props;
+    const { className, headerItemsProps, footerItemsProps, suggestionsAvailableAlertText } = this.props;
+
+    const screenReaderTextStyles = mergeStyles(hiddenContentStyle);
+    const shouldAlertSuggestionsAvailableText =
+      this.state.suggestions && this.state.suggestions.length > 0 && suggestionsAvailableAlertText;
 
     return (
       <div className={css('ms-Suggestions', className ? className : '', styles.root)}>
-        <div className={styles.screenReaderOnly} role="alert" id="selected-suggestion-alert" aria-live="assertive">
-          {this._getAriaLabel()}
-        </div>
         {headerItemsProps && this.renderHeaderItems()}
         {this._renderSuggestions()}
         {footerItemsProps && this.renderFooterItems()}
+        {shouldAlertSuggestionsAvailableText ? (
+          <span role="alert" aria-live="polite" className={screenReaderTextStyles}>
+            {suggestionsAvailableAlertText}
+          </span>
+        ) : null}
       </div>
     );
   }
@@ -110,6 +118,10 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
 
   public get currentSuggestionIndex(): number {
     return this._suggestions ? this._suggestions.currentIndex : -1;
+  }
+
+  public get selectedElement(): HTMLDivElement | undefined {
+    return this._selectedElement ? this._selectedElement : this._suggestions.selectedElement;
   }
 
   public hasSuggestionSelected(): boolean {
@@ -146,7 +158,7 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
 
   /**
    * Handles the key down, returns true, if the event was handled, false otherwise
-   * @param keyCode The keyCode to handle
+   * @param keyCode - The keyCode to handle
    */
   public handleKeyDown(keyCode: number): boolean {
     const { selectedHeaderIndex, selectedFooterIndex } = this.state;
@@ -266,13 +278,7 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
   protected _renderSuggestions(): JSX.Element {
     const TypedSuggestions = this.SuggestionsOfProperType;
 
-    return (
-      <TypedSuggestions
-        ref={this._resolveRef('_suggestions')}
-        {...this.props as ISuggestionsCoreProps<T>}
-        suggestions={this.state.suggestions}
-      />
-    );
+    return <TypedSuggestions ref={this._resolveRef('_suggestions')} {...this.props} suggestions={this.state.suggestions} />;
   }
 
   /**
@@ -374,8 +380,8 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
   /**
    * Selects the next item in the suggestion item type group, given the current index
    * If none is able to be selected, returns false, otherwise returns true
-   * @param itemType The suggestion item type
-   * @param currentIndex The current index, default is -1
+   * @param itemType - The suggestion item type
+   * @param currentIndex - The current index, default is -1
    */
   private _selectNextItemOfItemType(itemType: SuggestionItemType, currentIndex: number = -1): boolean {
     if (itemType === SuggestionItemType.suggestion) {
@@ -407,8 +413,8 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
   /**
    * Selects the previous item in the suggestion item type group, given the current index
    * If none is able to be selected, returns false, otherwise returns true
-   * @param itemType The suggestion item type
-   * @param currentIndex The current index. If none is provided, the default is the items length of specified type
+   * @param itemType - The suggestion item type
+   * @param currentIndex - The current index. If none is provided, the default is the items length of specified type
    */
   private _selectPreviousItemOfItemType(itemType: SuggestionItemType, currentIndex?: number): boolean {
     if (itemType === SuggestionItemType.suggestion) {
@@ -470,18 +476,6 @@ export class SuggestionsControl<T> extends BaseComponent<ISuggestionsControlProp
         return SuggestionItemType.header;
       case SuggestionItemType.footer:
         return SuggestionItemType.suggestion;
-    }
-  }
-
-  private _getAriaLabel(): string | undefined {
-    const { selectedHeaderIndex, selectedFooterIndex } = this.state;
-    const { headerItemsProps, footerItemsProps } = this.props;
-    if (headerItemsProps && selectedHeaderIndex !== -1) {
-      return headerItemsProps[selectedHeaderIndex].ariaLabel;
-    } else if (this.hasSuggestionSelected()) {
-      return this.currentSuggestion.ariaLabel;
-    } else if (footerItemsProps && selectedFooterIndex !== -1) {
-      return footerItemsProps[selectedFooterIndex].ariaLabel;
     }
   }
 }

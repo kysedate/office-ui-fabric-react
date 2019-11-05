@@ -1,5 +1,8 @@
+// If this file is moved or split, the scripts for building codepen examples will likely need to be updated.
+
 const baseProductionCdnUrl = 'https://static2.sharepointonline.com/files/fabric/office-ui-fabric-react-assets/';
 
+/** @deprecated Use the version from `@uifabric/example-data` instead. */
 export const TestImages = {
   choiceGroupBarUnselected: baseProductionCdnUrl + 'choicegroup-bar-unselected.png',
   choiceGroupBarSelected: baseProductionCdnUrl + 'choicegroup-bar-selected.png',

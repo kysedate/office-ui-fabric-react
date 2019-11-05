@@ -5,10 +5,8 @@ import { IDocPageProps } from '../../common/DocPage.types';
 import { IconSvgExample } from './examples/Icon.Svg.Example';
 import { IconColorExample } from './examples/Icon.Color.Example';
 import { IconImageSheetExample } from './examples/Icon.ImageSheet.Example';
-import { IconStatus } from './Icon.checklist';
 
 const IconBasicExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Icon/examples/Icon.Basic.Example.tsx') as string;
-const IconBasicExampleCodepen = require('!raw-loader!office-ui-fabric-react/lib/codepen/components/Icon/Icon.Basic.Example.Codepen.txt') as string;
 const IconSvgExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Icon/examples/Icon.Svg.Example.tsx') as string;
 const IconColorExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Icon/examples/Icon.Color.Example.tsx') as string;
 const IconImageSheetExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Icon/examples/Icon.ImageSheet.Example.tsx') as string;
@@ -16,15 +14,12 @@ const IconImageSheetExampleCode = require('!raw-loader!office-ui-fabric-react/sr
 export const IconPageProps: IDocPageProps = {
   title: 'Icon',
   componentName: 'Icon',
-  componentUrl:
-    'https://github.com/OfficeDev/office-ui-fabric-react/tree/master/packages/office-ui-fabric-react/src/components/Icon',
-  componentStatus: IconStatus,
+  componentUrl: 'https://github.com/OfficeDev/office-ui-fabric-react/tree/master/packages/office-ui-fabric-react/src/components/Icon',
   examples: [
     {
       title: 'Icon',
       code: IconBasicExampleCode,
-      view: <IconBasicExample />,
-      codepenJS: IconBasicExampleCodepen
+      view: <IconBasicExample />
     },
     {
       title: 'Icon with custom color',
@@ -42,7 +37,6 @@ export const IconPageProps: IDocPageProps = {
       view: <IconImageSheetExample />
     }
   ],
-  propertiesTablesSources: [require<string>('!raw-loader!office-ui-fabric-react/src/components/Icon/Icon.types.ts')],
   overview: require<string>('!raw-loader!office-ui-fabric-react/src/components/Icon/docs/IconOverview.md'),
   bestPractices: '',
   dos: require<string>('!raw-loader!office-ui-fabric-react/src/components/Icon/docs/IconDos.md'),

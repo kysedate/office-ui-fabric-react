@@ -37,6 +37,17 @@ export interface ISelectableOption {
    * @defaultvalue false
    */
   disabled?: boolean;
+
+  /**
+   * Defines whether the option is hidden or not.
+   * @defaultvalue false
+   */
+  hidden?: boolean;
+
+  /**
+   * Data available to custom onRender functions.
+   */
+  data?: any;
 }
 
 export enum SelectableOptionMenuItemType {

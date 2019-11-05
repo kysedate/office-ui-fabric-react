@@ -11,38 +11,61 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--large
+        {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
         &:hover .ms-RatingStar-back {
-          color: #000000;
+          color: #323130;
         }
         @media screen and (-ms-high-contrast: active){&:hover .ms-RatingStar-back {
           color: Highlight;
         }
         {
-          height: 26px;
+          height: 36px;
         }
     id="Rating0"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--large
+          &:focus {
+            outline: none;
+          }
           {
             display: inline-block;
-            padding-bottom: 1px;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
           }
           {
-            height: 26px;
+            height: 36px;
           }
       data-focuszone-id="FocusZone2"
-      data-is-focusable={false}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
-      tabIndex={-1}
     >
       <button
         className=
@@ -51,16 +74,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -71,7 +95,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -84,13 +108,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -103,6 +127,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 20px;
+              height: 20px;
               line-height: 20px;
             }
         data-is-current={true}
@@ -133,13 +158,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel1-1"
         >
-          1 of 5 stars selected
+          Select 1 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -150,7 +176,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -159,7 +185,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -170,7 +195,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -188,7 +213,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -206,16 +230,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -226,7 +251,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -239,13 +264,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -258,6 +283,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 20px;
+              height: 20px;
               line-height: 20px;
             }
         disabled={false}
@@ -287,13 +313,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel1-2"
         >
-          2 of 5 stars selected
+          Select 2 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -304,7 +331,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -312,10 +339,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -324,7 +350,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -341,15 +367,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -360,16 +385,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -380,7 +406,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -393,13 +419,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -412,6 +438,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 20px;
+              height: 20px;
               line-height: 20px;
             }
         disabled={false}
@@ -441,13 +468,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel1-3"
         >
-          3 of 5 stars selected
+          Select 3 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -458,7 +486,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -466,10 +494,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -478,7 +505,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -495,15 +522,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -514,16 +540,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -534,7 +561,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -547,13 +574,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -566,6 +593,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 20px;
+              height: 20px;
               line-height: 20px;
             }
         disabled={false}
@@ -595,13 +623,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel1-4"
         >
-          4 of 5 stars selected
+          Select 4 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -612,7 +641,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -620,10 +649,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -632,7 +660,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -649,15 +677,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -668,16 +695,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -688,7 +716,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -701,13 +729,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -720,6 +748,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 20px;
+              height: 20px;
               line-height: 20px;
             }
         disabled={false}
@@ -749,13 +778,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel1-5"
         >
-          5 of 5 stars selected
+          Select 5 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -766,7 +796,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -774,10 +804,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -786,7 +815,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -803,15 +832,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -824,38 +852,61 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--small
+        {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
         &:hover .ms-RatingStar-back {
-          color: #000000;
+          color: #323130;
         }
         @media screen and (-ms-high-contrast: active){&:hover .ms-RatingStar-back {
           color: Highlight;
         }
         {
-          height: 22px;
+          height: 32px;
         }
     id="Rating3"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--small
+          &:focus {
+            outline: none;
+          }
           {
             display: inline-block;
-            padding-bottom: 1px;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
           }
           {
-            height: 22px;
+            height: 32px;
           }
       data-focuszone-id="FocusZone5"
-      data-is-focusable={false}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
-      tabIndex={-1}
     >
       <button
         className=
@@ -864,16 +915,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -884,7 +936,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -897,13 +949,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -916,6 +968,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -945,13 +998,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel4-1"
         >
-          1 of 5 stars selected
+          Select 1 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -962,7 +1016,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -971,7 +1025,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -982,7 +1035,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1000,7 +1053,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -1018,16 +1070,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1038,7 +1091,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1051,13 +1104,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1070,6 +1123,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -1099,13 +1153,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel4-2"
         >
-          2 of 5 stars selected
+          Select 2 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1116,7 +1171,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1125,7 +1180,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -1136,7 +1190,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1154,7 +1208,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -1172,16 +1225,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1192,7 +1246,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1205,13 +1259,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1224,6 +1278,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         data-is-current={true}
@@ -1254,13 +1309,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel4-3"
         >
-          3 of 5 stars selected
+          Select 3 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1271,7 +1327,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1280,7 +1336,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -1291,7 +1346,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1309,7 +1364,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -1327,16 +1381,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1347,7 +1402,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1360,13 +1415,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1379,6 +1434,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -1408,13 +1464,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel4-4"
         >
-          4 of 5 stars selected
+          Select 4 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1425,7 +1482,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1433,10 +1490,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -1445,7 +1501,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1462,15 +1518,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -1481,16 +1536,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1501,7 +1557,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1514,13 +1570,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1533,6 +1589,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -1562,13 +1619,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel4-5"
         >
-          5 of 5 stars selected
+          Select 5 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1579,7 +1637,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1587,10 +1645,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -1599,7 +1656,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1616,15 +1673,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -1637,38 +1693,61 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--small
+        {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
         &:hover .ms-RatingStar-back {
-          color: #000000;
+          color: #323130;
         }
         @media screen and (-ms-high-contrast: active){&:hover .ms-RatingStar-back {
           color: Highlight;
         }
         {
-          height: 22px;
+          height: 32px;
         }
     id="Rating6"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--small
+          &:focus {
+            outline: none;
+          }
           {
             display: inline-block;
-            padding-bottom: 1px;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
           }
           {
-            height: 22px;
+            height: 32px;
           }
       data-focuszone-id="FocusZone8"
-      data-is-focusable={false}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
-      tabIndex={-1}
     >
       <button
         className=
@@ -1677,16 +1756,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1697,7 +1777,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1710,13 +1790,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1729,6 +1809,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         data-is-current={true}
@@ -1759,13 +1840,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-1"
         >
-          1 of 10 stars selected
+          Select 1 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1776,7 +1858,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1785,7 +1867,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -1796,7 +1877,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1814,7 +1895,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -1832,16 +1912,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -1852,7 +1933,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -1865,13 +1946,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -1884,6 +1965,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -1913,13 +1995,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-2"
         >
-          2 of 10 stars selected
+          Select 2 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -1930,7 +2013,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1938,10 +2021,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -1950,7 +2032,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -1967,15 +2049,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -1986,16 +2067,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2006,7 +2088,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2019,13 +2101,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2038,6 +2120,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2067,13 +2150,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-3"
         >
-          3 of 10 stars selected
+          Select 3 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2084,7 +2168,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2092,10 +2176,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2104,7 +2187,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2121,15 +2204,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2140,16 +2222,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2160,7 +2243,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2173,13 +2256,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2192,6 +2275,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2221,13 +2305,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-4"
         >
-          4 of 10 stars selected
+          Select 4 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2238,7 +2323,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2246,10 +2331,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2258,7 +2342,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2275,15 +2359,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2294,16 +2377,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2314,7 +2398,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2327,13 +2411,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2346,6 +2430,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2375,13 +2460,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-5"
         >
-          5 of 10 stars selected
+          Select 5 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2392,7 +2478,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2400,10 +2486,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2412,7 +2497,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2429,15 +2514,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2448,16 +2532,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2468,7 +2553,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2481,13 +2566,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2500,6 +2585,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2529,13 +2615,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-6"
         >
-          6 of 10 stars selected
+          Select 6 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2546,7 +2633,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2554,10 +2641,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2566,7 +2652,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2583,15 +2669,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2602,16 +2687,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2622,7 +2708,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2635,13 +2721,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2654,6 +2740,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2683,13 +2770,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-7"
         >
-          7 of 10 stars selected
+          Select 7 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2700,7 +2788,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2708,10 +2796,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2720,7 +2807,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2737,15 +2824,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2756,16 +2842,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2776,7 +2863,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2789,13 +2876,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2808,6 +2895,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2837,13 +2925,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-8"
         >
-          8 of 10 stars selected
+          Select 8 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -2854,7 +2943,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2862,10 +2951,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -2874,7 +2962,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -2891,15 +2979,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -2910,16 +2997,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -2930,7 +3018,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -2943,13 +3031,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -2962,6 +3050,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -2991,13 +3080,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-9"
         >
-          9 of 10 stars selected
+          Select 9 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3008,7 +3098,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3016,10 +3106,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -3028,7 +3117,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3045,15 +3134,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3064,16 +3152,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3084,7 +3173,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3097,13 +3186,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -3116,6 +3205,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -3145,13 +3235,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel7-10"
         >
-          10 of 10 stars selected
+          Select 10 of 10 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3162,7 +3253,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3170,10 +3261,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -3182,7 +3272,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3199,15 +3289,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3215,38 +3304,58 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
   </div>
   Disabled:
   <div
-    aria-label=""
     className=
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--small
-
         {
-          height: 22px;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        {
+          height: 32px;
         }
     id="Rating9"
+    onBlur={[Function]}
+    onFocus={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--small
+          &:focus {
+            outline: none;
+          }
           {
             display: inline-block;
-            padding-bottom: 1px;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
           }
           {
-            height: 22px;
+            height: 32px;
           }
       data-focuszone-id="FocusZone11"
-      data-is-focusable={false}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
-      tabIndex={-1}
     >
       <button
         className=
@@ -3255,16 +3364,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: default;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3275,7 +3385,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3289,6 +3399,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         data-is-current={true}
@@ -3319,13 +3430,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel10-1"
         >
-          1 of 5 stars selected
+          Select 1 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3336,7 +3448,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #c8c8c8;
+                  color: #c8c6c4;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3348,7 +3460,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: GrayText;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -3361,16 +3472,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: default;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3381,7 +3493,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3395,6 +3507,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -3424,13 +3537,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel10-2"
         >
-          2 of 5 stars selected
+          Select 2 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3441,7 +3555,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #c8c8c8;
+                  color: #c8c6c4;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3452,10 +3566,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: GrayText;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3466,16 +3579,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: default;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3486,7 +3600,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3500,6 +3614,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -3529,13 +3644,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel10-3"
         >
-          3 of 5 stars selected
+          Select 3 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3546,7 +3662,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #c8c8c8;
+                  color: #c8c6c4;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3557,10 +3673,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: GrayText;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3571,16 +3686,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: default;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3591,7 +3707,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3605,6 +3721,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -3634,13 +3751,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel10-4"
         >
-          4 of 5 stars selected
+          Select 4 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3651,7 +3769,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #c8c8c8;
+                  color: #c8c6c4;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3662,10 +3780,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: GrayText;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3676,16 +3793,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: default;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3696,7 +3814,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3710,6 +3828,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -3739,13 +3858,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel10-5"
         >
-          5 of 5 stars selected
+          Select 5 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3756,7 +3876,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #c8c8c8;
+                  color: #c8c6c4;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3767,10 +3887,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: GrayText;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
         </div>
       </button>
@@ -3778,37 +3897,60 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
   </div>
   Half star in readOnly mode:
   <div
-    aria-label="Rating value is 2.5 of 5"
+    aria-label=""
     className=
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--small
-
         {
-          height: 22px;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        {
+          height: 32px;
         }
     id="Rating12"
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
+      aria-label="Rating value is 2.5 of 5"
+      aria-readonly={true}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--small
-          {
-            display: inline-block;
-            padding-bottom: 1px;
+          &:focus {
+            outline: none;
           }
           {
-            height: 22px;
+            display: inline-block;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
+          }
+          {
+            height: 32px;
           }
       data-focuszone-id="FocusZone14"
       data-is-focusable={true}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
       tabIndex={0}
     >
       <button
@@ -3818,16 +3960,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3838,7 +3981,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3852,6 +3995,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -3881,13 +4025,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel13-1"
         >
-          1 of 5 stars selected
+          Select 1 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -3898,7 +4043,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3907,7 +4052,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -3918,7 +4062,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -3936,7 +4080,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -3954,16 +4097,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -3974,7 +4118,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -3988,6 +4132,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -4017,13 +4162,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel13-2"
         >
-          2 of 5 stars selected
+          Select 2 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4034,7 +4180,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4043,7 +4189,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -4054,7 +4199,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4072,7 +4217,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "100%",
@@ -4090,16 +4234,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4110,7 +4255,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4124,6 +4269,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         data-is-current={true}
@@ -4154,13 +4300,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel13-3"
         >
-          3 of 5 stars selected
+          Select 3 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4171,7 +4318,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4180,7 +4327,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -4191,7 +4337,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4209,7 +4355,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
             style={
               Object {
                 "width": "50%",
@@ -4227,16 +4372,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4247,7 +4393,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4261,6 +4407,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -4290,13 +4437,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel13-4"
         >
-          4 of 5 stars selected
+          Select 4 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4307,7 +4455,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4315,10 +4463,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -4327,7 +4474,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4344,15 +4491,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -4363,16 +4509,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4383,7 +4530,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4397,6 +4544,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={true}
@@ -4426,13 +4574,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel13-5"
         >
-          5 of 5 stars selected
+          Select 5 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4443,7 +4592,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4451,10 +4600,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -4463,7 +4611,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #000000;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -4480,59 +4628,81 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
     </div>
   </div>
-  Themed star
+  Custom icons:
   <div
-    aria-label="Rating value is 1 of 5"
+    aria-label="Rating value is 2.5 of 5"
     className=
         ms-Rating-star
         ms-RatingStar-root
         ms-RatingStar-root--small
+        {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
         &:hover .ms-RatingStar-back {
-          color: #1E9FE8;
+          color: #323130;
         }
         @media screen and (-ms-high-contrast: active){&:hover .ms-RatingStar-back {
           color: Highlight;
         }
         {
-          height: 22px;
+          height: 32px;
         }
     id="Rating15"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
   >
     <div
-      aria-describedby={undefined}
-      aria-labelledby={undefined}
       className=
           ms-FocusZone
           ms-Rating-focuszone
           ms-RatingStar-root--small
+          &:focus {
+            outline: none;
+          }
           {
             display: inline-block;
-            padding-bottom: 1px;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
           }
           {
-            height: 22px;
+            height: 32px;
           }
       data-focuszone-id="FocusZone17"
-      data-is-focusable={false}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onMouseDownCapture={[Function]}
-      role="presentation"
-      tabIndex={-1}
     >
       <button
         className=
@@ -4541,16 +4711,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4561,7 +4732,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4574,13 +4745,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -4593,9 +4764,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
-        data-is-current={true}
         disabled={false}
         id="Rating15-star-0"
         onClick={[Function]}
@@ -4623,13 +4794,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel16-1"
         >
-          1 of 5 stars selected
+          Select 1 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4640,18 +4812,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -4660,9 +4831,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #1E9FE8;
+                  color: #323130;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   height: 100 %;
@@ -4677,15 +4848,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
             style={
               Object {
                 "width": "100%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -4696,16 +4866,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4716,7 +4887,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4729,13 +4900,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -4748,6 +4919,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -4777,13 +4949,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel16-2"
         >
-          2 of 5 stars selected
+          Select 2 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4794,18 +4967,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -4814,9 +4986,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #1E9FE8;
+                  color: #323130;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   height: 100 %;
@@ -4831,15 +5003,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
             style={
               Object {
-                "width": "0%",
+                "width": "100%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -4850,16 +5021,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -4870,7 +5042,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -4883,13 +5055,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -4902,8 +5074,10 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
+        data-is-current={true}
         disabled={false}
         id="Rating15-star-2"
         onClick={[Function]}
@@ -4931,13 +5105,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel16-3"
         >
-          3 of 5 stars selected
+          Select 3 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -4948,18 +5123,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -4968,9 +5142,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #1E9FE8;
+                  color: #323130;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-11";
                   font-style: normal;
                   font-weight: normal;
                   height: 100 %;
@@ -4985,15 +5159,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="StarburstSolid"
             style={
               Object {
-                "width": "0%",
+                "width": "50%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -5004,16 +5177,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -5024,7 +5198,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -5037,13 +5211,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -5056,6 +5230,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -5085,13 +5260,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel16-4"
         >
-          4 of 5 stars selected
+          Select 4 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -5102,18 +5278,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-8";
                   font-style: normal;
                   font-weight: normal;
                   speak: none;
                   width: 100%;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="Starburst"
           >
-            
+            
           </i>
           <i
             aria-hidden={true}
@@ -5122,9 +5297,9 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #1E9FE8;
+                  color: #323130;
                   display: inline-block;
-                  font-family: "FabricMDL2Icons";
+                  font-family: "FabricMDL2Icons-8";
                   font-style: normal;
                   font-weight: normal;
                   height: 100 %;
@@ -5139,15 +5314,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 @media screen and (-ms-high-contrast: active){& {
                   color: Highlight;
                 }
-            data-icon-name="FavoriteStarFill"
-            role="presentation"
+            data-icon-name="Starburst"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
           </i>
         </div>
       </button>
@@ -5158,16 +5332,17 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             {
               background-color: transparent;
               border: none;
+              box-sizing: content-box;
               cursor: pointer;
               margin-bottom: 0px;
               margin-left: 0px;
               margin-right: 0px;
               margin-top: 0px;
               outline: transparent;
-              padding-bottom: 3px;
-              padding-left: 0px;
-              padding-right: 3px;
-              padding-top: 3px;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
               position: relative;
             }
             &::-moz-focus-inner {
@@ -5178,7 +5353,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               bottom: 1px;
               content: "";
               left: 1px;
-              outline: 1px solid #666666;
+              outline: 1px solid #605e5c;
               position: absolute;
               right: 1px;
               top: 1px;
@@ -5191,13 +5366,13 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               cursor: default;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-back {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
               color: WindowText;
             }
             &:hover ~ .ms-Rating-button .ms-RatingStar-front {
-              color: #a6a6a6;
+              color: #605e5c;
             }
             @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
               color: WindowText;
@@ -5210,6 +5385,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
             }
             {
               font-size: 16px;
+              height: 16px;
               line-height: 16px;
             }
         disabled={false}
@@ -5239,13 +5415,14 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
               }
           id="RatingLabel16-5"
         >
-          5 of 5 stars selected
+          Select 5 of 5 stars
         </span>
         <div
           className=
               ms-RatingStar-container
               {
                 display: inline-block;
+                height: inherit;
                 position: relative;
               }
         >
@@ -5256,7 +5433,228 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #a6a6a6;
+                  color: #605e5c;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons-8";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                  width: 100%;
+                }
+            data-icon-name="Starburst"
+          >
+            
+          </i>
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-front
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #323130;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons-8";
+                  font-style: normal;
+                  font-weight: normal;
+                  height: 100 %;
+                  left: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  speak: none;
+                  text-align: center;
+                  top: 0;
+                  vertical-align: middle;
+                }
+                @media screen and (-ms-high-contrast: active){& {
+                  color: Highlight;
+                }
+            data-icon-name="Starburst"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            
+          </i>
+        </div>
+      </button>
+    </div>
+  </div>
+  Themed star
+  <div
+    aria-label="Rating value is 1 of 5"
+    className=
+        ms-Rating-star
+        ms-RatingStar-root
+        ms-RatingStar-root--small
+        {
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+        }
+        &:hover .ms-RatingStar-back {
+          color: #323130;
+        }
+        @media screen and (-ms-high-contrast: active){&:hover .ms-RatingStar-back {
+          color: Highlight;
+        }
+        {
+          height: 32px;
+        }
+    id="Rating18"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+  >
+    <div
+      className=
+          ms-FocusZone
+          ms-Rating-focuszone
+          ms-RatingStar-root--small
+          &:focus {
+            outline: none;
+          }
+          {
+            display: inline-block;
+            outline: transparent;
+            position: relative;
+          }
+          &::-moz-focus-inner {
+            border: 0;
+          }
+          .ms-Fabric--isFocusVisible &:focus:after {
+            border: 1px solid #ffffff;
+            bottom: 1px;
+            content: "";
+            left: 1px;
+            outline: 1px solid #605e5c;
+            position: absolute;
+            right: 1px;
+            top: 1px;
+            z-index: 1;
+          }
+          {
+            height: 32px;
+          }
+      data-focuszone-id="FocusZone20"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseDownCapture={[Function]}
+    >
+      <button
+        className=
+            ms-Rating-button
+            ms-Rating--small
+            {
+              background-color: transparent;
+              border: none;
+              box-sizing: content-box;
+              cursor: pointer;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              outline: transparent;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
+              position: relative;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid #ffffff;
+              bottom: 1px;
+              content: "";
+              left: 1px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 1px;
+              top: 1px;
+              z-index: 1;
+            }
+            &:disabled {
+              cursor: default;
+            }
+            &[disabled] {
+              cursor: default;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: WindowText;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: WindowText;
+            }
+            &:hover .ms-RatingStar-back {
+              color: #0078d4;
+            }
+            &:hover .ms-RatingStar-front {
+              color: #005a9e;
+            }
+            {
+              font-size: 16px;
+              height: 16px;
+              line-height: 16px;
+            }
+        data-is-current={true}
+        disabled={false}
+        id="Rating18-star-0"
+        onClick={[Function]}
+        onFocus={[Function]}
+        role="presentation"
+        type="button"
+      >
+        <span
+          className=
+              ms-Rating-labelText
+              {
+                border: 0px;
+                height: 1px;
+                margin-bottom: -1px;
+                margin-left: -1px;
+                margin-right: -1px;
+                margin-top: -1px;
+                overflow: hidden;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+                position: absolute;
+                width: 1px;
+              }
+          id="RatingLabel19-1"
+        >
+          Select 1 of 5 stars
+        </span>
+        <div
+          className=
+              ms-RatingStar-container
+              {
+                display: inline-block;
+                height: inherit;
+                position: relative;
+              }
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-back
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #605e5c;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -5265,7 +5663,6 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   width: 100%;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
           >
             
           </i>
@@ -5276,7 +5673,7 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                 {
                   -moz-osx-font-smoothing: grayscale;
                   -webkit-font-smoothing: antialiased;
-                  color: #1E9FE8;
+                  color: #323130;
                   display: inline-block;
                   font-family: "FabricMDL2Icons";
                   font-style: normal;
@@ -5294,14 +5691,633 @@ exports[`Component Examples renders Rating.Basic.Example.tsx correctly 1`] = `
                   color: Highlight;
                 }
             data-icon-name="FavoriteStarFill"
-            role="presentation"
+            style={
+              Object {
+                "width": "100%",
+              }
+            }
+          >
+            
+          </i>
+        </div>
+      </button>
+      <button
+        className=
+            ms-Rating-button
+            ms-Rating--small
+            {
+              background-color: transparent;
+              border: none;
+              box-sizing: content-box;
+              cursor: pointer;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              outline: transparent;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
+              position: relative;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid #ffffff;
+              bottom: 1px;
+              content: "";
+              left: 1px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 1px;
+              top: 1px;
+              z-index: 1;
+            }
+            &:disabled {
+              cursor: default;
+            }
+            &[disabled] {
+              cursor: default;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: WindowText;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: WindowText;
+            }
+            &:hover .ms-RatingStar-back {
+              color: #0078d4;
+            }
+            &:hover .ms-RatingStar-front {
+              color: #005a9e;
+            }
+            {
+              font-size: 16px;
+              height: 16px;
+              line-height: 16px;
+            }
+        disabled={false}
+        id="Rating18-star-1"
+        onClick={[Function]}
+        onFocus={[Function]}
+        role="presentation"
+        type="button"
+      >
+        <span
+          className=
+              ms-Rating-labelText
+              {
+                border: 0px;
+                height: 1px;
+                margin-bottom: -1px;
+                margin-left: -1px;
+                margin-right: -1px;
+                margin-top: -1px;
+                overflow: hidden;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+                position: absolute;
+                width: 1px;
+              }
+          id="RatingLabel19-2"
+        >
+          Select 2 of 5 stars
+        </span>
+        <div
+          className=
+              ms-RatingStar-container
+              {
+                display: inline-block;
+                height: inherit;
+                position: relative;
+              }
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-back
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #605e5c;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                  width: 100%;
+                }
+            data-icon-name="FavoriteStar"
+          >
+            
+          </i>
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-front
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #323130;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  height: 100 %;
+                  left: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  speak: none;
+                  text-align: center;
+                  top: 0;
+                  vertical-align: middle;
+                }
+                @media screen and (-ms-high-contrast: active){& {
+                  color: Highlight;
+                }
+            data-icon-name="FavoriteStar"
             style={
               Object {
                 "width": "0%",
               }
             }
           >
-            
+            
+          </i>
+        </div>
+      </button>
+      <button
+        className=
+            ms-Rating-button
+            ms-Rating--small
+            {
+              background-color: transparent;
+              border: none;
+              box-sizing: content-box;
+              cursor: pointer;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              outline: transparent;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
+              position: relative;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid #ffffff;
+              bottom: 1px;
+              content: "";
+              left: 1px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 1px;
+              top: 1px;
+              z-index: 1;
+            }
+            &:disabled {
+              cursor: default;
+            }
+            &[disabled] {
+              cursor: default;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: WindowText;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: WindowText;
+            }
+            &:hover .ms-RatingStar-back {
+              color: #0078d4;
+            }
+            &:hover .ms-RatingStar-front {
+              color: #005a9e;
+            }
+            {
+              font-size: 16px;
+              height: 16px;
+              line-height: 16px;
+            }
+        disabled={false}
+        id="Rating18-star-2"
+        onClick={[Function]}
+        onFocus={[Function]}
+        role="presentation"
+        type="button"
+      >
+        <span
+          className=
+              ms-Rating-labelText
+              {
+                border: 0px;
+                height: 1px;
+                margin-bottom: -1px;
+                margin-left: -1px;
+                margin-right: -1px;
+                margin-top: -1px;
+                overflow: hidden;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+                position: absolute;
+                width: 1px;
+              }
+          id="RatingLabel19-3"
+        >
+          Select 3 of 5 stars
+        </span>
+        <div
+          className=
+              ms-RatingStar-container
+              {
+                display: inline-block;
+                height: inherit;
+                position: relative;
+              }
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-back
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #605e5c;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                  width: 100%;
+                }
+            data-icon-name="FavoriteStar"
+          >
+            
+          </i>
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-front
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #323130;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  height: 100 %;
+                  left: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  speak: none;
+                  text-align: center;
+                  top: 0;
+                  vertical-align: middle;
+                }
+                @media screen and (-ms-high-contrast: active){& {
+                  color: Highlight;
+                }
+            data-icon-name="FavoriteStar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            
+          </i>
+        </div>
+      </button>
+      <button
+        className=
+            ms-Rating-button
+            ms-Rating--small
+            {
+              background-color: transparent;
+              border: none;
+              box-sizing: content-box;
+              cursor: pointer;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              outline: transparent;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
+              position: relative;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid #ffffff;
+              bottom: 1px;
+              content: "";
+              left: 1px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 1px;
+              top: 1px;
+              z-index: 1;
+            }
+            &:disabled {
+              cursor: default;
+            }
+            &[disabled] {
+              cursor: default;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: WindowText;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: WindowText;
+            }
+            &:hover .ms-RatingStar-back {
+              color: #0078d4;
+            }
+            &:hover .ms-RatingStar-front {
+              color: #005a9e;
+            }
+            {
+              font-size: 16px;
+              height: 16px;
+              line-height: 16px;
+            }
+        disabled={false}
+        id="Rating18-star-3"
+        onClick={[Function]}
+        onFocus={[Function]}
+        role="presentation"
+        type="button"
+      >
+        <span
+          className=
+              ms-Rating-labelText
+              {
+                border: 0px;
+                height: 1px;
+                margin-bottom: -1px;
+                margin-left: -1px;
+                margin-right: -1px;
+                margin-top: -1px;
+                overflow: hidden;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+                position: absolute;
+                width: 1px;
+              }
+          id="RatingLabel19-4"
+        >
+          Select 4 of 5 stars
+        </span>
+        <div
+          className=
+              ms-RatingStar-container
+              {
+                display: inline-block;
+                height: inherit;
+                position: relative;
+              }
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-back
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #605e5c;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                  width: 100%;
+                }
+            data-icon-name="FavoriteStar"
+          >
+            
+          </i>
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-front
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #323130;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  height: 100 %;
+                  left: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  speak: none;
+                  text-align: center;
+                  top: 0;
+                  vertical-align: middle;
+                }
+                @media screen and (-ms-high-contrast: active){& {
+                  color: Highlight;
+                }
+            data-icon-name="FavoriteStar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            
+          </i>
+        </div>
+      </button>
+      <button
+        className=
+            ms-Rating-button
+            ms-Rating--small
+            {
+              background-color: transparent;
+              border: none;
+              box-sizing: content-box;
+              cursor: pointer;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              outline: transparent;
+              padding-bottom: 8px;
+              padding-left: 2px;
+              padding-right: 2px;
+              padding-top: 8px;
+              position: relative;
+            }
+            &::-moz-focus-inner {
+              border: 0;
+            }
+            .ms-Fabric--isFocusVisible &:focus:after {
+              border: 1px solid #ffffff;
+              bottom: 1px;
+              content: "";
+              left: 1px;
+              outline: 1px solid #605e5c;
+              position: absolute;
+              right: 1px;
+              top: 1px;
+              z-index: 1;
+            }
+            &:disabled {
+              cursor: default;
+            }
+            &[disabled] {
+              cursor: default;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-back {
+              color: WindowText;
+            }
+            &:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: #605e5c;
+            }
+            @media screen and (-ms-high-contrast: active){&:hover ~ .ms-Rating-button .ms-RatingStar-front {
+              color: WindowText;
+            }
+            &:hover .ms-RatingStar-back {
+              color: #0078d4;
+            }
+            &:hover .ms-RatingStar-front {
+              color: #005a9e;
+            }
+            {
+              font-size: 16px;
+              height: 16px;
+              line-height: 16px;
+            }
+        disabled={false}
+        id="Rating18-star-4"
+        onClick={[Function]}
+        onFocus={[Function]}
+        role="presentation"
+        type="button"
+      >
+        <span
+          className=
+              ms-Rating-labelText
+              {
+                border: 0px;
+                height: 1px;
+                margin-bottom: -1px;
+                margin-left: -1px;
+                margin-right: -1px;
+                margin-top: -1px;
+                overflow: hidden;
+                padding-bottom: 0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                padding-top: 0px;
+                position: absolute;
+                width: 1px;
+              }
+          id="RatingLabel19-5"
+        >
+          Select 5 of 5 stars
+        </span>
+        <div
+          className=
+              ms-RatingStar-container
+              {
+                display: inline-block;
+                height: inherit;
+                position: relative;
+              }
+        >
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-back
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #605e5c;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  speak: none;
+                  width: 100%;
+                }
+            data-icon-name="FavoriteStar"
+          >
+            
+          </i>
+          <i
+            aria-hidden={true}
+            className=
+                ms-RatingStar-front
+                {
+                  -moz-osx-font-smoothing: grayscale;
+                  -webkit-font-smoothing: antialiased;
+                  color: #323130;
+                  display: inline-block;
+                  font-family: "FabricMDL2Icons";
+                  font-style: normal;
+                  font-weight: normal;
+                  height: 100 %;
+                  left: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  speak: none;
+                  text-align: center;
+                  top: 0;
+                  vertical-align: middle;
+                }
+                @media screen and (-ms-high-contrast: active){& {
+                  color: Highlight;
+                }
+            data-icon-name="FavoriteStar"
+            style={
+              Object {
+                "width": "0%",
+              }
+            }
+          >
+            
           </i>
         </div>
       </button>

@@ -3,8 +3,14 @@ import { LayerBase } from './Layer.base';
 import { IStyle, ITheme } from '../../Styling';
 import { IRefObject, IStyleFunctionOrObject } from '../../Utilities';
 
+/**
+ * {@docCategory Layer}
+ */
 export interface ILayer {}
 
+/**
+ * {@docCategory Layer}
+ */
 export interface ILayerProps extends React.HTMLAttributes<HTMLDivElement | LayerBase> {
   /**
    * Optional callback to access the ILayer interface. Use this instead of ref for accessing
@@ -28,7 +34,10 @@ export interface ILayerProps extends React.HTMLAttributes<HTMLDivElement | Layer
    */
   className?: string;
 
-  /** Callback for when the layer is mounted. */
+  /**
+   * Callback for when the layer is mounted.
+   * @deprecated Use onLayerDidMount.
+   */
   onLayerMounted?: () => void;
 
   /**
@@ -48,8 +57,25 @@ export interface ILayerProps extends React.HTMLAttributes<HTMLDivElement | Layer
    * content in a fixed position element rendered at the end of the document.
    */
   hostId?: string;
+
+  /**
+   * When enabled, Layer allows events to bubble up from Layer content.
+   * Traditionally Layer has not had this behavior. This prop preserves backwards compatibility by
+   * default while allowing users to opt in to the new event bubbling functionality.
+   */
+  eventBubblingEnabled?: boolean;
+
+  /**
+   * Whether the layer should be added as the first child of the host.
+   * If true, the layer will be inserted as the first child of the host
+   * By default, the layer will be appended at the end to the host
+   */
+  insertFirst?: boolean;
 }
 
+/**
+ * {@docCategory Layer}
+ */
 export interface ILayerStyleProps {
   /**
    * Accept theme prop.
@@ -67,6 +93,9 @@ export interface ILayerStyleProps {
   isNotHost?: boolean;
 }
 
+/**
+ * {@docCategory Layer}
+ */
 export interface ILayerStyles {
   /**
    * Style for the root element when fixed.

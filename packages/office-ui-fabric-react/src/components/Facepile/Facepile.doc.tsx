@@ -3,7 +3,6 @@ import { FacepileAddFaceExample } from './examples/Facepile.AddFace.Example';
 import { IDocPageProps } from '../../common/DocPage.types';
 import { FacepileBasicExample } from './examples/Facepile.Basic.Example';
 import { FacepileOverflowExample } from './examples/Facepile.Overflow.Example';
-import { FacepileStatus } from './Facepile.checklist';
 
 const FacepileAddFaceExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Facepile/examples/Facepile.AddFace.Example.tsx') as string;
 const FacepileBasicExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Facepile/examples/Facepile.Basic.Example.tsx') as string;
@@ -12,12 +11,10 @@ const FacepileOverflowExampleCode = require('!raw-loader!office-ui-fabric-react/
 export const FacepilePageProps: IDocPageProps = {
   title: 'Facepile',
   componentName: 'Facepile',
-  componentUrl:
-    'https://github.com/OfficeDev/office-ui-fabric-react/tree/master/packages/office-ui-fabric-react/src/components/Facepile',
-  componentStatus: FacepileStatus,
+  componentUrl: 'https://github.com/OfficeDev/office-ui-fabric-react/tree/master/packages/office-ui-fabric-react/src/components/Facepile',
   examples: [
     {
-      title: 'Facepile with size and fade in options',
+      title: 'Facepile with size, presence, and fade in options',
       code: FacepileBasicExampleCode,
       view: <FacepileBasicExample />
     },
@@ -31,9 +28,6 @@ export const FacepilePageProps: IDocPageProps = {
       code: FacepileAddFaceExampleCode,
       view: <FacepileAddFaceExample />
     }
-  ],
-  propertiesTablesSources: [
-    require<string>('!raw-loader!office-ui-fabric-react/src/components/Facepile/Facepile.types.ts')
   ],
   overview: require<string>('!raw-loader!office-ui-fabric-react/src/components/Facepile/docs/FacepileOverview.md'),
   bestPractices: '',

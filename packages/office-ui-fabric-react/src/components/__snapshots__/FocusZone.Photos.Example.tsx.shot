@@ -2,27 +2,65 @@
 
 exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] = `
 <ul
-  aria-describedby={undefined}
-  aria-labelledby={undefined}
-  className="ms-FocusZone ms-FocusZoneExamples-photoList"
-  data-focuszone-id="FocusZone0"
+  className=
+      ms-FocusZone
+      &:focus {
+        outline: none;
+      }
+      {
+        border: 1px solid #a19f9d;
+        display: inline-block;
+        line-height: 0px;
+        overflow: hidden;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+      }
+  data-focuszone-id="FocusZone20"
   onFocus={[Function]}
   onKeyDown={[Function]}
   onMouseDownCapture={[Function]}
-  role="presentation"
 >
   <li
     aria-label="Photo"
     aria-posinset={1}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -33,7 +71,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -47,7 +85,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -55,15 +92,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={2}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -74,7 +138,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -88,7 +152,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -96,15 +159,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={3}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -115,7 +205,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -129,7 +219,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -137,15 +226,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={4}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -156,7 +272,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -170,7 +286,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -178,15 +293,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={5}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -197,7 +339,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -211,7 +353,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -219,15 +360,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={6}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -238,7 +406,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -252,7 +420,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -260,15 +427,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={7}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -279,7 +473,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -293,7 +487,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -301,15 +494,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={8}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -320,7 +540,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -334,7 +554,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -342,15 +561,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={9}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -361,7 +607,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -375,7 +621,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -383,15 +628,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={10}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -402,7 +674,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -416,7 +688,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -424,15 +695,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={11}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -443,7 +741,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -457,7 +755,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -465,15 +762,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={12}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -484,7 +808,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -498,7 +822,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -506,15 +829,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={13}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -525,7 +875,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -539,7 +889,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -547,15 +896,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={14}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -566,7 +942,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -580,7 +956,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -588,15 +963,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={15}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -607,7 +1009,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -621,7 +1023,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -629,15 +1030,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={16}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -648,7 +1076,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -662,7 +1090,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -670,15 +1097,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={17}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -689,7 +1143,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -703,7 +1157,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -711,15 +1164,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={18}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -730,7 +1210,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -744,7 +1224,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -752,15 +1231,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={19}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -771,7 +1277,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -785,7 +1291,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>
@@ -793,15 +1298,42 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
   <li
     aria-label="Photo"
     aria-posinset={20}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
+    aria-setsize={20}
+    className=
+
+        {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-bottom: 2px;
+          padding-left: 2px;
+          padding-right: 2px;
+          padding-top: 2px;
+          position: relative;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:focus:after {
+          border: 1px solid #ffffff;
+          bottom: 4px;
+          content: "";
+          left: 4px;
+          outline: 2px solid #0078d4;
+          position: absolute;
+          right: 4px;
+          top: 4px;
+        }
     data-is-focusable={true}
-    onClick={[Function]}
   >
     <div
       className=
           ms-Image
           {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
             overflow: hidden;
           }
       style={
@@ -812,7 +1344,7 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
       }
     >
       <img
-        alt={undefined}
+        alt="50 by 100 placeholder image"
         className=
             ms-Image-image
             ms-Image-image--portrait
@@ -826,212 +1358,6 @@ exports[`Component Examples renders FocusZone.Photos.Example.tsx correctly 1`] =
             }
         onError={[Function]}
         onLoad={[Function]}
-        role={undefined}
-        src="http://placehold.it/50x100"
-      />
-    </div>
-  </li>
-  <li
-    aria-label="Photo"
-    aria-posinset={21}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
-    data-is-focusable={true}
-    onClick={[Function]}
-  >
-    <div
-      className=
-          ms-Image
-          {
-            overflow: hidden;
-          }
-      style={
-        Object {
-          "height": 100,
-          "width": 50,
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className=
-            ms-Image-image
-            ms-Image-image--portrait
-            is-notLoaded
-            is-fadeIn
-            {
-              display: block;
-              height: 100%;
-              opacity: 0;
-              width: 100%;
-            }
-        onError={[Function]}
-        onLoad={[Function]}
-        role={undefined}
-        src="http://placehold.it/50x100"
-      />
-    </div>
-  </li>
-  <li
-    aria-label="Photo"
-    aria-posinset={22}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
-    data-is-focusable={true}
-    onClick={[Function]}
-  >
-    <div
-      className=
-          ms-Image
-          {
-            overflow: hidden;
-          }
-      style={
-        Object {
-          "height": 100,
-          "width": 50,
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className=
-            ms-Image-image
-            ms-Image-image--portrait
-            is-notLoaded
-            is-fadeIn
-            {
-              display: block;
-              height: 100%;
-              opacity: 0;
-              width: 100%;
-            }
-        onError={[Function]}
-        onLoad={[Function]}
-        role={undefined}
-        src="http://placehold.it/50x100"
-      />
-    </div>
-  </li>
-  <li
-    aria-label="Photo"
-    aria-posinset={23}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
-    data-is-focusable={true}
-    onClick={[Function]}
-  >
-    <div
-      className=
-          ms-Image
-          {
-            overflow: hidden;
-          }
-      style={
-        Object {
-          "height": 100,
-          "width": 50,
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className=
-            ms-Image-image
-            ms-Image-image--portrait
-            is-notLoaded
-            is-fadeIn
-            {
-              display: block;
-              height: 100%;
-              opacity: 0;
-              width: 100%;
-            }
-        onError={[Function]}
-        onLoad={[Function]}
-        role={undefined}
-        src="http://placehold.it/50x100"
-      />
-    </div>
-  </li>
-  <li
-    aria-label="Photo"
-    aria-posinset={24}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
-    data-is-focusable={true}
-    onClick={[Function]}
-  >
-    <div
-      className=
-          ms-Image
-          {
-            overflow: hidden;
-          }
-      style={
-        Object {
-          "height": 100,
-          "width": 50,
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className=
-            ms-Image-image
-            ms-Image-image--portrait
-            is-notLoaded
-            is-fadeIn
-            {
-              display: block;
-              height: 100%;
-              opacity: 0;
-              width: 100%;
-            }
-        onError={[Function]}
-        onLoad={[Function]}
-        role={undefined}
-        src="http://placehold.it/50x100"
-      />
-    </div>
-  </li>
-  <li
-    aria-label="Photo"
-    aria-posinset={25}
-    aria-setsize={25}
-    className="ms-FocusZoneExamples-photoCell"
-    data-is-focusable={true}
-    onClick={[Function]}
-  >
-    <div
-      className=
-          ms-Image
-          {
-            overflow: hidden;
-          }
-      style={
-        Object {
-          "height": 100,
-          "width": 50,
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className=
-            ms-Image-image
-            ms-Image-image--portrait
-            is-notLoaded
-            is-fadeIn
-            {
-              display: block;
-              height: 100%;
-              opacity: 0;
-              width: 100%;
-            }
-        onError={[Function]}
-        onLoad={[Function]}
-        role={undefined}
         src="http://placehold.it/50x100"
       />
     </div>

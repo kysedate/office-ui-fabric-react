@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { IIconProps } from '../../Icon';
 import { ISelectableOption } from '../../utilities/selectableOption/SelectableOption.types';
 import { ISelectableDroppableTextProps } from '../../utilities/selectableOption/SelectableDroppableText.types';
@@ -6,8 +7,18 @@ import { IButtonStyles } from '../../Button';
 import { IRefObject, IRenderFunction } from '../../Utilities';
 import { IComboBoxClassNames } from './ComboBox.classNames';
 import { IKeytipProps } from '../../Keytip';
+import { IAutofillProps } from '../pickers/AutoFill/BaseAutoFill.types';
+import { IButtonProps } from '../Button/Button.types';
 
+/**
+ * {@docCategory ComboBox}
+ */
 export interface IComboBox {
+  /**
+   * All selected options
+   */
+  readonly selectedOptions: IComboBoxOption[];
+
   /**
    * If there is a menu open this will dismiss the menu
    */
@@ -15,13 +26,16 @@ export interface IComboBox {
 
   /**
    * Sets focus to the input in the comboBox
-   * @param {boolean} shouldOpenOnFocus determines if we should open the ComboBox menu when the input gets focus
-   * @param {boolean} useFocusAsync determines if we should focus the input asynchronously
+   * @param shouldOpenOnFocus - Determines if we should open the ComboBox menu when the input gets focus
+   * @param useFocusAsync - Determines if we should focus the input asynchronously
    * @returns True if focus could be set, false if no operation was taken.
    */
   focus(shouldOpenOnFocus?: boolean, useFocusAsync?: boolean): boolean;
 }
 
+/**
+ * {@docCategory ComboBox}
+ */
 export interface IComboBoxOption extends ISelectableOption {
   /**
    * Specific styles for each comboBox option. If you intend to give
@@ -33,12 +47,15 @@ export interface IComboBoxOption extends ISelectableOption {
   /**
    * In scenarios where embedded data is used at the text prop, we will use the ariaLabel prop
    * to set the aria-label and preview text. Default to false
-   * @default false;
+   * @defaultvalue false;
    */
   useAriaLabelAsText?: boolean;
 }
 
-export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox> {
+/**
+ * {@docCategory ComboBox}
+ */
+export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox, IComboBox> {
   /**
    * Optional callback to access the IComboBox interface. Use this instead of ref for accessing
    * the public methods and properties of the component.
@@ -51,17 +68,17 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
   options: IComboBoxOption[];
 
   /**
+   * Callback issued when a ComboBox item is clicked.
+   */
+  onItemClick?: (event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number) => void;
+
+  /**
    * Callback issued when either:
    * 1) the selected option changes
    * 2) a manually edited value is submitted. In this case there may not be a matched option if allowFreeform is also true
    *    (and hence only value would be true, the other parameter would be null in this case)
    */
   onChange?: (event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) => void;
-
-  /**
-   * @deprecated Use onChange instead.
-   */
-  onChanged?: (option?: IComboBoxOption, index?: number, value?: string, submitPendingValueEvent?: any) => void;
 
   /**
    * Callback issued when the user changes the pending value in ComboBox
@@ -77,6 +94,11 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
    * Function that gets invoked when the ComboBox menu is dismissed
    */
   onMenuDismissed?: () => void;
+
+  /**
+   * Function that gets invoked before the menu gets dismissed
+   */
+  onMenuDismiss?: () => void;
 
   /**
    * Callback issued when the options should be resolved, if they have been updated or
@@ -98,7 +120,7 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
    * Whether the ComboBox auto completes. As the user is inputing text, it will be suggested potential matches from the list of options. If
    * the combo box is expanded, this will also scroll to the suggested option, and give it a selected style.
    *
-   * @default "on"
+   * @defaultvalue "on"
    */
   autoComplete?: 'on' | 'off';
 
@@ -111,6 +133,11 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
    * The IconProps to use for the button aspect of the combobox
    */
   buttonIconProps?: IIconProps;
+
+  /**
+   * The AutofillProps to be passed into the Autofill component inside combobox
+   */
+  autofill?: IAutofillProps;
 
   /**
    * Theme provided by HOC.
@@ -149,8 +176,9 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
   comboBoxOptionStyles?: Partial<IComboBoxOptionStyles>;
 
   /**
-   * When options are scrollable the selected option is positioned at the top of the callout when it is opened (unless it has reached the end of the scrollbar).
-   * @default false;
+   * When options are scrollable the selected option is positioned at the top of the callout when it is opened
+   * (unless it has reached the end of the scrollbar).
+   * @defaultvalue false;
    */
   scrollSelectedToTop?: boolean;
 
@@ -175,15 +203,17 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
   dropdownMaxWidth?: number;
 
   /**
-   * Optional mode indicates if multi-choice selections is allowed.  Default to false
-   */
-  multiSelect?: boolean;
-
-  /**
-   * Sets the 'aria-hidden' attribute on the ComboBox's button element instructing screen readers how to handle the element. This element is hidden by default because all functionality is handled by the input element and the arrow button is only meant to be decorative.
-   * @default true
+   * Sets the 'aria-hidden' attribute on the ComboBox's button element instructing screen readers how to handle the element.
+   * This element is hidden by default because all functionality is handled by the input element and the arrow button is
+   * only meant to be decorative.
+   * @defaultvalue true
    */
   isButtonAriaHidden?: boolean;
+
+  /**
+   * Optional prop to add a string id that can be referenced inside the aria-describedby attribute
+   */
+  ariaDescribedBy?: string;
 
   /**
    * Optional keytip for this combo box
@@ -191,12 +221,31 @@ export interface IComboBoxProps extends ISelectableDroppableTextProps<IComboBox>
   keytipProps?: IKeytipProps;
 
   /**
-   * Value to show in the input, does not have to map to a combobox option
-   * @deprecated Use `text` instead.
+   * Menu will not be created or destroyed when opened or closed, instead it
+   * will be hidden. This will improve perf of the menu opening but could potentially
+   * impact overall perf by having more elements in the dom. Should only be used
+   * when perf is important.
+   * Note: This may increase the amount of time it takes for the comboBox itself to mount.
    */
-  value?: string;
+  persistMenu?: boolean;
+
+  /**
+   * When specified, determines whether the callout (the menu which drops down) should
+   * restore the focus after being dismissed or not.  If false, then the menu will not try
+   * to set focus to whichever element had focus before the menu was opened.
+   * @defaultvalue true;
+   */
+  shouldRestoreFocus?: boolean;
+
+  /**
+   * Optional iconButton props on combo box
+   */
+  iconButtonProps?: IButtonProps;
 }
 
+/**
+ * {@docCategory ComboBox}
+ */
 export interface IComboBoxStyles {
   /**
    * Style for the container which has the ComboBox and the label
@@ -295,6 +344,9 @@ export interface IComboBoxStyles {
   divider: IStyle;
 }
 
+/**
+ * {@docCategory ComboBox}
+ */
 export interface IComboBoxOptionStyles extends IButtonStyles {
   /**
    * Styles for the text inside the comboBox option.

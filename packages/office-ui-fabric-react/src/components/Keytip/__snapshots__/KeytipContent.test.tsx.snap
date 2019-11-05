@@ -5,7 +5,7 @@ exports[`Keytip renders invisible Keytip correctly 1`] = `
   className=
 
       {
-        background-color: #212121;
+        background-color: #201f1e;
         visibility: hidden;
       }
 >
@@ -13,9 +13,14 @@ exports[`Keytip renders invisible Keytip correctly 1`] = `
     className=
 
         {
-          background-color: #212121;
-          color: #eaeaea;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          background-color: #201f1e;
+          color: #edebe9;
           display: inline-block;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
           height: 17px;
           line-height: 17px;
           min-width: 11px;
@@ -34,16 +39,21 @@ exports[`Keytip renders visible Keytip correctly 1`] = `
   className=
 
       {
-        background-color: #212121;
+        background-color: #201f1e;
       }
 >
   <span
     className=
 
         {
-          background-color: #212121;
-          color: #eaeaea;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          background-color: #201f1e;
+          color: #edebe9;
           display: inline-block;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
           height: 17px;
           line-height: 17px;
           min-width: 11px;
@@ -62,7 +72,7 @@ exports[`Keytip renders visible disabled Keytip correctly 1`] = `
   className=
 
       {
-        background-color: #212121;
+        background-color: #201f1e;
         opacity: 0.5;
       }
       @media screen and (-ms-high-contrast: active){& {
@@ -74,9 +84,14 @@ exports[`Keytip renders visible disabled Keytip correctly 1`] = `
     className=
 
         {
-          background-color: #212121;
-          color: #c8c8c8;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          background-color: #201f1e;
+          color: #c8c6c4;
           display: inline-block;
+          font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
           height: 17px;
           line-height: 17px;
           min-width: 11px;

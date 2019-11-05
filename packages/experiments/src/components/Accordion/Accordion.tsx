@@ -1,14 +1,15 @@
+/** @jsx withSlots */
 import * as React from 'react';
-import { createStatelessComponent, IViewComponentProps, IStyleableComponent } from '../../Foundation';
-import { CollapsibleSection, ICollapsibleSectionProps, ICollapsibleSectionStyles } from '../../CollapsibleSection';
-import { IAccordionProps, IAccordionStyles } from './Accordion.types';
+import { withSlots, getSlots } from '../../Foundation';
+import { createComponent } from '../../Foundation';
+import { CollapsibleSection, ICollapsibleSectionProps } from '../../CollapsibleSection';
+import { IAccordionComponent, IAccordionProps, IAccordionSlots } from './Accordion.types';
 import { styles } from './Accordion.styles';
 
-const AccordionItemType = (<CollapsibleSection /> as React.ReactElement<ICollapsibleSectionProps> &
-  IStyleableComponent<ICollapsibleSectionProps, ICollapsibleSectionStyles>).type;
+const AccordionItemType = (<CollapsibleSection /> as React.ReactElement<ICollapsibleSectionProps>).type;
 
-const view = (props: IViewComponentProps<IAccordionProps, IAccordionStyles>) => {
-  const { renderAs: RootType = 'div', classNames, collapseItems } = props;
+const AccordionView: IAccordionComponent['view'] = props => {
+  const { collapseItems } = props;
 
   const children: React.ReactChild[] = React.Children.map(
     props.children,
@@ -28,21 +29,23 @@ const view = (props: IViewComponentProps<IAccordionProps, IAccordionStyles>) => 
     }
   );
 
-  return <RootType className={classNames.root}> {children} </RootType>;
+  const Slots = getSlots<ICollapsibleSectionProps, IAccordionSlots>(props, {
+    root: 'div'
+  });
+
+  return <Slots.root>{children}</Slots.root>;
 };
 
 const AccordionStatics = {
   Item: CollapsibleSection,
   defaultProps: {}
 };
-type IAccordionStatics = typeof AccordionStatics;
 
 export const Accordion: React.StatelessComponent<IAccordionProps> & {
   Item: React.StatelessComponent<ICollapsibleSectionProps>;
-} = createStatelessComponent<ICollapsibleSectionProps, ICollapsibleSectionStyles, IAccordionStatics>({
+} = createComponent(AccordionView, {
   displayName: 'Accordion',
   styles,
-  view,
   statics: AccordionStatics
 });
 

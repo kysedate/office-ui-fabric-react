@@ -20,13 +20,14 @@ export const getClassNames = memoizeFunction(
     disabled: boolean,
     isFocused: boolean,
     keyboardSpinDirection: KeyboardSpinDirection,
-    labelPosition: Position = Position.start
+    labelPosition: Position = Position.start,
+    className: string | undefined = undefined
   ): ISpinButtonClassNames => {
     return {
-      root: mergeStyles(styles.root),
+      root: mergeStyles(styles.root, className),
       labelWrapper: mergeStyles(styles.labelWrapper, _getStyleForLabelBasedOnPosition(labelPosition, styles)),
       icon: mergeStyles(styles.icon, disabled && styles.iconDisabled),
-      label: mergeStyles(styles.label, disabled && styles.labelDisabled),
+      label: mergeStyles(styles.label),
       spinButtonWrapper: mergeStyles(
         styles.spinButtonWrapper,
         _getStyleForRootBasedOnPosition(labelPosition, styles),
@@ -37,7 +38,7 @@ export const getClassNames = memoizeFunction(
             }
           },
           isFocused && {
-            // This is to increase the specifity of the focus styles
+            // This is to increase the specificity of the focus styles
             // and make it equal to that of the hover styles.
             selectors: {
               '&&': styles.spinButtonWrapperFocused

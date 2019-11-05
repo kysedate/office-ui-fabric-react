@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-import { IDocPageProps } from '../../common/DocPage.types';
-import { DetailsListStatus } from './DetailsList.checklist';
+import { IDocPageProps, IExample } from '../../common/DocPage.types';
 
 import { DetailsListBasicExample } from './examples/DetailsList.Basic.Example';
 const DetailsListBasicExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.Basic.Example.tsx') as string;
+
+import { DetailsListAnimationExample } from './examples/DetailsList.Animation.Example';
+const DetailsListAnimationExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.Animation.Example.tsx') as string;
 
 import { DetailsListCompactExample } from './examples/DetailsList.Compact.Example';
 const DetailsListCompactExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.Compact.Example.tsx') as string;
@@ -36,8 +38,8 @@ const DetailsListDocumentsExampleCode = require('!raw-loader!office-ui-fabric-re
 import { DetailsListNavigatingFocusExample } from './examples/DetailsList.NavigatingFocus.Example';
 const DetailsListNavigatingFocusExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.NavigatingFocus.Example.tsx') as string;
 
-import { DetailsListShimmerExample } from './examples/DetailsList.Shimmer.Example';
-const DetailsListShimmerExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.Shimmer.Example.tsx') as string;
+import { ShimmerApplicationExample as DetailsListShimmerExample } from '../Shimmer/examples/Shimmer.Application.Example';
+const DetailsListShimmerExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/Shimmer/examples/Shimmer.Application.Example.tsx') as string;
 
 import { DetailsListCustomFooterExample } from './examples/DetailsList.CustomFooter.Example';
 const DetailsListCustomFooterExampleCode = require('!raw-loader!office-ui-fabric-react/src/components/DetailsList/examples/DetailsList.CustomFooter.Example.tsx') as string;
@@ -47,27 +49,21 @@ export const DetailsListPageProps: IDocPageProps = {
   componentName: 'DetailsList',
   componentUrl:
     'https://github.com/OfficeDev/office-ui-fabric-react/tree/master/packages/office-ui-fabric-react/src/components/DetailsList',
-  componentStatus: DetailsListStatus,
   examples: [
     {
-      title: 'Document DetailsList with 500 items, sorting, filtering, marquee selection, justified columns',
+      title: 'DetailsList with 500 documents, sorting, filtering, marquee selection, justified columns',
       code: DetailsListDocumentsExampleCode,
       view: <DetailsListDocumentsExample />
     }
   ],
-  propertiesTablesSources: [
-    require<string>('!raw-loader!office-ui-fabric-react/src/components/DetailsList/DetailsList.types.ts')
-  ],
-  overview: require<
-    string
-  >('!raw-loader!office-ui-fabric-react/src/components/DetailsList/docs/DetailsListOverview.md'),
+  overview: require<string>('!raw-loader!office-ui-fabric-react/src/components/DetailsList/docs/DetailsListOverview.md'),
   bestPractices: '',
   dos: require<string>('!raw-loader!office-ui-fabric-react/src/components/DetailsList/docs/DetailsListDos.md'),
   donts: require<string>('!raw-loader!office-ui-fabric-react/src/components/DetailsList/docs/DetailsListDonts.md'),
   isHeaderVisible: true
 };
 
-function generateProps(example: { title: string; code: string; view: JSX.Element }): IDocPageProps {
+function generateProps(example: IExample): IDocPageProps {
   return {
     title: example.title,
     componentName: 'DetailsList',
@@ -80,25 +76,31 @@ function generateProps(example: { title: string; code: string; view: JSX.Element
 }
 
 export const DetailsListBasicPageProps: IDocPageProps = generateProps({
-  title: 'Simple DetailsList with 500 items, filtering, marquee selection',
+  title: 'Simple DetailsList with filtering and marquee selection',
   code: DetailsListBasicExampleCode,
   view: <DetailsListBasicExample />
 });
 
+export const DetailsListAnimationPageProps: IDocPageProps = generateProps({
+  title: 'DetailsList with Row animation when cell content changed',
+  code: DetailsListAnimationExampleCode,
+  view: <DetailsListAnimationExample />
+});
+
 export const DetailsListCompactPageProps: IDocPageProps = generateProps({
-  title: 'Compact DetailsList with 500 items, filtering, marquee selection',
+  title: 'Compact DetailsList with filtering and marquee selection',
   code: DetailsListCompactExampleCode,
   view: <DetailsListCompactExample />
 });
 
 export const DetailsListSimpleGroupedPageProps: IDocPageProps = generateProps({
-  title: 'Simple Grouped DetailsList',
+  title: 'Simple grouped DetailsList',
   code: DetailsListGroupedExampleCode,
   view: <DetailsListGroupedExample />
 });
 
 export const DetailsListLargeGroupedPageProps: IDocPageProps = generateProps({
-  title: 'Large Grouped DetailsList',
+  title: 'Large grouped DetailsList',
   code: DetailsListGroupedLargeExampleCode,
   view: <DetailsListGroupedLargeExample />
 });
@@ -122,31 +124,31 @@ export const DetailsListCustomGroupHeadersPageProps: IDocPageProps = generatePro
 });
 
 export const DetailsListAdvancedPageProps: IDocPageProps = generateProps({
-  title: 'Advanced DetailsList of 5000 items, variable row heights',
+  title: 'Advanced DetailsList of 5000 items with variable row heights',
   code: DetailsListAdvancedExampleCode,
   view: <DetailsListAdvancedExample />
 });
 
 export const DetailsListDragDropPageProps: IDocPageProps = generateProps({
-  title: 'Drag and Drop DetailsList with 10 items',
+  title: 'DetailsList supporting drag and drop',
   code: DetailsListDragDropExampleCode,
   view: <DetailsListDragDropExample />
 });
 
 export const DetailsListNavigatingFocusPageProps: IDocPageProps = generateProps({
-  title: 'Navigating to new content preserving keyboard focus with initialFocusedIndex',
+  title: 'Navigating to new content while preserving keyboard focus',
   code: DetailsListNavigatingFocusExampleCode,
   view: <DetailsListNavigatingFocusExample />
 });
 
 export const DetailsListShimmerPageProps: IDocPageProps = generateProps({
-  title: 'DetailsList Shimmer - usually show before retrieving data from network',
+  title: 'Shimmered DetailsList - usually shown while retrieving data',
   code: DetailsListShimmerExampleCode,
   view: <DetailsListShimmerExample />
 });
 
 export const DetailsListCustomFooterPageProps: IDocPageProps = generateProps({
-  title: 'Rendering custom details list footer',
+  title: 'Rendering custom DetailsList footer',
   code: DetailsListCustomFooterExampleCode,
   view: <DetailsListCustomFooterExample />
 });

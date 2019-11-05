@@ -17,7 +17,7 @@ const FADE_IN: string = keyframes({
 
 const FADE_OUT: string = keyframes({
   from: { opacity: 1 },
-  to: { opacity: 0 }
+  to: { opacity: 0, visibility: 'hidden' }
 });
 
 const SLIDE_RIGHT_IN10: string = _createSlideInX(-10);
@@ -140,11 +140,7 @@ export const AnimationStyles: IAnimationStyles = {
   // expandCollapse 100/200/400, delay 100/200
 };
 
-function _createAnimation(
-  animationName: string,
-  animationDuration: string,
-  animationTimingFunction: string
-): IRawStyle {
+function _createAnimation(animationName: string, animationDuration: string, animationTimingFunction: string): IRawStyle {
   return {
     animationName,
     animationDuration,

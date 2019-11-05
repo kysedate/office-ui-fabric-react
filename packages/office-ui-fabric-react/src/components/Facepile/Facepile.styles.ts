@@ -24,20 +24,14 @@ export const styles = (props: IFacepileStyleProps): IFacepileStyles => {
     padding: 0,
     borderRadius: '50%',
     verticalAlign: 'top',
+    display: 'inline',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    border: 'none',
     selectors: {
-      'button&': {
-        display: 'inline',
-        background: 'none',
-        backgroundColor: 'transparent',
+      '&::-moz-focus-inner': {
         padding: 0,
-        cursor: 'pointer',
-        border: 'none',
-        selectors: {
-          '&::-moz-focus-inner': {
-            padding: 0,
-            border: 0
-          }
-        }
+        border: 0
       }
     }
   };
@@ -45,6 +39,7 @@ export const styles = (props: IFacepileStyleProps): IFacepileStyles => {
   return {
     root: [
       classNames.root,
+      theme.fonts.medium,
       {
         width: 'auto'
       },
@@ -53,29 +48,25 @@ export const styles = (props: IFacepileStyleProps): IFacepileStyles => {
 
     addButton: [
       classNames.addButton,
-      getFocusStyle(theme, -1),
+      getFocusStyle(theme, { inset: -1 }),
       ItemButtonStyles,
       {
+        fontSize: fonts.medium.fontSize,
+        color: palette.white,
+        backgroundColor: palette.themePrimary,
+        marginRight: spacingAroundItemButton * 2 + 'px',
         selectors: {
-          'button&': {
-            fontSize: fonts.medium.fontSize,
-            color: palette.white,
-            backgroundColor: palette.themePrimary,
-            marginRight: spacingAroundItemButton * 2 + 'px',
-            selectors: {
-              '&:hover': {
-                backgroundColor: palette.themeDark
-              },
-              '&:focus': {
-                backgroundColor: palette.themeDark
-              },
-              '&:active': {
-                backgroundColor: palette.themeDarker
-              },
-              '&:disabled': {
-                backgroundColor: palette.neutralTertiaryAlt
-              }
-            }
+          '&:hover': {
+            backgroundColor: palette.themeDark
+          },
+          '&:focus': {
+            backgroundColor: palette.themeDark
+          },
+          '&:active': {
+            backgroundColor: palette.themeDarker
+          },
+          '&:disabled': {
+            backgroundColor: palette.neutralTertiaryAlt
           }
         }
       }
@@ -83,17 +74,13 @@ export const styles = (props: IFacepileStyleProps): IFacepileStyles => {
 
     descriptiveOverflowButton: [
       classNames.descriptiveOverflowButton,
-      getFocusStyle(theme, -1),
+      getFocusStyle(theme, { inset: -1 }),
       ItemButtonStyles,
       {
-        selectors: {
-          'button&': {
-            fontSize: fonts.small.fontSize,
-            color: palette.neutralSecondary,
-            backgroundColor: palette.neutralLight,
-            marginLeft: `${spacingAroundItemButton * 2}px`
-          }
-        }
+        fontSize: fonts.small.fontSize,
+        color: palette.neutralSecondary,
+        backgroundColor: palette.neutralLighter,
+        marginLeft: `${spacingAroundItemButton * 2}px`
       }
     ],
 
@@ -128,17 +115,13 @@ export const styles = (props: IFacepileStyleProps): IFacepileStyles => {
 
     overflowButton: [
       classNames.overflowButton,
-      getFocusStyle(theme, -1),
+      getFocusStyle(theme, { inset: -1 }),
       ItemButtonStyles,
       {
-        selectors: {
-          'button&': {
-            fontSize: fonts.medium.fontSize,
-            color: palette.neutralSecondary,
-            backgroundColor: palette.neutralLight,
-            marginLeft: `${spacingAroundItemButton * 2}px`
-          }
-        }
+        fontSize: fonts.medium.fontSize,
+        color: palette.neutralSecondary,
+        backgroundColor: palette.neutralLighter,
+        marginLeft: `${spacingAroundItemButton * 2}px`
       }
     ],
 

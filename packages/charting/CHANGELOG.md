@@ -1,6 +1,529 @@
 # Change Log - @uifabric/charting
 
-This log was last generated on Fri, 24 Aug 2018 10:26:08 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Nov 2019 12:25:16 GMT and should not be manually modified.
+
+## 0.138.0
+Tue, 05 Nov 2019 12:25:16 GMT
+
+### Minor changes
+
+- Enabled wrap lines for legends (dajiang@microsoft.com)
+## 0.137.2
+Thu, 24 Oct 2019 12:31:42 GMT
+
+### Patches
+
+- Change gapSpace to 10 to resolve line chart flickering issue (v-ragor@microsoft.com)
+## 0.137.1
+Tue, 22 Oct 2019 12:32:05 GMT
+
+### Patches
+
+- Fix getDerivedStateFromProps signatures (elcraig@microsoft.com)
+## 0.137.0
+Wed, 09 Oct 2019 22:25:09 GMT
+
+### Minor changes
+
+- Add placeholder mode to StackedBarChart (dajiang@microsoft.com)
+## 0.136.2
+Thu, 03 Oct 2019 23:14:46 GMT
+
+### Patches
+
+- Fixes publish issue from beachball (odbuild@microsoft.com)
+## 0.136.0
+Thu, 03 Oct 2019 01:14:35 GMT
+
+### Minor changes
+
+- Add benchmark triangle in stackedBarChart (dajiang@microsoft.com)
+## 0.135.0
+Wed, 11 Sep 2019 12:35:47 GMT
+
+### Minor changes
+
+- Expose hideLegend prop for stacked bar chart (v-ragor@microsoft.com)
+## 0.134.4
+Wed, 04 Sep 2019 04:09:58 GMT
+
+### Patches
+
+- fix version file (kchau@microsoft.com)
+## 0.134.3
+Tue, 27 Aug 2019 12:33:51 GMT
+
+### Patches
+
+- Remove relative imports from examples and fix incorrectly named example files (elcraig@microsoft.com)
+## 0.134.2
+Fri, 23 Aug 2019 12:35:28 GMT
+
+### Patches
+
+- Update npmignores, delete unused jest setup files (elcraig@microsoft.com)
+- Fix up readme and package.json descriptions (elcraig@microsoft.com)
+
+## 0.134.1
+Tue, 13 Aug 2019 12:31:12 GMT
+
+### Patches
+
+- Fix donut chart transform when height and width props change (v-ragor@microsoft.com)
+
+## 0.134.0
+Wed, 07 Aug 2019 12:32:28 GMT
+
+### Minor changes
+
+- Initial implementation of clickable legends (atgupta@microsoft.com)
+
+## 0.133.5
+Mon, 22 Jul 2019 12:28:42 GMT
+
+### Patches
+
+- Improve how to get the min query string (elcraig@microsoft.com)
+
+## 0.133.4
+Wed, 17 Jul 2019 18:58:57 GMT
+
+### Patches
+
+- Adding @types/react and @types/react-dom to package.json that have peer dependencies on react and react-dom. (makotom@microsoft.com)
+
+## 0.133.2
+Wed, 10 Jul 2019 12:28:00 GMT
+
+### Patches
+
+- FIx linechart issue when consumer didn't sent height and width for the chart (v-ragor@microsoft.com)
+
+## 0.133.1
+Mon, 01 Jul 2019 18:51:42 GMT
+
+### Patches
+
+- adds react-app-polyfill
+
+## 0.133.0
+Thu, 27 Jun 2019 22:14:22 GMT
+
+### Minor changes
+
+- Bisected the height to the chart and legends
+
+## 0.132.0
+Thu, 20 Jun 2019 12:27:38 GMT
+
+### Minor changes
+
+- Fixing peer deps.
+
+## 0.131.3
+Tue, 18 Jun 2019 12:26:19 GMT
+
+### Patches
+
+- Add data viz separator for HorizontalBarChart
+
+## 0.131.2
+Fri, 14 Jun 2019 12:26:30 GMT
+
+### Patches
+
+- Resolved the issue of the legends repeating even with same color and legend
+- Fix missing assets in production build.
+
+## 0.131.1
+Thu, 13 Jun 2019 00:24:48 GMT
+
+### Patches
+
+- Initial release of Fabric 7
+- Fix verticalBarChart x-axis description cut off issue
+
+## 0.30.3
+Wed, 12 Jun 2019 00:42:26 GMT
+
+### Patches
+
+- Render demo app with Markdown instead of PageMarkdown
+- Update and dedupe React deps.
+
+## 0.30.2
+Tue, 11 Jun 2019 12:21:35 GMT
+
+### Patches
+
+- Fix LineChart does not display properly in FireFox browser
+
+## 0.30.1
+Fri, 07 Jun 2019 12:21:48 GMT
+
+### Patches
+
+- Data Viz 'Legends' is not accessible using keyboard tab navigation
+
+## 0.30.0
+Mon, 03 Jun 2019 23:04:02 GMT
+
+### Minor changes
+
+- Add benchmark triangle for HorizontalBarChart
+
+## 0.29.2
+Thu, 30 May 2019 12:22:06 GMT
+
+### Patches
+
+- Fix charting build
+
+## 0.29.1
+Tue, 21 May 2019 12:20:44 GMT
+
+### Patches
+
+- Use shared demo app bootstrapping code
+
+## 0.29.0
+Thu, 16 May 2019 17:34:08 GMT
+
+### Minor changes
+
+- Rotated the x-axis text for date values
+
+## 0.28.14
+Tue, 14 May 2019 07:50:30 GMT
+
+### Patches
+
+- Update Fabric assets link
+
+## 0.28.13
+Tue, 16 Apr 2019 12:32:59 GMT
+
+### Patches
+
+- Remove nonexistent related links from docs
+
+## 0.28.12
+Tue, 02 Apr 2019 00:38:14 GMT
+
+### Patches
+
+- Use ^ ranges instead of >=
+
+## 0.28.11
+Wed, 27 Mar 2019 12:34:02 GMT
+
+### Patches
+
+- Replace custom high contrast selector with constant
+
+## 0.28.10
+Tue, 26 Mar 2019 12:32:51 GMT
+
+### Patches
+
+- Remove IE 11-incompatible constructs
+
+## 0.28.9
+Thu, 21 Mar 2019 12:36:29 GMT
+
+### Patches
+
+- "added the background color and opacity for legends in the high contrast mode "
+
+## 0.28.8
+Tue, 05 Mar 2019 17:33:41 GMT
+
+### Patches
+
+- Add type annotations based on update to "styled"
+
+## 0.28.7
+Thu, 14 Feb 2019 13:34:54 GMT
+
+### Patches
+
+- Add saparator 2px for data segments
+
+## 0.28.6
+Wed, 06 Feb 2019 13:38:06 GMT
+
+### Patches
+
+- office ui fabric charting package, legend related changes
+
+## 0.28.5
+Tue, 08 Jan 2019 13:34:49 GMT
+
+### Patches
+
+- Basic conversions from componentWillReceiveProps to getDerivedStateFromProps
+
+## 0.28.4
+Wed, 14 Nov 2018 13:34:01 GMT
+
+### Patches
+
+- Add empty bar for use case, changes to handle Nan cases and infinity case
+
+## 0.28.3
+Fri, 09 Nov 2018 13:32:57 GMT
+
+### Patches
+
+- Make change to multistacked bar chart's hideDenominator prop
+
+## 0.28.2
+Thu, 08 Nov 2018 04:17:34 GMT
+
+### Patches
+
+- Update to line chart to re-render on prop updates and addition of new prop to stacked and multistacked bar chart
+
+## 0.28.0
+Fri, 02 Nov 2018 18:11:37 GMT
+
+### Minor changes
+
+- Using new props of hover card. Removing timeout which was introduced as temporary fix until new props were provided for scaling the hover card as per content.
+
+## 0.27.0
+Fri, 02 Nov 2018 12:28:54 GMT
+
+### Minor changes
+
+- Changes to line chart component, adding optional prop for users to which they can pass a html element based on which the dataviz will scale. This helps when the parent element is formed using flex or after a timeout. Also eliminates the glitch feel.
+
+### Patches
+
+- css changes for legends component
+
+## 0.26.3
+Thu, 01 Nov 2018 12:31:45 GMT
+
+### Patches
+
+- added hovercard for horizontalBar chart
+
+## 0.26.2
+Wed, 31 Oct 2018 12:32:41 GMT
+
+### Patches
+
+- Enable ignore fixed stackbarchart style when data point is less than 2
+
+## 0.26.1
+Mon, 29 Oct 2018 18:04:30 GMT
+
+### Patches
+
+- Add placeholder mode to MultiStackBardChart data point in order to render the bar chart with a progress gray color(default)  area
+
+## 0.26.0
+Thu, 25 Oct 2018 12:30:05 GMT
+
+### Minor changes
+
+- Added support to line chart for edge case scenario like when no data is passed to line chart
+
+## 0.25.2
+Tue, 23 Oct 2018 12:32:15 GMT
+
+### Patches
+
+- Fix an issue with the demo site not being able to load (in npm start or aka.ms/fabricdemo).
+
+## 0.25.1
+Thu, 18 Oct 2018 20:22:36 GMT
+
+### Patches
+
+- Remove api-extractor.disabled.json
+
+## 0.25.0
+Tue, 16 Oct 2018 12:28:48 GMT
+
+### Minor changes
+
+- Adding support for date format and ticks on x-axis  of line chart. Providin date format prop to users to show data in desired format. Optionally providing tickValues prop to override D3.js default behavior on deciding what data appears on the axis of chart. D3.js default behavior is not suitable in all cases and makes the chart axis look bad in certain cases. Providing tickValues prop to user so that user can override this default behavior.If he/she does not use this D3's default behavior will be used in rendering data on the xAxis
+
+## 0.24.4
+Mon, 15 Oct 2018 12:29:12 GMT
+
+### Patches
+
+- updating snapshot tests in charting package
+- Added font theme setting in styles of DonutChart, LineChart, PieChart, StackedBarChart, VerticalBarChart
+
+## 0.24.3
+Thu, 11 Oct 2018 23:13:31 GMT
+
+### Patches
+
+- resolve console errors for horizontal bar chart
+
+## 0.24.2
+Wed, 10 Oct 2018 12:29:05 GMT
+
+### Patches
+
+- css changes in charts for meeting the figma design
+
+## 0.24.1
+Mon, 08 Oct 2018 12:24:15 GMT
+
+### Patches
+
+- Moving tslint/prettier dependencies
+
+## 0.24.0
+Thu, 04 Oct 2018 12:26:48 GMT
+
+### Minor changes
+
+- Adding optional href prop to dataviz, to redirect upon clicking on the dataviz
+
+## 0.23.0
+Wed, 03 Oct 2018 12:28:46 GMT
+
+### Minor changes
+
+- Removing old legends component. Replaced in all data-viz with the new components which supports isolation and other states
+
+## 0.22.1
+Mon, 01 Oct 2018 12:27:24 GMT
+
+### Patches
+
+- Adding timeout so that line chart can scale according to the container size and occupy the entire width thereby
+
+## 0.22.0
+Thu, 27 Sep 2018 12:27:48 GMT
+
+### Minor changes
+
+- 1)Making the line chart responsive 2)Correcting flex behavior 3)Curving corners of lines to get a smooth intersection between lines
+
+### Patches
+
+- donut chart legends padding issue fix
+
+## 0.21.2
+Tue, 25 Sep 2018 12:28:12 GMT
+
+### Patches
+
+- change  barHeight for lessthan 2 data points and apply css for ratio txt
+
+## 0.21.1
+Fri, 21 Sep 2018 14:25:46 GMT
+
+### Patches
+
+- Adding a version stamp file
+
+## 0.21.0
+Fri, 14 Sep 2018 01:55:02 GMT
+
+### Minor changes
+
+- Updating target for callout so that the callout follows cursor
+
+## 0.20.0
+Wed, 12 Sep 2018 12:26:41 GMT
+
+### Minor changes
+
+- Passing mouseevents to target prop of calout, so that the callout comes next to cursor and follows it.
+- Centering legends component for Donut chart. Introducing prop for legends component that helps users align the component center
+
+### Patches
+
+- selected arc highlight and interaction between legend and chart issue fix
+
+## 0.19.2
+Tue, 11 Sep 2018 02:54:40 GMT
+
+### Patches
+
+- Line chart hover issue , css for x-axis text
+- Line chart css issues foxed
+
+## 0.19.1
+Mon, 10 Sep 2018 10:24:57 GMT
+
+### Patches
+
+- Show bar background if all chart data point data is 0 or undefined
+
+## 0.19.0
+Fri, 07 Sep 2018 22:04:50 GMT
+
+### Minor changes
+
+- Adding temporary fix for hovercard. This fix scales the hover card size based upon the content inside it
+
+### Patches
+
+- donut chart arc sectors selected arc show and remaining arcs decrease opacity
+
+## 0.18.0
+Fri, 07 Sep 2018 16:29:48 GMT
+
+### Minor changes
+
+- Changing interaction behaviour of Multistacked and stacked bar chart. Changing styling and opacity of bar upon interaction between legends and chart.
+
+## 0.17.4
+Thu, 06 Sep 2018 10:28:35 GMT
+
+### Patches
+
+- Line chart hover issue , css for x-axis text
+
+## 0.17.3
+Wed, 05 Sep 2018 10:29:25 GMT
+
+### Patches
+
+- Donut chart align issues fixed
+
+## 0.17.2
+Fri, 31 Aug 2018 17:27:00 GMT
+
+### Patches
+
+- add legends and hover behaviour for line chart
+
+## 0.17.1
+Fri, 31 Aug 2018 10:27:35 GMT
+
+### Patches
+
+- Fixes the usage of renamed variable
+- horizontal bar chart modified according to figma
+
+## 0.17.0
+Thu, 30 Aug 2018 19:26:04 GMT
+
+### Minor changes
+
+- Adding hovercard for stacked and multistacked bar chart which show related data in the hover card. Created interaction between legends, stacked and multistacked bar chart. The legends are clickable  and upon  clicking on a legends that respective data point lits up  compared to others. This helps users understand the chart and visualze better. Added opacity to charts upon interaction
+
+### Patches
+
+- Donut chart align issues fixed
+
+## 0.16.1
+Thu, 30 Aug 2018 10:32:49 GMT
+
+### Patches
+
+- Donut chart with legends and hover behavior
 
 ## 0.16.0
 Fri, 24 Aug 2018 10:26:08 GMT
@@ -225,7 +748,7 @@ Tue, 10 Apr 2018 17:37:28 GMT
 
 ### Minor changes
 
-- FloatingPicker: add show/hide picker call backs, fix double resolve when queryString is the same 
+- FloatingPicker: add show/hide picker call backs, fix double resolve when queryString is the same
 
 ### Patches
 

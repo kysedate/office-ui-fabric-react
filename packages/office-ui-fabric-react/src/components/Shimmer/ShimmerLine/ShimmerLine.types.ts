@@ -2,10 +2,14 @@ import * as React from 'react';
 import { IStyle, IRawStyle, ITheme } from '../../../Styling';
 import { IStyleFunctionOrObject, IRefObject } from '../../../Utilities';
 
+/**
+ * {@docCategory Shimmer}
+ */
 export interface IShimmerLine {}
 
 /**
  * ShimmerLine component props.
+ * {@docCategory Shimmer}
  */
 export interface IShimmerLineProps extends React.AllHTMLAttributes<HTMLElement> {
   /**
@@ -16,13 +20,13 @@ export interface IShimmerLineProps extends React.AllHTMLAttributes<HTMLElement> 
 
   /**
    * Sets the height of the rectangle.
-   * @default 16px
+   * @defaultvalue 16px
    */
   height?: number;
 
   /**
    * Sets width value of the line.
-   * @default 100%
+   * @defaultvalue 100%
    */
   width?: number | string;
 
@@ -38,13 +42,14 @@ export interface IShimmerLineProps extends React.AllHTMLAttributes<HTMLElement> 
 
   /**
    * Use to set custom styling of the shimmerLine borders.
-   * @deprecated Use 'styles' prop to leverage mergeStyle API.
+   * @deprecated Use `styles` prop to leverage mergeStyle API.
    */
   borderStyle?: IRawStyle;
 }
 
 /**
  * Props needed to construct styles.
+ * {@docCategory Shimmer}
  */
 export type IShimmerLineStyleProps = {
   /**
@@ -66,6 +71,7 @@ export type IShimmerLineStyleProps = {
 
 /**
  * Represents the stylable areas of the control.
+ * {@docCategory Shimmer}
  */
 export interface IShimmerLineStyles {
   /**

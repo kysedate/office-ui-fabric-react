@@ -9,6 +9,9 @@ import { IIconProps } from '../../Icon';
 import { IStyle, ITheme } from '../../Styling';
 import { IKeytipProps } from '../../Keytip';
 
+/**
+ * {@docCategory Button}
+ */
 export interface IButton {
   /**
    * Sets focus to the button.
@@ -24,14 +27,18 @@ export interface IButton {
    * If there is a menu associated with this button and it is visible, this will open the menu.
    * Params are optional overrides to the ones defined in 'menuProps' to apply to just this instance of opening the menu.
    *
-   * @param shouldFocusOnContainer - override to the ContextualMenu shouldFocusOnContainer prop. BaseButton implementation defaults to 'undefined'.
+   * @param shouldFocusOnContainer - override to the ContextualMenu shouldFocusOnContainer prop.
+   * BaseButton implementation defaults to 'undefined'.
    * @param shouldFocusOnMount - override to the ContextualMenu shouldFocusOnMount prop. BaseButton implementation defaults to 'true'.
    */
   openMenu: (shouldFocusOnContainer?: boolean, shouldFocusOnMount?: boolean) => void;
 }
 
+/**
+ * {@docCategory Button}
+ */
 export interface IButtonProps
-  extends React.AllHTMLAttributes<HTMLAnchorElement | HTMLButtonElement | HTMLDivElement | BaseButton | Button> {
+  extends React.AllHTMLAttributes<HTMLAnchorElement | HTMLButtonElement | HTMLDivElement | BaseButton | Button | HTMLSpanElement> {
   /**
    * Optional callback to access the IButton interface. Use this instead of ref for accessing
    * the public methods and properties of the component.
@@ -40,13 +47,13 @@ export interface IButtonProps
 
   /**
    * If provided, this component will be rendered as an anchor.
-   * @default ElementType.anchor
+   * @defaultvalue ElementType.anchor
    */
   href?: string;
 
   /**
    * Changes the visual presentation of the button to be emphasized (if defined)
-   * @default false
+   * @defaultvalue false
    */
   primary?: boolean;
 
@@ -114,7 +121,8 @@ export interface IButtonProps
   ariaHidden?: boolean;
 
   /**
-   * Text to render button label. If text is supplied, it will override any string in button children. Other children components will be passed through after the text.
+   * Text to render button label. If text is supplied, it will override any string in button children.
+   * Other children components will be passed through after the text.
    */
   text?: string;
 
@@ -185,8 +193,8 @@ export interface IButtonProps
   onRenderMenuIcon?: IRenderFunction<IButtonProps>;
 
   /**
-   * Deprecated at v6.3.2, to be removed at >= v7.0.0. Use menuAs instead.
-   * @deprecated
+   * Deprecated at v6.3.2, to be removed at \>= v7.0.0. Use `menuAs` instead.
+   * @deprecated Use `menuAs` instead.
    */
   onRenderMenu?: IRenderFunction<IContextualMenuProps>;
 
@@ -202,22 +210,24 @@ export interface IButtonProps
   secondaryText?: string;
 
   /**
-   * Deprecated at v1.2.3, to be removed at >= v2.0.0. Use specific button component instead
+   * Deprecated at v1.2.3, to be removed at \>= v2.0.0. Use specific button component instead.
    * @defaultvalue ButtonType.default
-   * @deprecated
+   * @deprecated Use specific button component instead.
    */
 
   buttonType?: ButtonType;
 
   /**
-   * Deprecated at v0.56.2, to be removed at >= v1.0.0. Just pass in button props instead;
+   * Deprecated at v0.56.2, to be removed at \>= v1.0.0. Just pass in button props instead.
    * they will be mixed into the button/anchor element rendered by the component.
-   * @deprecated
+   * @deprecated Use button props instead.
    */
   rootProps?: React.ButtonHTMLAttributes<HTMLButtonElement> | React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
   /**
    * Any custom data the developer wishes to associate with the menu item.
+   * Deprecated, use `checked` if setting state.
+   * @deprecated unused, use `checked` if setting state.
    */
   toggled?: boolean;
 
@@ -230,7 +240,7 @@ export interface IButtonProps
    * Method to provide the classnames to style a button.
    * The default value for this prop is the getClassnames func
    * defined in BaseButton.classnames.
-   * @default getBaseButtonClassNames
+   * @defaultvalue getBaseButtonClassNames
    */
   getClassNames?: (
     theme: ITheme,
@@ -241,6 +251,7 @@ export interface IButtonProps
     disabled: boolean,
     checked: boolean,
     expanded: boolean,
+    hasMenu: boolean,
     isSplit: boolean | undefined,
     allowDisabledFocus: boolean
   ) => IButtonClassNames;
@@ -249,7 +260,7 @@ export interface IButtonProps
    * Method to provide the classnames to style a button.
    * The default value for this prop is the getClassnames func
    * defined in BaseButton.classnames.
-   * @default getBaseSplitButtonClassNames
+   * @defaultvalue getBaseSplitButtonClassNames
    */
   getSplitButtonClassNames?: (
     disabled: boolean,
@@ -272,19 +283,58 @@ export interface IButtonProps
   /**
    * Menu will not be created or destroyed when opened or closed, instead it
    * will be hidden. This will improve perf of the menu opening but could potentially
-   * impact overall perf by having more elemnts in the dom. Should only be used
+   * impact overall perf by having more elements in the dom. Should only be used
    * when perf is important.
    * Note: This may increase the amount of time it takes for the button itself to mount.
    */
   persistMenu?: boolean;
 
   /**
+   * If true, the persisted menu is rendered hidden when the button
+   * initially mounts. Non-persisted menus will
+   * not be in the component tree unless they are being shown
+   *
+   * Note: This increases the time the button will take to mount, but
+   * can improve perceived menu open perf. when the user opens the menu.
+   *
+   * @defaultvalue undefined, equivalent to false
+   *
+   * @deprecated There is known bug in Edge when this prop is true where scrollbars
+   * overlap with the content when a menu is first rendered hidden.
+   * See: https://github.com/OfficeDev/office-ui-fabric-react/issues/9034
+   * Please do not start using this. If you are already using this,
+   * please make sure that you are doing so only in non-Edge browsers
+   */
+  renderPersistedMenuHiddenOnMount?: boolean;
+
+  /**
+   * Experimental prop that get passed into the menuButton that's rendered as part of
+   * split button. Anything passed in will likely need to have accompanying
+   * style changes.
+   */
+  splitButtonMenuProps?: IButtonProps;
+
+  /**
    * Style for the description text if applicable (for compound buttons.)
-   * @deprecated Use 'secondaryText' instead.
+   * Deprecated, use `secondaryText` instead.
+   * @deprecated Use `secondaryText` instead.
    */
   description?: IStyle;
+
+  /**
+   * yet unknown docs
+   */
+  defaultRender?: any;
+
+  /**
+   * Optional props to be applied only to the primary action button of SplitButton and not to the overall SplitButton container
+   */
+  primaryActionButtonProps?: IButtonProps;
 }
 
+/**
+ * {@docCategory Button}
+ */
 export enum ElementType {
   /** <button> element. */
   button = 0,
@@ -292,6 +342,9 @@ export enum ElementType {
   anchor = 1
 }
 
+/**
+ * {@docCategory Button}
+ */
 export enum ButtonType {
   normal = 0,
   primary = 1,
@@ -302,6 +355,9 @@ export enum ButtonType {
   default = 6
 }
 
+/**
+ * {@docCategory Button}
+ */
 export interface IButtonStyles {
   /**
    * Style for the root element in the default enabled, non-toggled state.
@@ -324,7 +380,7 @@ export interface IButtonStyles {
   rootHovered?: IStyle;
 
   /**
-   * Style override applied to the root on hover in the default, enabled, non-toggled state.
+   * Style override applied to the root on focus in the default, enabled, non-toggled state.
    */
   rootFocused?: IStyle;
 
@@ -357,6 +413,11 @@ export interface IButtonStyles {
    * Style override applied to the root on hover in a expanded state on hover
    */
   rootExpandedHovered?: IStyle;
+
+  /**
+   * Style override for the root element when it has a menu button, layered on top of the root style.
+   */
+  rootHasMenu?: IStyle;
 
   /**
    * Style for the flexbox container within the root element.
@@ -528,6 +589,12 @@ export interface IButtonStyles {
    * for a split button.
    */
   splitButtonDivider?: IStyle;
+
+  /**
+   * Style override for the divider element that appears between the button and menu button
+   * for a split button in a disabled state.
+   */
+  splitButtonDividerDisabled?: IStyle;
 
   /**
    * Style override for the SplitButton menu button

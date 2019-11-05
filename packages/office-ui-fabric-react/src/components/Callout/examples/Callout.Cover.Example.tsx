@@ -1,8 +1,6 @@
 import * as React from 'react';
 import './CalloutExample.scss';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { Callout, DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { DefaultButton, Callout, DirectionalHint, Dropdown, IDropdownOption } from 'office-ui-fabric-react';
 
 export interface ICalloutCoverExampleState {
   isCalloutVisible?: boolean;
@@ -44,7 +42,8 @@ export class CalloutCoverExample extends React.Component<{}, ICalloutCoverExampl
 
   public render(): JSX.Element {
     const { isCalloutVisible, directionalHint } = this.state;
-    // ms-Callout-smallbeak is used in this directional example to reflect all the positions. Large beak will disable some position to avoid beak over the callout edge.
+    // ms-Callout-smallbeak is used in this directional example to reflect all the positions.
+    // Large beak will disable some position to avoid beak over the callout edge.
     return (
       <div className="ms-CalloutExample">
         <div className="ms-CalloutExample-configArea">
@@ -67,6 +66,7 @@ export class CalloutCoverExample extends React.Component<{}, ICalloutCoverExampl
             coverTarget={true}
             isBeakVisible={false}
             gapSpace={0}
+            setInitialFocus={true}
           >
             <div className="ms-CalloutExample-header">
               <p className="ms-CalloutExample-title">I'm covering the target!</p>
@@ -94,7 +94,7 @@ export class CalloutCoverExample extends React.Component<{}, ICalloutCoverExampl
 
   private _onDirectionalChanged(event: React.FormEvent<HTMLDivElement>, option: IDropdownOption): void {
     this.setState({
-      directionalHint: option.key as number
+      directionalHint: option.key as DirectionalHint
     });
   }
 }

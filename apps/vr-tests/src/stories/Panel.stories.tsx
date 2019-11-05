@@ -1,28 +1,82 @@
 /*! Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license. */
 import * as React from 'react';
-import Screener, { Steps } from 'screener-storybook/src/screener';
+import Screener from 'screener-storybook/src/screener';
 import { storiesOf } from '@storybook/react';
 import { FabricDecorator } from '../utilities';
 import { Panel, PanelType, SearchBox } from 'office-ui-fabric-react';
 
-Panel.defaultProps = {
+const defaultProps = {
   isOpen: true,
   children: 'Content goes here'
 };
 
 storiesOf('Panel', module)
   .addDecorator(FabricDecorator)
-  .addDecorator(story => <Screener steps={new Screener.Steps().snapshot('default').end()}>{story()}</Screener>)
-  .add('Small left w/ close button', () => <Panel hasCloseButton type={PanelType.smallFixedNear} headerText="Small" />)
-  .add('Small fixed right w/ close button', () => (
-    <Panel hasCloseButton type={PanelType.smallFixedFar} headerText="Small fixed" />
+  .addDecorator(story =>
+    // prettier-ignore
+    <Screener
+      steps={new Screener.Steps()
+        .snapshot('default')
+        .end()}
+    >
+      {story()}
+    </Screener>
+  )
+  .addStory(
+    'Small left w/ close button',
+    () => (
+      <Panel {...defaultProps} hasCloseButton type={PanelType.smallFixedNear} headerText="Small" />
+    ),
+    { rtl: true }
+  )
+  .addStory(
+    'Small fixed right w/ close button',
+    () => (
+      <Panel
+        {...defaultProps}
+        hasCloseButton
+        type={PanelType.smallFixedFar}
+        headerText="Small fixed"
+      />
+    ),
+    { rtl: true }
+  )
+  .addStory('Small fluid right', () => (
+    <Panel {...defaultProps} type={PanelType.smallFluid} headerText="Small fluid" />
   ))
-  .add('Small fluid right', () => <Panel type={PanelType.smallFluid} headerText="Small fluid" />)
-  .add('Medium right', () => <Panel type={PanelType.medium} headerText="Medium" />)
-  .add('Large right', () => <Panel type={PanelType.large} headerText="Large" />)
-  .add('Large fixed right', () => <Panel type={PanelType.largeFixed} headerText="Large fixed" />)
-  .add('Extra large right', () => <Panel type={PanelType.extraLarge} headerText="Extra Large" />)
-  .add('Custom', () => <Panel type={PanelType.custom} headerText="Custom" customWidth="200vw" />);
+  .addStory(
+    'Medium right',
+    () => <Panel {...defaultProps} type={PanelType.medium} headerText="Medium" />,
+    { rtl: true }
+  )
+  .addStory('Large right', () => (
+    <Panel {...defaultProps} type={PanelType.large} headerText="Large" />
+  ))
+  .addStory('Large fixed right', () => (
+    <Panel {...defaultProps} type={PanelType.largeFixed} headerText="Large fixed" />
+  ))
+  .addStory('Extra large right', () => (
+    <Panel {...defaultProps} type={PanelType.extraLarge} headerText="Extra Large" />
+  ))
+  .addStory('Custom', () => (
+    <Panel {...defaultProps} type={PanelType.custom} headerText="Custom" customWidth="200vw" />
+  ))
+  .addStory('Custom anchored left', () => (
+    <Panel
+      {...defaultProps}
+      type={PanelType.customNear}
+      headerText="Custom left"
+      customWidth="320px"
+    />
+  ))
+  .addStory('With no navigation', () => (
+    <Panel
+      {...defaultProps}
+      type={PanelType.smallFixedFar}
+      headerText="No navigation"
+      hasCloseButton={false}
+    />
+  ));
 
 storiesOf('Panel', module)
   .addDecorator(FabricDecorator)
@@ -31,17 +85,28 @@ storiesOf('Panel', module)
       steps={new Screener.Steps()
         .snapshot('default')
         .click('.ms-SearchBox-field')
-        .snapshot('default')
+        .snapshot('click')
         .end()}
     >
       {story()}
     </Screener>
   ))
-  .add('SearchBox and Right Panel', () => (
-    <div>
-      <SearchBox placeholder="Search" />
-      <Panel isOpen={false} type={PanelType.medium} headerClassName="" headerText={'Header'} isHiddenOnDismiss>
-        {null}
-      </Panel>
-    </div>
-  ));
+  .addStory(
+    'SearchBox and Right Panel',
+    () => (
+      <div>
+        <SearchBox placeholder="Search" />
+        <Panel
+          {...defaultProps}
+          isOpen={false}
+          type={PanelType.medium}
+          headerClassName=""
+          headerText={'Header'}
+          isHiddenOnDismiss
+        >
+          {null}
+        </Panel>
+      </div>
+    ),
+    { rtl: true }
+  );

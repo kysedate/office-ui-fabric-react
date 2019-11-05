@@ -2,11 +2,16 @@
 /* This utility module is used with theming. Given a color to shade, whether the theme is inverted (i.e. is a dark color),
  * and the desired shade enum, this will return an appropriate shade of that color.
  */
-import { IHSV, IColor, MAX_COLOR_RGBA } from './colors';
-import * as Colors from './colors';
+import { IHSV, IColor } from './interfaces';
+import { MAX_COLOR_RGBA } from './consts';
 import { assign } from '../../Utilities';
+import { clamp } from './clamp';
+import { getColorFromRGBA } from './getColorFromRGBA';
+import { hsv2hsl } from './hsv2hsl';
+import { hsv2rgb } from './hsv2rgb';
 
-// Soften: to get closer to the background color's luminance (softening with a white background would be lightening, with black it'd be darkening)
+// Soften: to get closer to the background color's luminance
+// (softening with a white background would be lightening, with black it'd be darkening)
 // Strongen: opposite of soften
 
 // Luminance multiplier constants for generating shades of a given color
@@ -39,7 +44,7 @@ export enum Shade {
 
 /**
  * Returns true if the argument is a valid Shade value
- * @param {Shade} shade The Shade value to validate.
+ * @param shade - The Shade value to validate.
  */
 export function isValidShade(shade?: Shade): boolean {
   'use strict';
@@ -58,24 +63,20 @@ function _darken(hsv: IHSV, factor: number): IHSV {
   return {
     h: hsv.h,
     s: hsv.s,
-    v: _clamp(hsv.v - hsv.v * factor, 0, 100)
+    v: clamp(hsv.v - hsv.v * factor, 100, 0)
   };
 }
 
 function _lighten(hsv: IHSV, factor: number): IHSV {
   return {
     h: hsv.h,
-    s: _clamp(hsv.s - hsv.s * factor, 0, 100),
-    v: _clamp(hsv.v + (100 - hsv.v) * factor, 0, 100)
+    s: clamp(hsv.s - hsv.s * factor, 100, 0),
+    v: clamp(hsv.v + (100 - hsv.v) * factor, 100, 0)
   };
 }
 
-function _clamp(n: number, min: number, max: number) {
-  return n; // Math.max(min, Math.min(n, max));
-}
-
 export function isDark(color: IColor): boolean {
-  return Colors.hsv2hsl(color.h, color.s, color.v).l < 50;
+  return hsv2hsl(color.h, color.s, color.v).l < 50;
 }
 
 /**
@@ -91,9 +92,9 @@ export function isDark(color: IColor): boolean {
  *  soften
  * else default
  *  soften or strongen depending on shade#
- * @param {IColor} color The base color whose shade is to be computed
- * @param {Shade} shade The shade of the base color to compute
- * @param {Boolean} isInverted Default false. Whether the given theme is inverted (reverse strongen/soften logic)
+ * @param color - The base color whose shade is to be computed
+ * @param shade - The shade of the base color to compute
+ * @param isInverted - Default false. Whether the given theme is inverted (reverse strongen/soften logic)
  */
 export function getShade(color: IColor, shade: Shade, isInverted: boolean = false): IColor | null {
   'use strict';
@@ -105,7 +106,7 @@ export function getShade(color: IColor, shade: Shade, isInverted: boolean = fals
     return color;
   }
 
-  const hsl = Colors.hsv2hsl(color.h, color.s, color.v);
+  const hsl = hsv2hsl(color.h, color.s, color.v);
   let hsv = { h: color.h, s: color.s, v: color.v };
   const tableIndex = shade - 1;
   let _soften = _lighten;
@@ -135,7 +136,7 @@ export function getShade(color: IColor, shade: Shade, isInverted: boolean = fals
     }
   }
 
-  return Colors.getColorFromRGBA(assign(Colors.hsv2rgb(hsv.h, hsv.s, hsv.v), { a: color.a }));
+  return getColorFromRGBA(assign(hsv2rgb(hsv.h, hsv.s, hsv.v), { a: color.a }));
 }
 
 // Background shades/tints are generated differently. The provided color will be guaranteed
@@ -161,7 +162,7 @@ export function getBackgroundShade(color: IColor, shade: Shade, isInverted: bool
     hsv = _lighten(hsv, BlackTintTableBG[BlackTintTable.length - 1 - tableIndex]);
   }
 
-  return Colors.getColorFromRGBA(assign(Colors.hsv2rgb(hsv.h, hsv.s, hsv.v), { a: color.a }));
+  return getColorFromRGBA(assign(hsv2rgb(hsv.h, hsv.s, hsv.v), { a: color.a }));
 }
 
 /* Calculates the contrast ratio between two colors. Used for verifying

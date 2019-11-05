@@ -15,6 +15,7 @@ export class TeachingBubbleIllustrationExample extends React.Component<{}, ITeac
     super(props);
 
     this._onDismiss = this._onDismiss.bind(this);
+    this._onShow = this._onShow.bind(this);
 
     this.state = {
       isTeachingBubbleVisible: false
@@ -23,7 +24,7 @@ export class TeachingBubbleIllustrationExample extends React.Component<{}, ITeac
 
   public render(): JSX.Element {
     const { isTeachingBubbleVisible } = this.state;
-    const exampleImageProps: IImageProps = { src: 'http://placehold.it/364x140' };
+    const exampleImageProps: IImageProps = { src: 'http://placehold.it/364x180', alt: 'Example placeholder image' };
     const examplePrimaryButton: IButtonProps = {
       children: 'Try it out'
     };
@@ -34,12 +35,9 @@ export class TeachingBubbleIllustrationExample extends React.Component<{}, ITeac
 
     return (
       <div className="ms-TeachingBubbleExample">
-        <span
-          className="ms-TeachingBubbleBasicExample-buttonArea"
-          ref={menuButton => (this._menuButtonElement = menuButton!)}
-        >
+        <span className="ms-TeachingBubbleBasicExample-buttonArea" ref={menuButton => (this._menuButtonElement = menuButton!)}>
           <DefaultButton
-            onClick={this._onDismiss}
+            onClick={isTeachingBubbleVisible ? this._onDismiss : this._onShow}
             text={isTeachingBubbleVisible ? 'Hide TeachingBubble' : 'Show TeachingBubble'}
           />
         </span>
@@ -47,14 +45,13 @@ export class TeachingBubbleIllustrationExample extends React.Component<{}, ITeac
           <div>
             <TeachingBubble
               illustrationImage={exampleImageProps}
-              targetElement={this._menuButtonElement}
+              target={this._menuButtonElement}
               primaryButtonProps={examplePrimaryButton}
               secondaryButtonProps={exampleSecondaryButtonProps}
               onDismiss={this._onDismiss}
               headline="Discover what’s trending around you"
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nulla, ipsum? Molestiae quis aliquam
-              magni harum non?
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, nulla, ipsum? Molestiae quis aliquam magni harum non?
             </TeachingBubble>
           </div>
         ) : null}
@@ -64,7 +61,13 @@ export class TeachingBubbleIllustrationExample extends React.Component<{}, ITeac
 
   private _onDismiss(ev: any): void {
     this.setState({
-      isTeachingBubbleVisible: !this.state.isTeachingBubbleVisible
+      isTeachingBubbleVisible: false
+    });
+  }
+
+  private _onShow(ev: any): void {
+    this.setState({
+      isTeachingBubbleVisible: true
     });
   }
 }

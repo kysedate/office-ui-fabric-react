@@ -3,6 +3,17 @@ import { ResizeGroupBase } from './ResizeGroup.base';
 import { IStyle, ITheme } from '../../Styling';
 import { IRefObject, IStyleFunctionOrObject } from '../../Utilities';
 
+/**
+ * {@docCategory ResizeGroup}
+ */
+export enum ResizeGroupDirection {
+  horizontal = 0,
+  vertical = 1
+}
+
+/**
+ * {@docCategory ResizeGroup}
+ */
 export interface IResizeGroup {
   /**
    * Remeasures the available space.
@@ -10,6 +21,9 @@ export interface IResizeGroup {
   remeasure(): void;
 }
 
+/**
+ * {@docCategory ResizeGroup}
+ */
 export interface IResizeGroupProps extends React.HTMLAttributes<ResizeGroupBase | HTMLElement> {
   /**
    * Optional callback to access the IResizeGroup interface. Use this instead of ref for accessing
@@ -19,6 +33,7 @@ export interface IResizeGroupProps extends React.HTMLAttributes<ResizeGroupBase 
 
   /**
    * Call to provide customized styling that will layer on top of the variant rules
+   * @deprecated Removed to reduce bundle size.  Please use `className` and add css rules to `className` instead.
    */
   styles?: IStyleFunctionOrObject<IResizeGroupStyleProps, IResizeGroupStyles>;
 
@@ -32,6 +47,12 @@ export interface IResizeGroupProps extends React.HTMLAttributes<ResizeGroupBase 
    * @defaultvalue undefined
    */
   className?: string;
+
+  /**
+   * Direction of this resize group, vertical or horizontal
+   * @defaultvalue ResizeGroupDirection.horizontal
+   */
+  direction?: ResizeGroupDirection;
 
   /**
    * Initial data to be passed to the onRenderData function. When there is no onGrowData provided, this data should represent what should
@@ -70,6 +91,9 @@ export interface IResizeGroupProps extends React.HTMLAttributes<ResizeGroupBase 
   dataDidRender?: (renderedData: any) => void;
 }
 
+/**
+ * {@docCategory ResizeGroup}
+ */
 export interface IResizeGroupStyleProps {
   /**
    * Accept theme prop.
@@ -82,6 +106,9 @@ export interface IResizeGroupStyleProps {
   className?: string;
 }
 
+/**
+ * {@docCategory ResizeGroup}
+ */
 export interface IResizeGroupStyles {
   /**
    * Style for the root element.
